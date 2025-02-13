@@ -25,17 +25,17 @@ header {
     width: 120px; /* Ajuste la taille si nécessaire */
 }
 
-.nav__links {
+.nav_links {
     list-style: none;
     display: flex;
     gap: 20px; /* Espacement entre les éléments */
 }
 
-.nav__links li {
+.nav_links li {
     display: inline;
 }
 
-.nav__links a {
+.nav_links a {
     font-weight: 500;
     font-size: 16px;
     color: white;
@@ -44,7 +44,7 @@ header {
     transition: 0.3s;
 }
 
-.nav__links a:hover {
+.nav_links a:hover {
     background-color: rgba(255, 255, 255, 0.2);
     border-radius: 5px;
 }
