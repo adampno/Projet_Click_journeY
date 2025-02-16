@@ -145,7 +145,7 @@ header {
 }
 
   .login-button {
-    background-color: #5A1E1E;
+    background-color: #1e99ef;
     color: white;
     border: none;
     border-radius: 8px;
@@ -157,7 +157,7 @@ header {
   }
   
   .login-button:hover {
-    background-color: #5A1E1E;
+    background-color: #1e99ef;
   }
 
 
