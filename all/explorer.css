@@ -105,7 +105,6 @@ header {
     transition: border 0.3s;
   }
   
-  
 
   #boutonRecherche {
     background: #3480c6;
@@ -121,9 +120,6 @@ header {
 
   }
   
-  
- 
-
   .top-destinations {
     text-align: center;
     padding: 2rem;

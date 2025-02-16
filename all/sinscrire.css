@@ -15,25 +15,39 @@ body {
     color: black;
 }
 
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+    color: black; /* Assurer que le texte est bien noir */
+}
+
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px 10%;
-    background-color: linear-gradient(#046ce4,#148aea,#1e99ef);
+    background: linear-gradient(#046ce4, #148aea, #1e99ef);
 }
 
 .logo {
     cursor: pointer;
     width: 120px;
-    background-color :white;
+    background-color: white;
     border-radius: 10% 30% 50% 70%;
 }
+
 
 .nav_links {
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 20px; /* Espacement entre les éléments */
 }
 
 .nav_links li {
