@@ -121,8 +121,18 @@ header {
     border-radius: 4px;
   }
   
+.login-a {
+  font-size 1rem;
+  color: #333;
+  text-align: center;
+  margin-top: 15px;
+
+}
+
+
 
 .underline-link {
+  font-family: "Montserrat", sans-serif;
   text-decoration: underline;
   color: blue;
   font-weight:bold;
