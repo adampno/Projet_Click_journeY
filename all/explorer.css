@@ -12,7 +12,7 @@ body {
   min-height: 100vh;  /* Assure que le body prend toute la hauteur de la page */
   background-color: white; 
   font-family: "Montserrat", sans-serif;
-  color:black; /* Assurer que le texte est bien blanc */
+  color: black;
 }
 
 header {
@@ -20,12 +20,14 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 20px 10%;
-    background-color: #5A1E1E; /* Ajout d'une couleur de fond pour le header */
+    background: linear-gradient(#046ce4, #148aea, #1e99ef);
 }
 
 .logo {
     cursor: pointer;
     width: 120px; /* Ajuste la taille si nécessaire */
+    background-color: white;
+    border-radius: 10% 30% 50% 70%;
 }
 
 .nav_links {
@@ -138,19 +140,11 @@ header {
     border-radius: 8px 8px 0 0;
 }
 
-
-
-
-
-
-
-
-
-
-  footer {
+footer {
     text-align: center;
     padding: 20px;
-    background-color: #5A1E1E; 
+    background-color: #1e99ef;
+    color: white;
 }
 
 
