@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;  /* Assure que le body prend toute la hauteur de la page */
+  background-color: white; 
+  font-family: "Montserrat", sans-serif;
+  color: white; /* Assurer que le texte est bien blanc */
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10%;
+    background-color: #5A1E1E; /* Ajout d'une couleur de fond pour le header */
+}
+
+.logo {
+    cursor: pointer;
+    width: 120px; /* Ajuste la taille si nécessaire */
+}
+
+.nav_links {
+    list-style: none;
+    display: flex;
+    gap: 20px; /* Espacement entre les éléments */
+}
+
+.nav_links li {
+    display: inline;
+}
+
+.nav_links a {
+    font-weight: 500;
+    font-size: 16px;
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    transition: 0.3s;
+}
+
+.nav_links a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+
+  
+  #conteneurEntete {
+    display: flex;
+    background: white;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 600px;
+  }
+  
+  h1, h3 {
+    text-align: center;
+    color: #444;
+  }
+  
+  #conteneurChamps {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr auto;
+    gap: 15px;
+    align-items: end;
+    margin-top: 20px;
+  }
+  
+  .champAvecLabel {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .labels {
+    font-size: 0.9em;
+    color: #777;
+    margin-bottom: 5px;
+  }
+  
+  input[type="text"],
+  input[type="date"],
+  input[type="number"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: border 0.3s;
+  }
+  
+  
+
+  #boutonRecherche {
+    background: #3480c6;
+    border: none;
+    color: white;
+    border-radius: 50px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+
+  }
+  
+  
+ 
+
+
+
+
+
+
+
+  .top-destinations {
+    text-align: center;
+    padding: 2rem;
+}
+
+.top-destinations .destination {
+    display: inline-block;
+    width: 30%;
+    margin: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    background: #3480c6;
+}
+
+.top-destinations img {
+    width: 100%;
+    border-radius: 8px 8px 0 0;
+}
+
+
+
+
+
+
+
+
+
+
+  footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #5A1E1E; 
+}
+
+
+
+
+
+
+
+
+
