@@ -7,9 +7,8 @@
 }
 
 body {
-    background-color: #E5D0AC; /* Appliquer la couleur de fond ici */
     font-family: "Montserrat", sans-serif;
-    color: white; /* Assurer que le texte est bien blanc */
+    color: black; /* Assurer que le texte est bien noir */
 }
 
 header {
@@ -17,13 +16,16 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 20px 10%;
-    background-color: #5A1E1E; /* Ajout d'une couleur de fond pour le header */
+    background: linear-gradient(#046ce4, #148aea, #1e99ef);
 }
 
 .logo {
     cursor: pointer;
-    width: 120px; /* Ajuste la taille si nécessaire */
+    width: 120px;
+    background-color: white;
+    border-radius: 10% 30% 50% 70%;
 }
+
 
 .nav_links {
     list-style: none;
@@ -88,5 +90,6 @@ main {
 footer {
     text-align: center;
     padding: 20px;
-    background-color: #5A1E1E; 
+    background-color: #1e99ef;
+    color: white;
 }
