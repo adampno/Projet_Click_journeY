@@ -121,6 +121,19 @@ header {
     border-radius: 4px;
   }
   
+
+.underline-link {
+  text-decoration: underline;
+  color: blue;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.underline-link:hover {
+  color:darkblue;
+  text-decoration: none;
+}
+
   .login-button {
     background-color: #5A1E1E;
     color: white;
@@ -136,6 +149,8 @@ header {
   .login-button:hover {
     background-color: #5A1E1E;
   }
+
+
   
   main {
     text-align: center;
