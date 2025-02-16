@@ -6,10 +6,53 @@
     padding: 0;
 }
 
+
 body {
-    background-color: white;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;  /* Assure que le body prend toute la hauteur de la page */
     font-family: "Montserrat", sans-serif;
-}
+    color: black; /* Assurer que le texte est bien noir */
+  }
+  
+  header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 10%;
+      background: linear-gradient(#046ce4, #148aea, #1e99ef);
+  }
+  
+  .logo {
+      cursor: pointer;
+      width: 120px;
+      background-color: white;
+      border-radius: 10% 30% 50% 70%;
+  }
+  
+  .nav_links {
+      list-style: none;
+      display: flex;
+      gap: 20px; /* Espacement entre les éléments */
+  }
+  
+  .nav_links li {
+      display: inline;
+  }
+  
+  .nav_links a {
+      font-weight: 500;
+      font-size: 16px;
+      color: white;
+      text-decoration: none;
+      padding: 10px 15px;
+      transition: 0.3s;
+  }
+  
+  .nav_links a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 5px;
+  }
 
 /* Titre */
 .profile-title {
@@ -92,4 +135,12 @@ body {
 
 .save-button:hover {
     background-color: #148aea;
+}
+
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #1e99ef;
+    color: white;
 }
