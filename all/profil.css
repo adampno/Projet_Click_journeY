@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: white;
+    font-family: "Montserrat", sans-serif;
+}
+
+/* Titre */
+.profile-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: black;
+    margin: 30px 0;
+}
+
+/* Conteneur du profil */
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 600px;
+    margin: 0 auto;
+    padding-left: 50px;
+}
+
+/* Informations du profil */
+.profile-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    color: black;
+    width: 100%;
+}
+
+/* Icônes */
+.profile-item i {
+    font-size: 1.5rem;
+    margin-right: 15px;
+    color: #046ce4;
+}
+
+/* Labels */
+.profile-item label {
+    margin-right: 10px;
+}
+
+/* Champs modifiables */
+.profile-item input {
+    border: 1px solid #ccc;
+    font-size: 1.2rem;
+    padding: 8px;
+    width: 250px;
+    border-radius: 5px;
+    background: white;
+    outline: none;
+}
+
+/* Icône de modification */
+.edit-icon {
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #5A1E1E;
+    margin-left: 10px;
+}
+
+/* Bouton d'enregistrement */
+.button-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.save-button {
+    background-color: #046ce4;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    height: 3rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+}
+
+.save-button:hover {
+    background-color: #148aea;
+}

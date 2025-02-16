@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Profil</title>
+    <link rel="stylesheet" href="profil.css">
+    <script src="https://kit.fontawesome.com/yourkitcode.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <!-- Titre -->
+    <h1 class="profile-title">Mon Profil</h1>
+
+    <!-- Conteneur du profil -->
+    <div class="profile-container">
+        
+        <!-- Nom et prénom -->
+        <div class="profile-item">
+            <i class="fa-solid fa-user"></i>
+            <label for="nom">Nom & Prénom :</label>
+            <input type="text" id="nom" value="Dupont Jean">
+            <i class="fa-solid fa-pen edit-icon"></i>
+        </div>
+
+        <!-- Numéro de téléphone -->
+        <div class="profile-item">
+            <i class="fa-solid fa-phone"></i>
+            <label for="telephone">Téléphone :</label>
+            <input type="tel" id="telephone" value="0612345678">
+            <i class="fa-solid fa-pen edit-icon"></i>
+        </div>
+
+        <!-- Domicile -->
+        <div class="profile-item">
+            <i class="fa-solid fa-map-marker-alt"></i>
+            <label for="domicile">Domicile :</label>
+            <input type="text" id="domicile" value="Île-de-France">
+            <i class="fa-solid fa-pen edit-icon"></i>
+        </div>
+
+        <!-- Email -->
+        <div class="profile-item">
+            <i class="fa-solid fa-envelope"></i>
+            <label for="email">Email :</label>
+            <input type="email" id="email" value="DupontJean@gmail.com">
+            <i class="fa-solid fa-pen edit-icon"></i>
+        </div>
+
+    </div>
+
+    <!-- Bouton d'enregistrement -->
+    <div class="button-container">
+        <button class="save-button">Enregistrer les modifications</button>
+    </div>
+
+</body>
+</html>
