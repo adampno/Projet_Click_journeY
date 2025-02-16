@@ -54,7 +54,7 @@ header {
 
 /* Styles du formulaire d'inscription */
 .signup-main-container {
-    min-height: 100vh;
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -132,4 +132,5 @@ footer {
     padding: 20px;
     background-color: #5A1E1E;
     margin-top: auto;
+    width: 100;
 }
