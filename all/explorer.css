@@ -66,6 +66,8 @@ header {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     width: 90%;
     max-width: 600px;
+    flex-direction: column;
+    margin: 0 auto;
   }
   
   h1, h3 {
@@ -75,7 +77,8 @@ header {
   
   #conteneurChamps {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr auto;
+    width: 100%;
+    grid-template-columns: repeat(4, 1fr);
     gap: 15px;
     align-items: end;
     margin-top: 20px;
@@ -124,9 +127,13 @@ header {
   .top-destinations {
     text-align: center;
     padding: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
 }
 
 .top-destinations .destination {
+    
     display: inline-block;
     width: 30%;
     margin: 1rem;
@@ -139,6 +146,47 @@ header {
     width: 100%;
     border-radius: 8px 8px 0 0;
 }
+
+
+.type-voyage {
+    text-align: center;
+    padding: 2rem 1rem;
+    background: #f9f9f9;
+}
+
+.type-voyage h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.type-voyage .categorie {
+    display: inline-block;
+    width: 200px;
+    margin: 10px;
+    padding: 1rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.type-voyage .categorie:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.type-voyage h3 {
+    font-size: 1.5rem;
+    color: #3480c6;
+    margin-bottom: 0.5rem;
+}
+
+.type-voyage p {
+    color: #555;
+}
+
 
 footer {
     text-align: center;
