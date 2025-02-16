@@ -10,7 +10,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #E5D0AC;
+    background-color: white;
     font-family: "Montserrat", sans-serif;
     color: black;
 }
