@@ -10,9 +10,8 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;  /* Assure que le body prend toute la hauteur de la page */
-  background-color: #E5D0AC; /* Appliquer la couleur de fond ici */
   font-family: "Montserrat", sans-serif;
-  color: white; /* Assurer que le texte est bien blanc */
+  color: black; /* Assurer que le texte est bien noir */
 }
 
 header {
@@ -20,12 +19,14 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 20px 10%;
-    background-color: #5A1E1E; /* Ajout d'une couleur de fond pour le header */
+    background: linear-gradient(#046ce4, #148aea, #1e99ef);
 }
 
 .logo {
     cursor: pointer;
-    width: 120px; /* Ajuste la taille si nécessaire */
+    width: 120px;
+    background-color: white;
+    border-radius: 10% 30% 50% 70%;
 }
 
 .nav_links {
@@ -52,10 +53,7 @@ header {
     border-radius: 5px;
 }
 
- 
-
-  
-  .login-main-container {
+.login-main-container {
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -139,16 +137,15 @@ header {
     background-color: #5A1E1E;
   }
   
-
   main {
     text-align: center;
     padding: 50px 20px;
     flex: 1;
 }
 
-  footer {
+footer {
     text-align: center;
     padding: 20px;
-    background-color: #5A1E1E; 
-    margin-top: auto;
+    background-color: #1e99ef;
+    color: white;
 }
