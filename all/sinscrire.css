@@ -12,7 +12,7 @@ body {
     min-height: 100vh;
     background-color: #E5D0AC;
     font-family: "Montserrat", sans-serif;
-    color: white;
+    color: black;
 }
 
 header {
@@ -20,7 +20,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 20px 10%;
-    background-color: linear-gradient(#046ce4,#148aea, #1e99ef);
+    background-color: linear-gradient(#046ce4,#148aea,#1e99ef);
 }
 
 .logo {
@@ -125,7 +125,7 @@ p.info-text {
 }
 
 .signup-button:hover {
-    background-color: #7A2E2E;
+    background-color: #1e99ef;
 }
 
 /* Pied de page */
