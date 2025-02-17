@@ -85,21 +85,22 @@
                 <p class="info-text">Votre mot de passe doit contenir au moins 8 caractères, une lettre majuscule et un chiffre.</p>
 
                 
-
-<!-- Cases à cocher pour l'acceptation des conditions -->
-<div class="checkbox-container">
-    <input type="checkbox" id="accept-terms" required>
-    <label for="accept-terms">
-        En soumettant ce formulaire, j'accepte que mes informations soient utilisées exclusivement dans le cadre de ma demande et de la relation commerciale éthique et personnalisée qui pourrait en découler si je le souhaite.
-    </label>
-</div>
-
-<div class="checkbox-container">
-    <input type="checkbox" id="accept-newsletter">
-    <label for="accept-newsletter">
-        J'accepte que mon mail soit utilisé à des fins publicitaires (newsletter, offres exclusives, etc.).
-    </label>
-</div>
+                <div class="checkbox-wrapper">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="accept-terms" required>
+                        <span class="checkmark"></span>
+                        En soumettant ce formulaire, j'accepte que mes informations soient utilisées exclusivement dans le cadre de ma demande et de la relation commerciale éthique et personnalisée qui pourrait en découler si je le souhaite.
+                    </label>
+                </div>
+                
+                <div class="checkbox-wrapper">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="accept-newsletter">
+                        <span class="checkmark"></span>
+                        J'accepte que mon mail soit utilisé à des fins publicitaires (newsletter, offres exclusives, etc.).
+                    </label>
+                </div>
+                
 
 
             <!-- Bouton d'inscription -->

@@ -124,21 +124,67 @@ p.info-text {
 }
 
 
-/* Conteneur des cases à cocher */
-.checkbox-container {
+/* Conteneur principal des checkboxes */
+.checkbox-wrapper {
     display: flex;
-    align-items: flex-start;
-    margin: 15px 0;
-    font-size: 0.9rem;
-    color: #333;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
     max-width: 90%;
+    margin-bottom: 15px;
 }
 
 /* Style des checkboxes */
-.checkbox-container input {
-    margin-right: 10px;
-    transform: scale(1.2); /* Agrandit légèrement la case à cocher */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    font-size: 1rem; /* Adapte la taille au reste de la page */
+    font-weight: 500;
+    color: #333;
     cursor: pointer;
+    line-height: 1.5;
+    width: 100%;
+}
+
+/* Case à cocher (invisible par défaut) */
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Style personnalisé pour la case */
+.checkmark {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #046ce4;
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+    margin-right: 10px;
+}
+
+/* Effet lorsque la case est cochée */
+.checkbox-container input:checked + .checkmark {
+    background-color: #046ce4;
+    border: none;
+}
+
+/* Ajout du symbole "✓" lorsqu'elle est cochée */
+.checkbox-container input:checked + .checkmark::after {
+    content: "✓";
+    position: absolute;
+    left: 4px;
+    top: -2px;
+    font-size: 16px;
+    color: white;
+    font-weight: bold;
+}
+
+/* Adapter le texte à côté */
+.checkbox-container span {
+    flex: 1;
 }
 
 
