@@ -7,15 +7,14 @@
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    background-color: white;
-    font-family: "Montserrat", sans-serif;
-    color: black;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;  /* Assure que le body prend toute la hauteur de la page */
+  background-color: white; 
+  font-family: "Montserrat", sans-serif;
+  color: black;
 }
 
-/* Header */
 header {
     display: flex;
     justify-content: space-between;
@@ -26,7 +25,7 @@ header {
 
 .logo {
     cursor: pointer;
-    width: 120px;
+    width: 120px; /* Ajuste la taille si nécessaire */
     background-color: white;
     border-radius: 10% 30% 50% 70%;
 }
@@ -34,7 +33,7 @@ header {
 .nav_links {
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 20px; /* Espacement entre les éléments */
 }
 
 .nav_links li {
@@ -55,87 +54,103 @@ header {
     border-radius: 5px;
 }
 
-/* Contenu principal */
-.about-container {
+
+
+main {
+    padding: 40px 10%;
     text-align: center;
-    padding: 50px 20px;
-    max-width: 1000px;
-    margin: auto;
 }
 
 h1 {
-    font-size: 2.5rem;
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 20px;
+    animation: fadeIn 2s ease-out;
+}
+
+.intro-text {
+    font-size: 18px;
+    margin-bottom: 40px;
+    color: #555;
+    animation: fadeIn 2s ease-out 1s;
+}
+
+#about-agency {
+    background-color: #f7f7f7;
+    padding: 40px 10%;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+
+#about-agency h2 {
+    font-size: 30px;
     color: #046ce4;
     margin-bottom: 20px;
 }
 
-h2 {
-    font-size: 1.8rem;
-    margin-top: 30px;
-    color: #148aea;
+#about-agency p {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
 }
 
-p {
-    font-size: 1.2rem;
-    max-width: 800px;
-    margin: auto;
-    line-height: 1.5;
+.about-services ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
 }
 
-/* Catégories */
-.about-categories {
+.about-services li {
+    font-size: 18px;
+    color: #555;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.about-services li:hover {
+    transform: scale(1.05);
+    background-color: #f7f7f7;
+}
+
+.team-members {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 40px;
     flex-wrap: wrap;
-    margin-top: 30px;
-}
-
-.category {
-    width: 220px;
-    padding: 15px;
-    border-radius: 10px;
-    background: #f9f9f9;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.category i {
-    font-size: 2rem;
-    color: #046ce4;
-}
-
-.category h3 {
-    margin-top: 10px;
-    font-size: 1.3rem;
-    color: #046ce4;
-}
-
-/* Équipe */
-.about-team {
-    margin-top: 40px;
 }
 
 .team-member {
-    display: inline-block;
-    margin: 20px;
-    text-align: center;
-}
-
-.team-member img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Footer */
-footer {
-    text-align: center;
+    background-color: #f7f7f7;
     padding: 20px;
-    background-color: #1e99ef;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-member:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.team-member a {
+    color: #046ce4;
+    font-weight: bold;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.team-member a:hover {
+    color: #148aea;
+}
+
+footer {
+    background-color: #046ce4;
     color: white;
+    padding: 20px;
+    text-align: center;
     margin-top: auto;
-    width: 100%;
 }
