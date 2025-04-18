@@ -1,3 +1,10 @@
+<?php
+session_start();
+require_once 'includes/auth_check.php'; // Vérifie si l'utilisateur est connecté
+
+// Récupère les données de l'utilisateur depuis la session ou la base de données
+$user = $_SESSION['user'];
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>

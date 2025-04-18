@@ -1,3 +1,8 @@
+<?php
+session_start(); // Active la gestion des sessions
+$estConnecte = isset($_SESSION['user']);
+$estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
