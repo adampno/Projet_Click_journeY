@@ -1,3 +1,10 @@
+<?php
+session_start();
+require_once 'includes/auth_check.php'; // Vérifie si l'utilisateur est connecté
+
+// Récupère les données de l'utilisateur depuis la session ou la base de données
+$user = $_SESSION['user'];
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -13,12 +20,12 @@
         <img class="logo" src="assets/LogoWander7.png" alt="logo">
           <nav>
             <ul class="nav_links">
-              <li><a href="index.html">Accueil</a></li>
-              <li><a href="aproposdenous.html">À propos de nous</a></li>
-              <li><a href="explorer.html">Explorer</a></li>
-              <li><a href="monprofil.html">Mon profil</a></li>
-              <li><a href="admin.html">Admin</a></li>
-              <li><a href="seconnecter.html">Se connecter</a></li>
+              <li><a href="index.php">Accueil</a></li>
+              <li><a href="aproposdenous.php">À propos de nous</a></li>
+              <li><a href="explorer.php">Explorer</a></li>
+              <li><a href="monprofil.php">Mon profil</a></li>
+              <li><a href="admin.php">Admin</a></li>
+              <li><a href="seconnecter.php">Se connecter</a></li>
             </ul>
           </nav>
         </header>
