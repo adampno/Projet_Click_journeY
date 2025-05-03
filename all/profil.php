@@ -1,10 +1,9 @@
 <?php
-session_start();
-require_once 'includes/auth_check.php'; // Vérifie si l'utilisateur est connecté
-
-// Récupère les données de l'utilisateur depuis la session ou la base de données
-$user = $_SESSION['user'];
+session_start(); // Active la gestion des sessions
+$estConnecte = isset($_SESSION['user']);
+$estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
