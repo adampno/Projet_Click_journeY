@@ -63,7 +63,7 @@ $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
 
 
       <section class="merveilles-container">
-      <h2>Découvrez nos voyages/h2>
+      <h2>Nos voyages</h2>
       
       <div class="merveilles-grid">
        

@@ -56,36 +56,58 @@ main {
 }
 
 .feature__container {
-    display: grid;
-    gap: 1rem;
+    display: flex; /* Changement de grid à flex */
+    justify-content: center; /* Centrage horizontal */
+    gap: 2rem; /* Espacement entre les cartes */
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 20px;
+    flex-wrap: wrap; /* Permet le retour à la ligne sur petits écrans */
 }
-  
+
 .feature__card {
-    padding: 2rem 1rem;
+    flex: 1; /* Les cartes prennent un espace égal */
+    min-width: 250px; /* Largeur minimale pour éviter le rétrécissement */
+    max-width: 350px; /* Largeur maximale pour contrôler l'espacement */
+    padding: 2rem;
     display: flex;
+    flex-direction: column; /* Empilement vertical du contenu */
     align-items: center;
-    gap: 1rem;
-    background-color: var(--white);
+    text-align: center;
+    background-color: white;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 10px; /* Coins arrondis pour un look moderne */
+    transition: transform 0.3s ease;
 }
-  
+
+.feature__card:hover {
+    transform: translateY(-5px); /* Effet de levée au survol */
+}
+
 .feature__card img {
     max-width: 70px;
+    margin-bottom: 1rem;
 }
-  
+
 .feature__card h4 {
     margin-bottom: 0.5rem;
     font-size: 1.1rem;
     font-weight: 600;
-    color: var(--text-dark);
+    color: #2c3e50;
 }
-  
+
 .feature__card p {
-    color: var(--text-light);
+    color: #7f8c8d;
     line-height: 1.5rem;
 }
 
-/* Nouveaux styles pour la section des 7 merveilles */
+/* Responsive pour petits écrans */
+@media (max-width: 768px) {
+    .feature__card {
+        min-width: 100%; /* Pleine largeur sur mobile */
+    }
+}
+
 .merveilles-container {
     padding: 40px 0;
     text-align: center;
