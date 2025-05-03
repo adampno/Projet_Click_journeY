@@ -11,7 +11,7 @@ $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Wander7-Admin</title>
     <link rel="icon" href="assets/Logo_Wander7_Favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="style/admin.css">
 </head>
 
 <body>

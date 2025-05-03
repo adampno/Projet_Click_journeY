@@ -11,8 +11,7 @@ $user = $_SESSION['user'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Profil</title>
-    <link rel="stylesheet" href="profil.css">
-    <script src="https://kit.fontawesome.com/yourkitcode.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style/profil.css">
 </head>
 
 <body>

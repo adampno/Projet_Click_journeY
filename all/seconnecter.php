@@ -10,7 +10,7 @@ $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Wander7-Se Connecter</title>
     <link rel="icon" href="assets/Logo_Wander7_Favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="seconnecter.css" />
+    <link rel="stylesheet" href="style/seconnecter.css" />
   </head>
 
   <body>

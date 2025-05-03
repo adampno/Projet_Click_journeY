@@ -10,7 +10,7 @@ $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wander7-Formulaire d'Inscription</title>
     <link rel="icon" href="assets/Logo_Wander7_Favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="sinscrire.css"/>
+    <link rel="stylesheet" href="style/sinscrire.css"/>
 </head>
 <body>
 

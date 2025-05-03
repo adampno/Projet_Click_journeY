@@ -10,7 +10,7 @@ $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">  <!-- Adapte le site aux écrans -->
     <link rel="icon" href="assets/Logo_Wander7_Favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="style/index.css">
   </head>
 
   <body>
