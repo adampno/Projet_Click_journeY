@@ -1,3 +1,95 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const boutonRecherche = document.getElementById('boutonRecherche');
+    const barreRecherche = document.getElementById('barreRecherche');
+    
+    boutonRecherche.addEventListener('click', function() {
+        effectuerRecherche();
+    });
+    
+    barreRecherche.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            effectuerRecherche();
+        }
+    });
+    
+    function effectuerRecherche() {
+        const motCle = barreRecherche.value.trim();
+        const destination = document.getElementById('destinationSelect').value;
+        const etapes = document.getElementById('nombreEtapes').value;
+        const date = document.getElementById('dateDepart').value;
+        const budget = document.getElementById('budgetMax').value;
+        
+        // Ici vous feriez un appel AJAX à votre backend PHP
+        fetchResultats(motCle, destination, etapes, date, budget);
+    }
+    
+    function fetchResultats(motCle, destination, etapes, date, budget) {
+        // Exemple avec Fetch API
+        fetch('recherche_voyages.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                motCle: motCle,
+                destination: destination,
+                etapes: etapes,
+                date: date,
+                budget: budget
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            afficherResultats(data);
+        });
+    }
+    
+    function afficherResultats(voyages) {
+        const container = document.getElementById('resultatsRecherche');
+        
+        if (voyages.length === 0) {
+            container.innerHTML = `
+                <div class="aucunResultat">
+                    <p>Aucun voyage ne correspond à votre recherche</p>
+                </div>
+            `;
+            return;
+        }
+        
+        let html = '';
+        voyages.forEach(voyage => {
+            html += `
+                <div class="voyageCard">
+                    <img src="${voyage.image}" alt="${voyage.titre}" class="voyageImage">
+                    <div class="voyageInfos">
+                        <h3 class="voyageTitre">${voyage.titre}</h3>
+                        <p class="voyageDescription">${voyage.description}</p>
+                        <div class="voyageDetails">
+                            <span class="voyageDetailItem">
+                                <span class="material-symbols-outlined">location_on</span>
+                                ${voyage.destination}
+                            </span>
+                            <span class="voyageDetailItem">
+                                <span class="material-symbols-outlined">steps</span>
+                                ${voyage.etapes} étapes
+                            </span>
+                            <span class="voyageDetailItem">
+                                <span class="material-symbols-outlined">calendar_month</span>
+                                ${voyage.duree} jours
+                            </span>
+                        </div>
+                        <div class="voyagePrix">À partir de ${voyage.prix}€</div>
+                    </div>
+                </div>
+            `;
+        });
+        
+        container.innerHTML = html;
+    }
+});
+
+
+
 // Initialisation de la carte
 var map = L.map('map').setView([20, 0], 2);
 

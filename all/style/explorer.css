@@ -55,165 +55,284 @@ header {
 }
 
 
+#conteneurRecherche {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 1200px;
+  margin: 30px auto;
+}
+
+.recherchePrincipale {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+#barreRecherche {
+  flex-grow: 1;
+  padding: 15px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px 0 0 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.3s;
+}
+
+#barreRecherche:focus {
+  border-color: #3480c6;
+}
+
+#boutonRecherche {
+  padding: 0 25px;
+  background: #3480c6;
+  color: white;
+  border: none;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#boutonRecherche:hover {
+  background: #2a6cb0;
+}
+
+/* Filtres avancés */
+#filtresAvances {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.filtreGroupe {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.champFiltre {
+  display: flex;
+  flex-direction: column;
+}
+
+.champFiltre label {
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  color: #4a5568;
+  font-weight: 500;
+}
+
+.champFiltre select, 
+.champFiltre input {
+  padding: 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+/* Résultats de recherche */
+#resultatsRecherche {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+}
+
+.voyageCard {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  gap: 20px;
+}
+
+.voyageImage {
+  width: 250px;
+  height: 180px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.voyageInfos {
+  flex-grow: 1;
+}
+
+.voyageTitre {
+  font-size: 1.3rem;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.voyageDescription {
+  color: #4a5568;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.voyageDetails {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+.voyageDetailItem {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.9rem;
+  color: #4a5568;
+}
+
+.voyagePrix {
+  font-size: 1.2rem;
+  color: #2b6cb0;
+  font-weight: 600;
+}
+
+.aucunResultat {
+  text-align: center;
+  padding: 40px;
+  color: #718096;
+  font-size: 1.1rem;
+}
   
-  #conteneurEntete {
-    display: flex;
-    background: white;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 90%;
-    max-width: 600px;
-    flex-direction: column;
-    margin: 0 auto;
+.merveilles-container {
+  padding: 40px 0;
+  text-align: center;
+  margin: 40px auto;
+  max-width: 1200px;
+}
+
+.merveilles-container h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #2c3e50;
+}
+
+.merveilles-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin: 0 auto;
+}
+
+.merveille-card {
+  width: calc(33.333% - 20px);
+  max-width: 350px;
+  min-width: 280px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  background: white;
+  margin-bottom: 20px;
+}
+
+.merveille-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.merveille-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 1px solid #eee;
+}
+
+.merveille-info {
+  padding: 20px;
+  text-align: left;
+}
+
+.merveille-info h3 {
+  margin: 0 0 10px 0;
+  color: #2c3e50;
+  font-size: 1.2rem;
+}
+
+.merveille-info p {
+  margin: 5px 0;
+  color: #7f8c8d;
+  font-size: 0.9rem;
+}
+
+.merveille-card a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* Style pour la carte centrée (la 7ème) */
+.merveille-card.center-card {
+  width: calc(33.333% - 20px);
+  margin: 0 auto;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .merveille-card {
+      width: calc(50% - 20px);
   }
   
-  h1, h3 {
-    text-align: center;
-    color: #444;
+  .merveille-card.center-card {
+      width: calc(50% - 20px);
   }
-  
-  #conteneurChamps {
-    display: grid;
-    width: 100%;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
-    align-items: end;
-    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .merveille-card,
+  .merveille-card.center-card {
+      width: 100%;
+      max-width: 400px;
   }
-  
-  .champAvecLabel {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .labels {
-    font-size: 0.9em;
-    color: #777;
-    margin-bottom: 5px;
-  }
-  
-  input[type="text"],
-  input[type="date"],
-  input[type="number"] {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    outline: none;
-    transition: border 0.3s;
-  }
-  
-
-  #boutonRecherche {
-    background: #3480c6;
-    border: none;
-    color: white;
-    border-radius: 50px;
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-  }
-  
-  .top-destinations {
-    text-align: center;
-    padding: 2rem;
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
 }
 
-.top-destinations .destination {
-    
-    display: inline-block;
-    width: 30%;
-    margin: 1rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    background: #3480c6;
-}
-
-.top-destinations img {
-    width: 100%;
-    border-radius: 8px 8px 0 0;
-}
-
-
-.type-voyage {
-    text-align: center;
-    padding: 2rem 1rem;
-    background: #f9f9f9;
-}
-
-.type-voyage h2 {
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 1.5rem;
-}
-
-.type-voyage .categorie {
-    display: inline-block;
-    width: 200px;
-    margin: 10px;
-    padding: 1rem;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s, box-shadow 0.3s;
-    cursor: pointer;
-}
-
-.type-voyage .categorie:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-}
-
-.type-voyage h3 {
-    font-size: 1.5rem;
-    color: #3480c6;
-    margin-bottom: 0.5rem;
-}
-
-.type-voyage p {
-    color: #555;
+.map-section {
+  padding: 40px 20px;
+  background: #f8fafc;
 }
 
 #map {
-  width: 80%;
+  width: 90%;
   height: 500px;
-  margin: 20px auto;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
-#info {
-  margin-top: 20px;
-  padding: 20px;
+.wonder-info-card {
+  width: 90%;
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 25px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   text-align: center;
 }
 
-#wonder-title {
-  font-size: 22px;
-  color: #222;
-}
-
-#wonder-video {
-  width: 80%;
-  max-width: 700px;
-  height: auto;
-  margin-top: 15px;
+.discover-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 25px;
+  background: #3480c6;
+  color: white;
   border-radius: 8px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.3s;
 }
 
-video {
-  display: block;
-  margin: 0 auto;
+.discover-btn:hover {
+  background: #2a6cb0;
 }
 
 
