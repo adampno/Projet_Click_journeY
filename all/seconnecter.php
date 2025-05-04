@@ -51,7 +51,7 @@ $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
        </form>
 
           <p class="login-a">Vous n'avez pas de compte ?
-            <a href="sinscrire.html" class="underline-link">Inscrivez vous </a>
+            <a href="sinscrire.php" class="underline-link">Inscrivez vous </a>
             </p>
         </div>
       </div>
