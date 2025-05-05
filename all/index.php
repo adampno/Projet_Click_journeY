@@ -34,28 +34,38 @@ $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
       <h1>Bienvenue sur Wander7</h1>
       <p>Découvrez les 7 merveilles du monde à travers nos circuits exclusifs.</p>
 
-
-
-
-
-      <section class="top-destinations">
-                <h2>Top 3 des destinations Wander7</h2>
-                <div class="destination">
-                    <img src="assets/colisee.jpg" alt="Colisée">
-                    <h3>Colisée</h3>
-                    <p>Note : ★★★★★ (4.8)</p>
-                </div>
-                <div class="destination">
-                    <img src="assets/petra.jpg" alt="Petra">
-                    <h3>Petra</h3>
-                    <p>Note : ★★★★☆ (4.6)</p>
-                </div>
-                <div class="destination">
-                    <img src="assets/tajmahal.jpg" alt="Taj Mahal">
-                    <h3>Taj Mahal</h3>
-                    <p>Note : ★★★★☆ (4.7)</p>
-                </div>
-            </section>
+      <div class="top-destinations">
+  <h2 class="section-title">Top 3 des destinations Wander7</h2>
+  
+  <div class="destinations-grid">
+    <!-- Destination 1 -->
+    <div class="destination-card">
+      <img src="assets/colisee.jpg" alt="Colisée">
+      <div class="destination-info">
+        <h3>Colisée</h3>
+        <div class="rating">★★★★★ <span>(4.8)</span></div>
+      </div>
+    </div>
+    
+    <!-- Destination 2 -->
+    <div class="destination-card">
+      <img src="assets/petra.jpg" alt="Petra">
+      <div class="destination-info">
+        <h3>Petra</h3>
+        <div class="rating">★★★★☆ <span>(4.6)</span></div>
+      </div>
+    </div>
+    
+    <!-- Destination 3 -->
+    <div class="destination-card">
+      <img src="assets/tajmahal.jpg" alt="Taj Mahal">
+      <div class="destination-info">
+        <h3>Taj Mahal</h3>
+        <div class="rating">★★★★☆ <span>(4.7)</span></div>
+      </div>
+    </div>
+  </div>
+</div>
         
             
     

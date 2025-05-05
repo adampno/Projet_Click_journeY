@@ -110,59 +110,89 @@ main {
 
 
 
+/* Conteneur principal */
 .top-destinations {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 40px 20px;
-    background: #f8fafc;
-    margin: 30px 0;
-  }
-  .top-destinations .destination {
-      
-      display: inline-block;
-      width: 30%;
-      margin: 1rem;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      border-radius: 8px;
-      background: #3480c6;
+    text-align: center;
   }
   
+  /* Style du titre */
+  .section-title {
+    font-size: 2.2rem;
+    margin-bottom: 40px;
+    color: #333;
+    position: relative;
+    display: inline-block;
+  }
   
-  .destination {
-    width: 280px;
+  .section-title::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: #ff6b6b;
+    margin: 15px auto 0;
+  }
+  
+  /* Grille des destinations */
+  .destinations-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 20px;
+  }
+  
+  /* Carte de destination */
+  .destination-card {
     background: white;
-    border-radius: 12px;
+    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
   }
   
-  .destination:hover {
+  .destination-card:hover {
     transform: translateY(-10px);
   }
   
-  .destination h3, .destination p {
-    text-align: center;
-    padding: 15px;
+  .destination-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
   }
   
-  .destination h3 {
-    color: #2c3e50;
+  .destination-info {
+    padding: 20px;
+  }
+  
+  .destination-info h3 {
+    margin: 0 0 10px;
     font-size: 1.3rem;
-    margin-top: 10px;
   }
   
-  .destination p {
-    color: white;
-    font-size: 0.95rem;
+  .rating {
+    color: #ffb400;
+    font-size: 1.1rem;
   }
   
-  .top-destinations img {
-      width: 100%;
-      border-radius: 8px 8px 0 0;
+  .rating span {
+    color: #666;
+    font-size: 0.9rem;
   }
   
+  /* Version responsive */
+  @media (max-width: 768px) {
+    .destinations-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .section-title {
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+    }
+  }
 
 
 footer {
