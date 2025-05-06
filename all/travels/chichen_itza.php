@@ -1,3 +1,4 @@
+<?php if ($estConnecte): ?>
 <section class="video-header">
     <video autoplay muted loop class="background-video">
         <source src="videos/chichen_itza.mp4" type="video/mp4">
@@ -7,6 +8,8 @@
     <h1>Chichén Itzá (Mexique)</h1>
 </div>
 <s/ection>
+
+
 
 
 <section class="passenger-form">
@@ -102,7 +105,11 @@
     <p id="price-display">0€</p>
 </section>
 
-
+<?php else: ?>
+    <p style="color: red; font-weight: bold;">
+        Vous devez être connecté pour personnaliser ce voyage.
+    </p>
+<?php endif; ?>
 
 <script>
 document.getElementById('children').addEventListener('input', function() {
