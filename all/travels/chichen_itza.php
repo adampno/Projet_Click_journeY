@@ -1,7 +1,7 @@
 <?php if ($estConnecte): ?>
 <section class="video-header">
     <video autoplay muted loop class="background-video">
-        <source src="videos/chichen_itza.mp4" type="video/mp4">
+        <source src="/all/videos/chichen_itza.mp4" type="video/mp4">
         Votre navigateur ne supporte pas la lecture de vidéos.
     <video>
 <div class="video-overlay">

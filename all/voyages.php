@@ -17,7 +17,8 @@ if (!$id){
 <head>
     <meta charset="UTF-8">
     <title>Voyage - <?php echo htmlspecialchars($id); ?></title>
-    <link rel="stylesheet" href="all/style/voyage.css">
+    <link rel="stylesheet" href="/Projet_Click_journeY/all/style/voyage.css">
+
 </head>
 <body>
 
