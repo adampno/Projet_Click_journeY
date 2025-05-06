@@ -38,6 +38,7 @@ if (!$id){
 
 
 <main>
+<?php if ($estConnecte): ?>
 <?php
 switch ($id){
     case 'chichen_itza':
@@ -66,6 +67,11 @@ switch ($id){
         exit();
 }
 ?>
+<?php else: ?>
+    <p style="color: red; font-weight: bold;">
+        Vous devez être connecté pour personnaliser ce voyage.
+</p>
+<?php endif; ?>
 </main>
 
 <footer>
