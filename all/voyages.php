@@ -1,6 +1,6 @@
 <?php
 session_start(); // Active la gestion des sessions
-$_SESSION['user'] = ['role' => 'user'];
+$_SESSION['user'] = ['role' => 'user']; //pour le test//
 $estConnecte = isset($_SESSION['user']);
 $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
 
