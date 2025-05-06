@@ -14,10 +14,10 @@ if (!$id){
 
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
+<head>
     <meta charset="UTF-8">
     <title>Voyage - <?php echo htmlspecialchars($id); ?></title>
-    <link rel="stylesheet" href="style/voyage.css">
+    <link rel="stylesheet" href="all/style/voyage.css">
 </head>
 <body>
 
