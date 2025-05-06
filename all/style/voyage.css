@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+    color: #2c3e50;
+    background-color: #f5f7fa;
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #046ce4;
+}
+
+h3 {
+    font-size: 1.4rem;
+    margin: 10px 0;
+}
+
+
+
+.video-header {
+    position: relative;
+    height: 60vh;
+    overflow: hidden;
+}
+
+.background-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6);
+}
+
+.video-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 20px 30px;
+    border-radius: 15px;
+    font-size: 2.5rem;
+}
+
+
+
+.passenger-form {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.passenger-form label {
+    display: block;
+    margin: 15px 0 5px;
+    font-weight: 500;
+}
+
+.passenger-form input[type="number"],
+.passenger-form input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.passenger-form button {
+    margin-top: 20px;
+    background-color: #148aea;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.passenger-form button:hover {
+    background-color: #0e6fc0;
+}
+
+
+
+.flight-info {
+    max-width: 800px;
+    margin: 40px auto;
+    background-color: #eef4fc;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    text-align: left;
+}
+
+
+.hotel-selection {
+    max-width: 900px;
+    margin: 60px auto;
+    text-align: left;
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.08);
+}
+
+.hotel-option {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: border 0.3s;
+}
+
+.hotel-option:hover {
+    border-color: #046ce4;
+    background-color: #f9fcff;
+}
+
+.hotel-option input[type="radio"] {
+    margin-right: 10px;
+    transform: scale(1.2);
+}
+
+.hotel-option ul {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.hotel-option ul li {
+    margin-bottom: 5px;
+}
+
+
+.total-price {
+    max-width: 900px;
+    margin: 40px auto;
+    text-align: left;
+    background-color: #f1f1f1;
+    padding: 25px 30px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+}
+
+#price-display {
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-top: 10px;
+    color: #046ce4;
+}
+
+
+
+@media (max-width: 768px) {
+    .video-overlay {
+        font-size: 1.8rem;
+        padding: 15px;
+    }
+
+    .passenger-form, .flight-info, .hotel-selection, .total-price {
+        margin: 30px 15px;
+        padding: 20px;
+    }
+
+    .hotel-option ul {
+        padding-left: 15px;
+    }
+}
+
+body {
+    background-color: pink !important;
+  }
+  
