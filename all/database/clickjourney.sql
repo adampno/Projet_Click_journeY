@@ -1,272 +1,113 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Hôte : localhost
--- Généré le : lun. 28 avr. 2025 à 09:11
--- Version du serveur : 10.4.28-MariaDB
--- Version de PHP : 8.2.4
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Base de données : `clickjourney`
---
-
+--""-- --------------------------------------------------------
+-- Base de données : clickjourney
 -- --------------------------------------------------------
 
---
--- Structure de la table `etapes`
---
-
-CREATE TABLE `etapes` (
-  `id_etape` int(11) NOT NULL,
-  `titre` varchar(100) NOT NULL,
-  `date_arrivee` datetime NOT NULL,
-  `date_depart` datetime NOT NULL,
-  `duree` int(11) DEFAULT NULL,
-  `position_gps` varchar(255) DEFAULT NULL,
-  `nom_lieu` varchar(100) DEFAULT NULL,
-  `id_voyage` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+CREATE DATABASE IF NOT EXISTS clickjourney;
+USE clickjourney;
 
 -- --------------------------------------------------------
-
---
--- Structure de la table `etapes_personnes`
---
-
-CREATE TABLE `etapes_personnes` (
-  `id_etape` int(11) NOT NULL,
-  `nom_personne` varchar(100) NOT NULL,
-  `type_personne` varchar(30) DEFAULT 'ami'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+-- Table utilisateurs
+-- --------------------------------------------------------
+CREATE TABLE utilisateurs (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nom VARCHAR(100) NOT NULL,
+  prenom VARCHAR(100) NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  mot_de_passe VARCHAR(255) NOT NULL,
+  role ENUM('utilisateur', 'admin') NOT NULL DEFAULT 'utilisateur',
+  date_naissance DATE NOT NULL,
+  adresse TEXT NOT NULL,
+  region VARCHAR(100) NOT NULL,
+  date_inscription TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  derniere_connexion TIMESTAMP NULL
+);
 
 -- --------------------------------------------------------
-
---
--- Structure de la table `options`
---
-
-CREATE TABLE `options` (
-  `id_option` int(11) NOT NULL,
-  `nom_option` varchar(100) NOT NULL,
-  `type_option` enum('activité sportive','activité culturelle','hébergement','restauration','transport','garde enfants','gestion linge') NOT NULL,
-  `valeur_par_defaut` tinyint(1) DEFAULT 0,
-  `prix_par_personne` decimal(10,2) DEFAULT NULL,
-  `vitesse_moyenne` decimal(5,2) DEFAULT NULL,
-  `age_minimum` int(11) DEFAULT NULL,
-  `id_etape` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+-- Table aeroports
+-- --------------------------------------------------------
+CREATE TABLE aeroports (
+  id_aeroport INT AUTO_INCREMENT PRIMARY KEY,
+  nom VARCHAR(100) NOT NULL,
+  ville VARCHAR(100) NOT NULL,
+  region VARCHAR(100) NOT NULL
+);
 
 -- --------------------------------------------------------
-
---
--- Structure de la table `paiements`
---
-
-CREATE TABLE `paiements` (
-  `id_paiement` int(11) NOT NULL,
-  `montant` decimal(10,2) NOT NULL,
-  `date_transaction` datetime DEFAULT current_timestamp(),
-  `methode_paiement` varchar(20) NOT NULL,
-  `statut` varchar(20) DEFAULT 'en_attente',
-  `id_utilisateur` int(11) NOT NULL,
-  `id_voyage` int(11) NOT NULL,
-  `reference_paiement` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+-- Table voyages
+-- --------------------------------------------------------
+CREATE TABLE voyages (
+  id_voyage INT AUTO_INCREMENT PRIMARY KEY,
+  titre VARCHAR(100) NOT NULL,
+  date_debut DATE NOT NULL,
+  date_fin DATE NOT NULL,
+  duree INT DEFAULT NULL,
+  specificites TEXT DEFAULT NULL,
+  prix_total DECIMAL(10,2) DEFAULT NULL,
+  statut ENUM('payé', 'en cours de modification', 'en attente') DEFAULT 'en attente',
+  id_utilisateur INT DEFAULT NULL,
+  FOREIGN KEY (id_utilisateur) REFERENCES utilisateurs(id) ON DELETE CASCADE
+);
 
 -- --------------------------------------------------------
-
---
--- Structure de la table `utilisateur`
---
-
-CREATE TABLE `utilisateur` (
-  `Id` int(11) NOT NULL COMMENT 'Identifiant unique',
-  `Nom` varchar(100) NOT NULL,
-  `Prénom` varchar(100) NOT NULL,
-  `Email` varchar(255) NOT NULL,
-  `Mot_de_passe` varchar(255) NOT NULL,
-  `Role` enum('utilisateur','admin') NOT NULL,
-  `date_naissance` date NOT NULL,
-  `adresse` text NOT NULL,
-  `Date d'inscription` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'Date de création',
-  `Dernière connexion` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'Dernier login'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `utilisateur`
---
-
-INSERT INTO `utilisateur` (`Id`, `Nom`, `Prénom`, `Email`, `Mot_de_passe`, `Role`, `date_naissance`, `adresse`, `Date d'inscription`, `Dernière connexion`) VALUES
-(1, 'Dupont', 'Jean', 'jean@example.com', 'mdp123', 'utilisateur', '1990-05-14', 'Paris', '2025-04-22 13:47:43', '0000-00-00 00:00:00');
+-- Table vols
+-- --------------------------------------------------------
+CREATE TABLE vols (
+  id_vol INT AUTO_INCREMENT PRIMARY KEY,
+  aeroport_depart VARCHAR(100) NOT NULL,
+  aeroport_arrivee VARCHAR(100) NOT NULL,
+  date_depart DATETIME NOT NULL,
+  date_arrivee DATETIME NOT NULL,
+  prix DECIMAL(10,2) NOT NULL,
+  id_voyage INT NOT NULL,
+  FOREIGN KEY (id_voyage) REFERENCES voyages(id_voyage) ON DELETE CASCADE
+);
 
 -- --------------------------------------------------------
-
---
--- Structure de la table `utilisateurs_voyages`
---
-
-CREATE TABLE `utilisateurs_voyages` (
-  `id_utilisateur` int(11) NOT NULL,
-  `id_voyage` int(11) NOT NULL,
-  `type_relation` varchar(20) NOT NULL DEFAULT 'consulté',
-  `date_action` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+-- Table hebergements
+-- --------------------------------------------------------
+CREATE TABLE hebergements (
+  id_hebergement INT AUTO_INCREMENT PRIMARY KEY,
+  nom VARCHAR(100) NOT NULL,
+  type_hebergement ENUM('hotel', 'tente', 'villa') NOT NULL,
+  niveau ENUM('3 étoiles', '4 étoiles', '5 étoiles', 'luxe') NOT NULL,
+  prix_par_nuit DECIMAL(10,2) NOT NULL,
+  id_voyage INT NOT NULL,
+  FOREIGN KEY (id_voyage) REFERENCES voyages(id_voyage) ON DELETE CASCADE
+);
 
 -- --------------------------------------------------------
+-- Table activites
+-- --------------------------------------------------------
+CREATE TABLE activites (
+  id_activite INT AUTO_INCREMENT PRIMARY KEY,
+  nom VARCHAR(100) NOT NULL,
+  type_activite ENUM('sportive', 'culturelle', 'aventure', 'détente') NOT NULL,
+  prix_par_personne DECIMAL(10,2) NOT NULL,
+  description TEXT,
+  id_voyage INT NOT NULL,
+  FOREIGN KEY (id_voyage) REFERENCES voyages(id_voyage) ON DELETE CASCADE
+);
 
---
--- Structure de la table `voyages`
---
+-- --------------------------------------------------------
+-- Insertion des aéroports en France
+-- --------------------------------------------------------
+INSERT INTO aeroports (nom, ville, region) VALUES
+('Aéroport de Bordeaux', 'Bordeaux', 'nouvelle-aquitaine'),
+('Aéroport de Brest', 'Brest', 'bretagne'),
+('Aéroport de Caen', 'Caen', 'normandie'),
+('Aéroport de Clermont Ferrand', 'Clermont', 'auvergne-rhone-alpes'),
+('Aéroport de Dijon', 'Dijon', 'bourgogne-franche-comte'),
+('Aéroport de Grenoble', 'Grenoble', 'auvergne-rhone-alpes'),
+('Aéroport de Lille', 'Lille', 'hauts-de-france'),
+('Aéroport de Lyon', 'Lyon', 'auvergne-rhone-alpes'),
+('Aéroport de Marseille', 'Marseille', 'provence-alpes-cote-d-azur'),
+('Aéroport de Montpellier', 'Montpellier', 'occitanie'),
+('Aéroport de Nantes', 'Nantes', 'pays-de-la-loire'),
+('Aéroport de Nice', 'Nice', 'provence-alpes-cote-d-azur'),
+('Aéroport de Paris', 'Paris', 'ile-de-france'),
+('Aéroport de Rennes', 'Rennes', 'bretagne'),
+('Aéroport de Strasbourg', 'Strasbourg', 'grand-est'),
+('Aéroport de Toulouse', 'Toulouse', 'occitanie');
 
-CREATE TABLE `voyages` (
-  `id_voyage` int(11) NOT NULL,
-  `titre` varchar(100) NOT NULL,
-  `date_debut` date NOT NULL,
-  `date_fin` date NOT NULL,
-  `duree` int(11) DEFAULT NULL,
-  `specificites` text DEFAULT NULL,
-  `prix_total` decimal(10,2) DEFAULT NULL,
-  `statut` enum('payé','en cours de modification','en attente') DEFAULT 'en attente',
-  `id_utilisateur` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+""
 
---
--- Index pour les tables déchargées
---
-
---
--- Index pour la table `etapes`
---
-ALTER TABLE `etapes`
-  ADD PRIMARY KEY (`id_etape`),
-  ADD KEY `id_voyage` (`id_voyage`);
-
---
--- Index pour la table `etapes_personnes`
---
-ALTER TABLE `etapes_personnes`
-  ADD PRIMARY KEY (`id_etape`,`nom_personne`);
-
---
--- Index pour la table `options`
---
-ALTER TABLE `options`
-  ADD PRIMARY KEY (`id_option`),
-  ADD KEY `id_etape` (`id_etape`);
-
---
--- Index pour la table `paiements`
---
-ALTER TABLE `paiements`
-  ADD PRIMARY KEY (`id_paiement`),
-  ADD KEY `id_utilisateur` (`id_utilisateur`),
-  ADD KEY `id_voyage` (`id_voyage`);
-
---
--- Index pour la table `utilisateur`
---
-ALTER TABLE `utilisateur`
-  ADD PRIMARY KEY (`Id`),
-  ADD UNIQUE KEY `Email` (`Email`);
-
---
--- Index pour la table `utilisateurs_voyages`
---
-ALTER TABLE `utilisateurs_voyages`
-  ADD PRIMARY KEY (`id_utilisateur`,`id_voyage`,`type_relation`),
-  ADD KEY `fk_voyage` (`id_voyage`);
-
---
--- Index pour la table `voyages`
---
-ALTER TABLE `voyages`
-  ADD PRIMARY KEY (`id_voyage`),
-  ADD KEY `id_utilisateur` (`id_utilisateur`);
-
---
--- AUTO_INCREMENT pour les tables déchargées
---
-
---
--- AUTO_INCREMENT pour la table `etapes`
---
-ALTER TABLE `etapes`
-  MODIFY `id_etape` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `options`
---
-ALTER TABLE `options`
-  MODIFY `id_option` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `paiements`
---
-ALTER TABLE `paiements`
-  MODIFY `id_paiement` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `voyages`
---
-ALTER TABLE `voyages`
-  MODIFY `id_voyage` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- Contraintes pour les tables déchargées
---
-
---
--- Contraintes pour la table `etapes`
---
-ALTER TABLE `etapes`
-  ADD CONSTRAINT `etapes_ibfk_1` FOREIGN KEY (`id_voyage`) REFERENCES `voyages` (`id_voyage`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_etape_voyage` FOREIGN KEY (`id_voyage`) REFERENCES `voyages` (`id_voyage`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Contraintes pour la table `etapes_personnes`
---
-ALTER TABLE `etapes_personnes`
-  ADD CONSTRAINT `fk_etape_ep` FOREIGN KEY (`id_etape`) REFERENCES `etapes` (`id_etape`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Contraintes pour la table `options`
---
-ALTER TABLE `options`
-  ADD CONSTRAINT `fk_option_etape` FOREIGN KEY (`id_etape`) REFERENCES `etapes` (`id_etape`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `options_ibfk_1` FOREIGN KEY (`id_etape`) REFERENCES `etapes` (`id_etape`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Contraintes pour la table `paiements`
---
-ALTER TABLE `paiements`
-  ADD CONSTRAINT `fk_paiement_utilisateur` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateur` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_paiement_voyage` FOREIGN KEY (`id_voyage`) REFERENCES `voyages` (`id_voyage`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Contraintes pour la table `utilisateurs_voyages`
---
-ALTER TABLE `utilisateurs_voyages`
-  ADD CONSTRAINT `fk_uv_utilisateur` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateur` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_uv_voyage` FOREIGN KEY (`id_voyage`) REFERENCES `voyages` (`id_voyage`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Contraintes pour la table `voyages`
---
-ALTER TABLE `voyages`
-  ADD CONSTRAINT `fk_voyage_utilisateur` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateur` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

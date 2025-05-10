@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:500');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;700&display=swap');
 
 * {
     box-sizing: border-box;
@@ -8,176 +8,180 @@
 
 body {
     font-family: "Montserrat", sans-serif;
-    color: #2c3e50;
-    background-color: #f5f7fa;
+    color: black;
 }
 
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10%;
+    background: linear-gradient(#046ce4, #148aea, #1e99ef);
+    ;
+}
+
+.logo {
+    cursor: pointer;
+    width: 120px;
+    background-color: white;
+    border-radius: 10% 30% 50% 70%;
+}
+
+.nav_links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav_links li {
+    display: inline;
+}
+
+.nav_links a {
+    font-weight: 500;
+    font-size: 16px;
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    transition: 0.3s;
+}
+
+.nav_links a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+
+header h1 {
+    margin-bottom: 10px;
+    font-size: 2.2rem;
+}
+
+header p {
+    margin: 5px 0;
+}
+
+/* Section Titre */
 h2 {
     font-size: 1.8rem;
     margin-bottom: 20px;
     color: #046ce4;
-}
-
-h3 {
-    font-size: 1.4rem;
-    margin: 10px 0;
-}
-
-
-
-.video-header {
-    position: relative;
-    height: 60vh;
-    overflow: hidden;
-}
-
-.background-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(0.6);
-}
-
-.video-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.4);
-    padding: 20px 30px;
-    border-radius: 15px;
-    font-size: 2.5rem;
 }
 
-
-
-.passenger-form {
+/* Vols */
+.vols-section {
+    margin: 20px auto;
     max-width: 800px;
-    margin: 60px auto;
-    padding: 30px;
     background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.05);
-}
-
-.passenger-form label {
-    display: block;
-    margin: 15px 0 5px;
-    font-weight: 500;
-}
-
-.passenger-form input[type="number"],
-.passenger-form input[type="date"] {
-    width: 100%;
-    padding: 8px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-}
-
-.passenger-form button {
-    margin-top: 20px;
-    background-color: #148aea;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.passenger-form button:hover {
-    background-color: #0e6fc0;
-}
-
-
-
-.flight-info {
-    max-width: 800px;
-    margin: 40px auto;
-    background-color: #eef4fc;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    text-align: left;
-}
-
-
-.hotel-selection {
-    max-width: 900px;
-    margin: 60px auto;
-    text-align: left;
-    background-color: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.08);
-}
-
-.hotel-option {
-    border: 1px solid #ccc;
     border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.vols-section h3 {
+    color: #046ce4;
+    margin-bottom: 15px;
+}
+
+.vol {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.vol p {
+    margin: 2px 0;
+}
+
+/* Hébergements */
+.hebergements-section {
+    margin: 20px auto;
+    max-width: 900px;
+}
+
+.hebergement-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin-bottom: 20px;
-    transition: border 0.3s;
+    display: flex;
+    gap: 20px;
 }
 
-.hotel-option:hover {
-    border-color: #046ce4;
-    background-color: #f9fcff;
+.hebergement-card img {
+    width: 250px;
+    border-radius: 10px;
+    object-fit: cover;
 }
 
-.hotel-option input[type="radio"] {
-    margin-right: 10px;
-    transform: scale(1.2);
+.hebergement-details {
+    flex: 1;
 }
 
-.hotel-option ul {
-    margin-top: 10px;
-    padding-left: 20px;
+.hebergement-details h4 {
+    color: #046ce4;
+    margin-bottom: 10px;
 }
 
-.hotel-option ul li {
+.hebergement-details p {
     margin-bottom: 5px;
 }
 
-
-.total-price {
+/* Activités */
+.activites-section {
+    margin: 20px auto;
     max-width: 900px;
-    margin: 40px auto;
-    text-align: left;
-    background-color: #f1f1f1;
-    padding: 25px 30px;
+}
+
+.activite-card {
+    background-color: white;
     border-radius: 10px;
-    font-size: 1.2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 20px;
 }
 
-#price-display {
-    font-weight: bold;
-    font-size: 1.5rem;
-    margin-top: 10px;
+.activite-card img {
+    width: 250px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.activite-details {
+    flex: 1;
+}
+
+.activite-details h4 {
     color: #046ce4;
+    margin-bottom: 10px;
 }
 
+.activite-details p {
+    margin-bottom: 5px;
+}
 
-
+/* Responsive Design */
 @media (max-width: 768px) {
-    .video-overlay {
-        font-size: 1.8rem;
-        padding: 15px;
+    .hebergement-card, .activite-card {
+        flex-direction: column;
     }
 
-    .passenger-form, .flight-info, .hotel-selection, .total-price {
-        margin: 30px 15px;
-        padding: 20px;
-    }
-
-    .hotel-option ul {
-        padding-left: 15px;
+    .hebergement-card img, .activite-card img {
+        width: 100%;
     }
 }
 
-body {
-    background-color: pink !important;
-  }
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #1e99ef;
+    color:white;
+    margin-top: auto;
+    width: 100%;
+}
   
