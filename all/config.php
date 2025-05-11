@@ -3,7 +3,7 @@
 $host = 'localhost';
 $db = 'clickjourney';
 $user = 'root'; // Remplacez par votre utilisateur MySQL
-$pass = '';    // Remplacez par votre mot de passe MySQL
+$pass = 'root';    // Remplacez par votre mot de passe MySQL
 
 // Options de PDO
 $options = [

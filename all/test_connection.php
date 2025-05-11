@@ -1,7 +1,13 @@
 <?php
+
+// Détection de l'environnement (MAMP ou XAMPP)
+$port = (stripos(PHP_OS, 'Darwin') !== false) ? '8889' : '3306';
+$password = (stripos(PHP_OS, 'Darwin') !== false) ? 'root' : '';
+
+
 // Connexion à la base de données
 try {
-    $pdo = new PDO('mysql:host=localhost;dbname=clickjourney', 'root', '');
+    $pdo = new PDO('mysql:host=localhost;port=$port;dbname=clickjourney', 'root', $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     echo "✅ Connexion réussie à la base de données !<br>";
 } catch (PDOException $e) {
