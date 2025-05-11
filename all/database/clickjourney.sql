@@ -87,6 +87,23 @@ CREATE TABLE activites (
   id_voyage INT NOT NULL,
   FOREIGN KEY (id_voyage) REFERENCES voyages(id_voyage) ON DELETE CASCADE
 );
+-- --------------------------------------------------------
+-- Table paiements
+-- --------------------------------------------------------
+CREATE TABLE paiements (
+  id_paiement INT AUTO_INCREMENT PRIMARY KEY,
+  montant DECIMAL(10,2) NOT NULL,
+  date_transaction DATETIME DEFAULT CURRENT_TIMESTAMP,
+  methode_paiement VARCHAR(20) NOT NULL,
+  statut ENUM('en_attente', 'validé', 'annulé') DEFAULT 'en_attente',
+  id_utilisateur INT NOT NULL,
+  id_voyage INT NOT NULL,
+  reference_paiement VARCHAR(50) DEFAULT NULL,
+  FOREIGN KEY (id_utilisateur) REFERENCES utilisateurs(id) ON DELETE CASCADE,
+  FOREIGN KEY (id_voyage) REFERENCES voyages(id_voyage) ON DELETE CASCADE
+);
+
+
 
 -- --------------------------------------------------------
 -- Insertion des aéroports en France
@@ -109,5 +126,24 @@ INSERT INTO aeroports (nom, ville, region) VALUES
 ('Aéroport de Strasbourg', 'Strasbourg', 'grand-est'),
 ('Aéroport de Toulouse', 'Toulouse', 'occitanie');
 
-""
 
+
+
+-- Insertion de données de test
+
+INSERT INTO utilisateurs (nom, prenom, email, mot_de_passe, role, date_naissance, adresse, region) VALUES
+('Kellai', 'Jean', 'jean@example.com', 'mdp123', 'utilisateur', '1990-05-14', '12 Rue de Paris, Paris', 'ile-de-france'),
+('Doe', 'Jane', 'jane@example.com', 'mdp456', 'admin', '1985-08-24', '4 Rue de Lyon, Lyon', 'auvergne-rhone-alpes');
+
+INSERT INTO voyages (titre, description, date_debut, date_fin, duree, specificites, prix_total, statut, id_utilisateur) VALUES
+('Visite de Chichén Itzá', 'Découverte des pyramides et sites historiques', '2025-07-01', '2025-07-07', 6, 'Historique, culturel', 1500.00, 'en attente', 1);
+
+INSERT INTO hebergements (nom, type_hebergement, niveau, prix_par_nuit, description, id_voyage) VALUES
+('Hôtel Maya', 'hotel', '5 étoiles', 200.00, 'Vue sur les pyramides, piscine et spa.', 1),
+('Tente Deluxe', 'tente', 'luxe', 100.00, 'Expérience unique sous les étoiles', 1),
+('Villa Chichén', 'villa', '4 étoiles', 300.00, 'Luxueuse villa avec jardin privé.', 1);
+
+INSERT INTO activites (nom, type_activite, prix_par_personne, description, id_voyage) VALUES
+('Visite guidée des pyramides', 'culturelle', 30.00, 'Explorez les ruines avec un guide expert.', 1),
+('Balade à cheval', 'aventure', 50.00, 'Découvrez les alentours à cheval.', 1),
+('Dîner spectacle Maya', 'détente', 70.00, 'Un dîner typique avec danses traditionnelles.', 1);
