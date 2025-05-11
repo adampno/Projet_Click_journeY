@@ -129,7 +129,8 @@ $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
         </div>
 
         <div class="merveille-card">
-          <a href="<?php echo $estConnecte ? 'machupicchu.php' : 'seconnecter.php'; ?>">
+          <a href="voyages.php?id=chichen itza">
+          
             <img src="assets/machuPicchu_index.jpg" alt="Machu Picchu">
             <div class="merveille-info">
               <h3>Machu Picchu</h3>
@@ -145,7 +146,7 @@ $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
             <div class="merveille-info">
               <h3>Chichén Itzá</h3>
               <p>À partir de 1399€</p>
-              <p>9 jours | 5 étapes</p>
+              <p>5 jours | 5 étapes</p>
             </div>
           </a>
         </div>
