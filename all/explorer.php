@@ -1,17 +1,57 @@
 <?php
 session_start(); // Active la gestion des sessions
+require_once "config.php";
+
 $estConnecte = isset($_SESSION['user']);
 $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
+
+$titre = $_GET['titre'] ?? null;
+
+try {
+    $query = "SELECT 
+                v.id_voyage,
+                v.titre,
+                v.date_debut,
+                v.date_fin,
+                v.prix_total,
+                v.specificites,
+                h.nom AS hebergement,
+                h.type_hebergement,
+                a.nom AS activite,
+                a.type_activite
+              FROM voyages v
+              LEFT JOIN hebergements h ON v.id_voyage = h.id_voyage
+              LEFT JOIN activites a ON v.id_voyage = a.id_voyage
+              WHERE (
+                   v.titre LIKE :titre OR 
+                   h.nom LIKE :titre OR 
+                   h.type_hebergement LIKE :titre OR 
+                   a.nom LIKE :titre OR 
+                   a.type_activite LIKE :titre OR
+                   v.specificites LIKE :titre
+              )
+              GROUP BY v.id_voyage";
+
+    $stmt = $pdo->prepare($query);
+
+    $stmt->execute([
+        ':titre' => $titre ? "%$titre%" : "%"
+    ]);
+
+    $voyages = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    die("Erreur de recherche : " . $e->getMessage());
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Wander7-Explorer</title>
+    <title>Wander7 - Explorer</title>
     <link rel="icon" href="assets/Logo_Wander7_Favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="style/explorer.css" />
-
   </head>
 
   <body>
@@ -29,22 +69,37 @@ $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
       </nav>
     </header>
 
-
     <main>
-   
-      
-    <div id="conteneurRecherche">
-    <section id="zoneRecherche">
-    
-        
-        <!-- Barre de recherche principale -->
-        <div class="recherchePrincipale">
-            <input type="text" id="barreRecherche" placeholder="Rechercher par mot-clé (ex: Maya, Chine, Aventure...)">
-            <button id="boutonRecherche">
-                <span class="material-symbols-outlined">Rechercher</span> 
-            </button>
-        </div>
+      <div id="conteneurRecherche">
+        <section id="zoneRecherche">
+          
+          <!-- Barre de recherche par mots-clés -->
+          <form method="GET" action="">
+            <input type="text" name="titre" placeholder="Rechercher par mots-clés (ex: Cheval, Maya, Aventure)">
+            <button type="submit">Rechercher</button>
+          </form>
 
+          <!-- Résultats de recherche -->
+          <h2>Résultats :</h2>
+          <ul>
+          <?php if (empty($voyages)): ?>
+              <li>Aucun résultat trouvé pour cette recherche.</li>
+          <?php else: ?>
+              <?php foreach ($voyages as $voyage): ?>
+                  <li>
+                      <h3><?= $voyage['titre'] ?></h3>
+                      <p>Date de début : <?= $voyage['date_debut'] ?></p>
+                      <p>Date de fin : <?= $voyage['date_fin'] ?></p>
+                      <p>Prix : <?= $voyage['prix_total'] ?> €</p>
+                      <p>Hébergement : <?= $voyage['hebergement'] ?> (<?= $voyage['type_hebergement'] ?>)</p>
+                      <p>Activité : <?= $voyage['activite'] ?> (<?= $voyage['type_activite'] ?>)</p>
+                      <p>Spécificités : <?= $voyage['specificites'] ?></p>
+                  </li>
+              <?php endforeach; ?>
+          <?php endif; ?>
+          </ul>
+        </section>
+      </div>
         <!-- Filtres avancés (peuvent être cachés/dépliables) -->
         <div id="filtresAvances">
             <div class="filtreGroupe">
@@ -187,41 +242,7 @@ $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
     </section>
 
 
-          
-
-
-            
-            
-
-       <!--map-->
-
-        <h1>Où se cachent les 7 Merveilles du Monde ? 🌍</h1>
-        <div id="map"></div>
-
-
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
-        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    </head>
-    <body>
-    
-     
-    
-    <div class="map-info">
-        <div class="wonder-info-card" id="wonder-info">
-            <h3>Cliquez sur un marqueur</h3>
-            <p>Sélectionnez une merveille sur la carte pour voir les détails</p>
-            <div class="wonder-details">
-                <p><strong>Pays :</strong> <span id="wonder-country"></span></p>
-                <p><strong>Meilleure période :</strong> <span id="wonder-season"></span></p>
-                <p><strong>Durée recommandée :</strong> <span id="wonder-duration"></span></p>
-            </div>
-            <a href="#" class="discover-btn" id="discover-link">Découvrir ce voyage</a>
-        </div>
-    </div>
-</section>
-        <script src="explorer.js"> </script>
-
-
+        
     </main>
     
     <footer>
