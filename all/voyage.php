@@ -237,7 +237,7 @@ $activites = $stmt_activites->fetchAll();
   <?=htmlspecialchars($activite['a_description'])?>
     </p>
                     <ul>
-                        <li><?= htmlspecialchars($activite['a_duree'])?></li>
+                        <li>Durée :<?= htmlspecialchars($activite['a_duree'])?></li>
                         <li>Mode de transport : <?= htmlspecialchars($activite['mode_transport'])?></li>
                         <li>Départ : Réception de l'hôtel à <?= htmlspecialchars($activite['a_heure_depart'])?></li>
                         <li>Prix : <?= htmlspecialchars($activite['a_prix'])?>€ par personne </li>

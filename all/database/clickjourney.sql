@@ -180,7 +180,7 @@ INSERT INTO voyages(titre, duree) VALUES
 ('Pétra', 5);
 
 INSERT INTO voyages(titre, duree) VALUES
-('Colisée', 6);
+('Colisée', 5);
 
 INSERT INTO voyages(titre, duree) VALUES
 ('Machu Picchu', 6);
@@ -218,8 +218,8 @@ INSERT INTO vols(aeroport_depart, aeroport_arrivee, heure_depart, heure_arrivee,
 -- Colisée
 SELECT id_voyage INTO @id_colisee FROM voyages WHERE titre ='Colisée';
 INSERT INTO vols(aeroport_depart, aeroport_arrivee, heure_depart, heure_arrivee, duree, prix, type_vol, id_voyage) VALUES
-('CHOIX_UTILISATEUR', ' ', ' ', ' ', ' h min',  , 'aller', @id_colisée), 
-(' ', 'CHOIX_UTILISATEUR', ' ', ' ', ' h min',  ,'retour', @id_colisée);
+('CHOIX_UTILISATEUR', 'Rome Ciampino(CIA)', '09:55:00', '11:55:00', '2h05min', 110.00, 'aller', @id_colisée), 
+('Rome Ciampino(CIA)', 'CHOIX_UTILISATEUR', '16:15:00', '18:15:00', '2h05min', 110.00,'retour', @id_colisée);
 
 -- Machu Picchu
 SELECT id_voyage INTO @id_machu_picchu FROM voyages WHERE titre ='Machu Picchu';
@@ -265,9 +265,9 @@ INSERT INTO hebergements (id_hebergement, h_nom, etoiles, h_localisation, h_prix
 
 -- Colisée
 INSERT INTO hebergements (id_hebergement, h_nom, etoiles, h_localisation, h_prix, id_voyage) VALUES
-(1, 'Hôtel ',  , '  ', , @id_colisee),
-(2, 'Hôtel ',  , '  ', , @id_colisee),
-(3, 'Hôtel ',  , '  ', , @id_colisee);
+(1, 'Hôtel Grifo', 3, 'Monti, Italie', 435.00, @id_colisee),
+(2, 'Hôtel Mercure Roma', 4, 'Rome, Jordanie', 750.00, @id_colisee),
+(3, 'Hôtel Palazzo Manfredi', 5, 'Rome, Jordanie', 1865.00, @id_colisee);
 
 -- Machu Picchu
 INSERT INTO hebergements (id_hebergement, h_nom, etoiles, h_localisation, h_prix, id_voyage) VALUES
@@ -313,9 +313,9 @@ INSERT INTO hebergement_caracteristiques(id_voyage, id_hebergement, transfert, n
 
 -- Colisée
 INSERT INTO hebergement_caracteristiques(id_voyage, id_hebergement, transfert, nb_piscines, jacuzzi, spa, pension, wifi_gratuit, tv_chambres, climatisation, seche_cheveux, balcon_pv, laverie, pmr) VALUES
-(@id_colisee, 1, ' ',  , ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' ),
-(@id_colisee, 2, ' ',  , ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' ),
-(@id_colisee, 3, ' ',  , ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' );
+(@id_colisee, 1, 'oui', 1, 'non', 'non', 'petit-dejeuner', 'non', 'non', 'non', 'non', 'non', 'non', 'non' ),
+(@id_colisee, 2, 'oui', 2, 'non', 'oui', 'demi-pension', 'oui', 'oui', 'non', 'non', 'non', 'oui', 'oui' ),
+(@id_colisee, 3, 'oui', 4, 'oui', 'oui', 'all inclusive', 'oui', 'oui', 'oui', 'oui', 'oui', 'oui', 'oui' );
 
 -- Machu Picchu
 INSERT INTO hebergement_caracteristiques(id_voyage, id_hebergement, transfert, nb_piscines, jacuzzi, spa, pension, wifi_gratuit, tv_chambres, climatisation, seche_cheveux, balcon_pv, laverie, pmr) VALUES
@@ -373,6 +373,22 @@ INSERT INTO activites(id_voyage, a_nom, a_description, a_duree, mode_transport, 
 (@id_petra, "Randonnée au Haut Lieu du Sacrifice", "Ascension vers un ancien site cérémoniel offrant une vue imprenable sur Pétra et ses environs", '2h', 'À pied', '10:00:00', 25.00),
 (@id_petra, "Visite du château de Shobak", "Explorez une forteresse croisée du XIIe siècle perchée sur une colline, offrant un aperçu de l'histoire médiévale de la région.", '5h', 'Car', '08:00:00', 191.00),
 (@id_petra, "Excursion au Wadi Rum", "Découvrez le désert du Wadi Rum en 4x4, célèbre pour ses paysages lunaires et ses formations rocheuses spectaculaires.", '10h', 'Car', '09:00:00', 180.00);
+
+
+-- Colisée
+INSERT INTO activites(id_voyage, a_nom, a_description, a_duree, mode_transport, a_heure_depart, a_prix) VALUES
+(@id_colisee, "Visite du Colisée", "Plongez dans l'histoire en explorant l'amphithéâtre emblématique de Rome, autrefois le théâtre de combats de gladiateurs et de spectacles publics.", '2h', 'À pied', '08:00:00', 16.00),
+(@id_colisee, "Découverte du Vatican", "Explorez les trésors artistiques et spirituels du Vatican, y compris la Chapelle Sixtine et la majestueuse Basilique Saint-Pierre.", '3h30', 'Car', '13:30:00', 18.00),
+(@id-id_colisee, "Balade au Panthéon", "Admirez l'architecture impressionnante du Panthéon, un temple antique dédié à toutes les divinités, célèbre pour sa coupole et son oculus.", '1h', 'À pied', '10:00:00', 0.00),
+(@id_colisee, "Cours de cuisine italienne", "Plongez dans l'art culinaire italien en apprenant à préparer des pâtes fraiches et un tiramisu traditionnel aux côtés d'un chef local.", '3h', 'À pied', '3h', '14:00:00', 66.00),
+(@id_colisee, "Détente à la plage de Santa Severa", "Évadez-vous du tumulte urbain pour une journée de détente sur la plage de Santa Severa, réputée pour son sable fin, ses eaux claires et son château médiéval en toile de fond.", '11h', 'Car', '08:30:00', 10.00),
+(@id_colisee, "Promenade à la Villa Borghèse", "Profitez d'une promenade dans ce vaste parc paysager, abritant des musées, des jardins et des vues panoramiques sur Rome", '2h30', 'Car', '09:30:00', 15.00);
+
+
+
+
+
+
 
 
 
