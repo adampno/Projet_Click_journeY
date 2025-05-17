@@ -431,6 +431,12 @@ h3 {
 }
 
 
+.activity-description {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #555;
+}
+
 
 .activity-heading {
     text-align: center;

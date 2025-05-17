@@ -186,7 +186,7 @@ $activites = $stmt_activites->fetchAll();
           <div class="hotel-stars"> <?= str_repeat('★', $hebergement['etoiles'])?>  </div>
           <div class="hotel-location"> <?= htmlspecialchars($hebergement['h_localisation'])?> </div>
 </div>
-        <img src="assets/<?= strtolower($hebergement['h_nom']) ?>.png" alt="<?= strtolower($hebergement['h_nom']) ?>" class="hotel-image-side">
+        <img src="assets/<?= str_replace(' ', '_', strtolower($hebergement['h_nom'])) ?>.png" alt="<?= strtolower($hebergement['h_nom']) ?>" class="hotel-image-side">
 </div>
 <div class="hotel-details">
         <ul>
@@ -225,7 +225,7 @@ $activites = $stmt_activites->fetchAll();
 
                 <div class="activity-image-container">
                     
-                    <img src="all/assets/<?= str_replace(' ', '_', strtolower($activite['a_nom']))?>.jpg" alt="<?= htmlspecialchars($activite['a_nom'])?>" class="activity-image-side">
+                    <img src="assets/<?= str_replace(' ', '_', strtolower($activite['a_nom']))?>.jpeg" alt="<?= htmlspecialchars($activite['a_nom'])?>" class="activity-image-side">
                 </div>
                 <div class="activity-details">
                   <div class="activity-title">
@@ -233,6 +233,9 @@ $activites = $stmt_activites->fetchAll();
                       <h3><?= htmlspecialchars($activite['a_nom'])?></h3>
 </label>
 </div>
+<p class="activity-description">
+  <?=htmlspecialchars($activite['a_description'])?>
+    </p>
                     <ul>
                         <li><?= htmlspecialchars($activite['a_duree'])?></li>
                         <li>Mode de transport : <?= htmlspecialchars($activite['mode_transport'])?></li>
