@@ -70,10 +70,10 @@ CREATE TABLE vols (
 -- --------------------------------------------------------
 CREATE TABLE hebergements (
   id_hebergement INT NOT NULL,
-  nom VARCHAR(100) NOT NULL,
+  h_nom VARCHAR(100) NOT NULL,
   etoiles INT NOT NULL,
-  localisation VARCHAR(100) NOT NULL,
-  prix DECIMAL(10,2) NOT NULL,
+  h_localisation VARCHAR(100) NOT NULL,
+  h_prix DECIMAL(10,2) NOT NULL,
   id_voyage INT NOT NULL,
   PRIMARY KEY (id_hebergement, id_voyage),
   FOREIGN KEY (id_voyage) REFERENCES voyages(id_voyage) ON DELETE CASCADE
@@ -86,6 +86,8 @@ CREATE TABLE hebergements (
 -- --------------------------------------------------------
 CREATE TABLE hebergement_caracteristiques (
   id_caracteristique INT AUTO_INCREMENT PRIMARY KEY,
+  id_voyage INT NOT NULL,
+  id_hebergement INT NOT NULL,
   transfert ENUM('oui', 'non') NOT NULL,
   nb_piscines INT NOT NULL,
   jacuzzi ENUM('oui', 'non') NOT NULL,
@@ -100,8 +102,6 @@ CREATE TABLE hebergement_caracteristiques (
   balcon_pv ENUM('oui', 'non') NOT NULL,
   laverie ENUM('oui', 'non') NOT NULL,
   pmr ENUM('oui', 'non') NOT NULL,
-  id_hebergement INT NOT NULL,
-  id_voyage INT NOT NULL, 
   FOREIGN KEY (id_hebergement, id_voyage) REFERENCES hebergements(id_hebergement, id_voyage) ON DELETE CASCADE
 );
 
@@ -171,31 +171,31 @@ INSERT INTO aeroports (nom, ville, region) VALUES
 -- Insertion des 7 voyages 
 -- --------------------------------------------------------
 INSERT INTO voyages(titre, duree) VALUES
-('Chichén Itza', 6),
+('Chichén Itza', 6);
 SET @id_chichen_itza = LAST_INSERT_ID();
 
 INSERT INTO voyages(titre, duree,) VALUES
-('Christ Rédempteur', 6),
+('Christ Rédempteur', 6);
 SET @id_christ_redempteur = LAST_INSERT_ID();
 
 INSERT INTO voyages(titre, duree,) VALUES
-('Pétra', 6),
+('Pétra', 6);
 SET @id_petra = LAST_INSERT_ID();
 
 INSERT INTO voyages(titre, duree) VALUES
-('Colisée', 6),
+('Colisée', 6);
 SET @id_colisee = LAST_INSERT_ID();
 
 INSERT INTO voyages(titre, duree) VALUES
-('Machu Picchu', 6),
+('Machu Picchu', 6);
 SET @id_machu_picchu = LAST_INSERT_ID();
 
 INSERT INTO voyages(titre, duree) VALUES
-('Taj Mahal', 6),
+('Taj Mahal', 6);
 SET @id_taj_mahal = LAST_INSERT_ID();
 
 INSERT INTO voyages(titre, duree) VALUES
-('Grande Muraille de Chine', 6),
+('Grande Muraille de Chine', 6);
 SET @id_chine = LAST_INSERT_ID();
 
 
@@ -206,38 +206,38 @@ SET @id_chine = LAST_INSERT_ID();
 -- --------------------------------------------------------
 -- Chichén Itza
 INSERT INTO vols(aeroport_depart, aeroport_arrivee, heure_depart, heure_arrivee, duree, prix, type_vol, id_voyage) VALUES
-('CHOIX_UTILISATEUR', 'Mérida(MID)', '08:15(UTC+2)', '10:45(UTC-6)', '10h30min', 229, 'aller', @id_chichen_itza), 
-('Mérida(MID)', 'CHOIX_UTILISATEUR', '12:35(UTC-6)', '07:05 J+1(UTC+2)', '10h30min', 229, 'retour', @id_chichen_itza );
+('CHOIX_UTILISATEUR', 'Mérida(MID)', '08:15:00', '10:45:00', '10h30min', 229.00, 'aller', @id_chichen_itza), 
+('Mérida(MID)', 'CHOIX_UTILISATEUR', '12:35(UTC-6)', '07:05 J+1(UTC+2)', '10h30min', 229.00, 'retour', @id_chichen_itza );
 
 -- Christ-Rédempteur
 INSERT INTO vols(aeroport_depart, aeroport_arrivee, heure_depart, heure_arrivee, duree, prix, type_vol, id_voyage) VALUES
-('CHOIX_UTILISATEUR', ' ', ' (UTC )', ' (UTC )', ' h min',  ,'aller', @id_christ_redempteur), 
-(' ', 'CHOIX_UTILISATEUR', ' (UTC )', ' (UTC )', ' h min',  , 'retour', @id_christ_redempteur );
+('CHOIX_UTILISATEUR', ' ', ' ', ' ', ' h min',  ,'aller', @id_christ_redempteur), 
+(' ', 'CHOIX_UTILISATEUR', ' ', ' ', ' h min',  , 'retour', @id_christ_redempteur );
 
 -- Pétra
 INSERT INTO vols(aeroport_depart, aeroport_arrivee, heure_depart, heure_arrivee, duree, prix, type_vol, id_voyage) VALUES
-('CHOIX_UTILISATEUR', ' ', ' (UTC )', ' (UTC )', ' h min',  , 'aller',  @id_petra), 
-(' ', 'CHOIX_UTILISATEUR', ' (UTC )', ' (UTC )', ' h min',  , 'retour', @id_petra);
+('CHOIX_UTILISATEUR', ' ', ' ', ' ', ' h min',  , 'aller',  @id_petra), 
+(' ', 'CHOIX_UTILISATEUR', ' ', ' ', ' h min',  , 'retour', @id_petra);
 
 -- Colisée
 INSERT INTO vols(aeroport_depart, aeroport_arrivee, heure_depart, heure_arrivee, duree, prix, type_vol, id_voyage) VALUES
-('CHOIX_UTILISATEUR', ' ', ' (UTC )', ' (UTC )', ' h min',  , 'aller', @id_colisée), 
-(' ', 'CHOIX_UTILISATEUR', ' (UTC )', ' (UTC )', ' h min',  ,'retour', @id_colisée);
+('CHOIX_UTILISATEUR', ' ', ' ', ' ', ' h min',  , 'aller', @id_colisée), 
+(' ', 'CHOIX_UTILISATEUR', ' ', ' ', ' h min',  ,'retour', @id_colisée);
 
 -- Machu Picchu
 INSERT INTO vols(aeroport_depart, aeroport_arrivee, heure_depart, heure_arrivee, duree, prix, type_vol, id_voyage) VALUES
-('CHOIX_UTILISATEUR', ' ', ' (UTC )', ' (UTC )', ' h min',  , 'aller', @id_machu_picchu), 
-(' ', 'CHOIX_UTILISATEUR', ' (UTC )', ' (UTC )', ' h min',  , 'retour', @id_machu_picchu);
+('CHOIX_UTILISATEUR', ' ', ' ', ' ', ' h min',  , 'aller', @id_machu_picchu), 
+(' ', 'CHOIX_UTILISATEUR', ' ', ' ', ' h min',  , 'retour', @id_machu_picchu);
 
 -- Taj Mahal
 INSERT INTO vols(aeroport_depart, aeroport_arrivee, heure_depart, heure_arrivee, duree, prix, type_vol, id_voyage) VALUES
-('CHOIX_UTILISATEUR', ' ', ' (UTC )', ' (UTC )', ' h min',  , 'aller', @id_taj_mahal), 
-(' ', 'CHOIX_UTILISATEUR', ' (UTC )', ' (UTC )', ' h min',  , 'retour', @id_taj_mahal);
+('CHOIX_UTILISATEUR', ' ', ' ', ' ', ' h min',  , 'aller', @id_taj_mahal), 
+(' ', 'CHOIX_UTILISATEUR', ' ', ' ', ' h min',  , 'retour', @id_taj_mahal);
 
 -- Grande Muraille de Chine
 INSERT INTO vols(aeroport_depart, aeroport_arrivee, heure_depart, heure_arrivee, duree, prix, type_vol, id_voyage) VALUES
-('CHOIX_UTILISATEUR', ' ', ' (UTC )', ' (UTC )', ' h min',  , 'aller', @id_chine), 
-(' ', 'CHOIX_UTILISATEUR', ' (UTC )', ' (UTC )', ' h min',  , 'retour', @id_chine);
+('CHOIX_UTILISATEUR', ' ', ' ', ' ', ' h min',  , 'aller', @id_chine), 
+(' ', 'CHOIX_UTILISATEUR', ' ', ' ', ' h min',  , 'retour', @id_chine);
 
 
 
@@ -246,8 +246,94 @@ INSERT INTO vols(aeroport_depart, aeroport_arrivee, heure_depart, heure_arrivee,
 -- Insertion des hôtels associés aux voyages 
 -- --------------------------------------------------------
 -- Chichén Itza
+INSERT INTO hebergements (id_hebergement, h_nom, etoiles, h_localisation, h_prix, id_voyage) VALUES
+(1, 'Hôtel Alba', 2, 'Pisté, Mexique', 309, @id_chichen_itza),
+(2, 'Hôtel Puerta', 3, 'Pisté, Mexique', 493, @id_chichen_itza),
+(3, 'Hôtel Maya', 5, 'Pisté, Mexique', 594, @id_chichen_itza);
+
+-- Christ Rédempteur
+INSERT INTO hebergements (id_hebergement, h_nom, etoiles, h_localisation, h_prix, id_voyage) VALUES
+(1, 'Hôtel ',  , '  ', , @id_christ_redempteur),
+(2, 'Hôtel ',  , '  ', , @id_christ_redempteur),
+(3, 'Hôtel ',  , '  ', , @id_christ_redempteur);
+
+-- Pétra
+INSERT INTO hebergements (id_hebergement, h_nom, etoiles, h_localisation, h_prix, id_voyage) VALUES
+(1, 'Hôtel ',  , '  ', , @id_petra),
+(2, 'Hôtel ',  , '  ', , @id_petra),
+(3, 'Hôtel ',  , '  ', , @id_petra);
+
+-- Colisée
+INSERT INTO hebergements (id_hebergement, h_nom, etoiles, h_localisation, h_prix, id_voyage) VALUES
+(1, 'Hôtel ',  , '  ', , @id_colisee),
+(2, 'Hôtel ',  , '  ', , @id_colisee),
+(3, 'Hôtel ',  , '  ', , @id_colisee);
+
+-- Machu Picchu
+INSERT INTO hebergements (id_hebergement, h_nom, etoiles, h_localisation, h_prix, id_voyage) VALUES
+(1, 'Hôtel ',  , '  ', , @id_machu_picchu),
+(2, 'Hôtel ',  , '  ', , @id_machu_picchu),
+(3, 'Hôtel ',  , '  ', , @id_machu_picchu);
+
+-- Taj Mahal
+INSERT INTO hebergements (id_hebergement, h_nom, etoiles, h_localisation, h_prix, id_voyage) VALUES
+(1, 'Hôtel ',  , '  ', , @id_taj_mahal),
+(2, 'Hôtel ',  , '  ', , @id_taj_mahal),
+(3, 'Hôtel ',  , '  ', , @id_taj_mahal);
+
+-- Grande Muraille de Chine
+INSERT INTO hebergements (id_hebergement, h_nom, etoiles, h_localisation, h_prix, id_voyage) VALUES
+(1, 'Hôtel ',  , '  ', , @id_chine),
+(2, 'Hôtel ',  , '  ', , @id_chine),
+(3, 'Hôtel ',  , '  ', , @id_chine);
 
 
+
+
+-- --------------------------------------------------------
+-- Insertion des caractéristiques des hôtels 
+-- --------------------------------------------------------
+-- Chichén Itza
+INSERT INTO hebergement_caracteristiques(id_voyage, id_hebergement, transfert, nb_piscines, jacuzzi, spa, pension, wifi_gratuit, tv_chambres, climatisation, seche_cheveux, balcon_pv, laverie, pmr) VALUES
+(@id_chichen_itza, 1, 'oui', 2, 'non', 'non', 'petit-dejeuner', 'oui', 'non', 'non', 'non', 'non', 'non', 'non' ),
+(@id_chichen_itza, 2, 'oui', 2, 'non', 'oui', 'demi-pension', 'oui', 'oui', 'oui', 'non', 'non', 'oui', 'oui'),
+(@id_chichen_itza, 3, 'oui', 3, 'oui', 'oui', 'all inclusive', 'oui', 'oui', 'oui', 'oui', 'oui', 'oui', 'oui');
+
+-- Christ Rédempteur
+INSERT INTO hebergement_caracteristiques(id_voyage, id_hebergement, transfert, nb_piscines, jacuzzi, spa, pension, wifi_gratuit, tv_chambres, climatisation, seche_cheveux, balcon_pv, laverie, pmr) VALUES
+(@id_christ_redempteur, 1, ' ',  , ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' ),
+(@id_christ_redempteur, 2, ' ',  , ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' ),
+(@id_christ_redempteur, 3, ' ',  , ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' );
+
+-- Pétra
+INSERT INTO hebergement_caracteristiques(id_voyage, id_hebergement, transfert, nb_piscines, jacuzzi, spa, pension, wifi_gratuit, tv_chambres, climatisation, seche_cheveux, balcon_pv, laverie, pmr) VALUES
+(@id_petra, 1, ' ',  , ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' ),
+(@id_petra, 2, ' ',  , ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' ),
+(@id_petra, 3, ' ',  , ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' );
+
+-- Colisée
+INSERT INTO hebergement_caracteristiques(id_voyage, id_hebergement, transfert, nb_piscines, jacuzzi, spa, pension, wifi_gratuit, tv_chambres, climatisation, seche_cheveux, balcon_pv, laverie, pmr) VALUES
+(@id_colisee, 1, ' ',  , ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' ),
+(@id_colisee, 2, ' ',  , ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' ),
+(@id_colisee, 3, ' ',  , ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' );
+
+-- Machu Picchu
+INSERT INTO hebergement_caracteristiques(id_voyage, id_hebergement, transfert, nb_piscines, jacuzzi, spa, pension, wifi_gratuit, tv_chambres, climatisation, seche_cheveux, balcon_pv, laverie, pmr) VALUES
+(@id_machu_picchu, 1, ' ',  , ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' ),
+(@id_machu_picchu, 2, ' ',  , ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' ),
+(@id_machu_picchu, 3, ' ',  , ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' );
+
+-- Taj Mahal
+INSERT INTO hebergement_caracteristiques(id_voyage, id_hebergement, transfert, nb_piscines, jacuzzi, spa, pension, wifi_gratuit, tv_chambres, climatisation, seche_cheveux, balcon_pv, laverie, pmr) VALUES
+(@id_taj_mahal, 1, ' ',  , ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' ),
+(@id_taj_mahal, 2, ' ',  , ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' ),
+(@id_taj_mahal, 3, ' ',  , ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' );
+
+-- Grande Muraille de Chine
+INSERT INTO hebergement_caracteristiques(id_voyage, id_hebergement, transfert, nb_piscines, jacuzzi, spa, pension, wifi_gratuit, tv_chambres, climatisation, seche_cheveux, balcon_pv, laverie, pmr) VALUES
+(@id_chine, 1, ' ',  , ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' ),
+(@id_chine, 2, ' ',  , ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' ),
+(@id_chine, 3, ' ',  , ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' );
 
 
 

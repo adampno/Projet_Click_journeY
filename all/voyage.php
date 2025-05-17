@@ -265,7 +265,7 @@ $activites = $stmt_activites->fetchAll();
 
                 <div class="activity-image-container">
                     
-                    <img src="assets/chichen_itza_eglise.jpg" alt="Église Chichen Itza" class="activity-image-side">
+                    <img src="chichen_itza__eglise.jpg" alt="Église Chichen Itza" class="activity-image-side">
                     <p class="photo-credit">
                         Crédit photo : <a href="https://commons.wikimedia.org/wiki/File:Church_at_Piste,_Yucat%C3%A1n,_Mexico.jpg" target="_blank">Wikimedia Commons</a>
                     </p>
@@ -299,7 +299,7 @@ $activites = $stmt_activites->fetchAll();
 
                 <div class="activity-image-container">
                     
-                    <img src="assets/chichen_itza_visite.jpeg" alt="Visite Chichen Itza" class="activity-image-side">
+                    <img src="chichen_itza__visite.jpeg" alt="Visite Chichen Itza" class="activity-image-side">
                 </div>
 
                 <div class="activity-details">
@@ -331,7 +331,7 @@ $activites = $stmt_activites->fetchAll();
 
                 <div class="activity-image-container">
                     
-                    <img src="assets/chichen_itza_ikkil.jpeg" alt="Chichen Itza Ik Kil" class="activity-image-side">
+                    <img src="chichen_itza__ikkil.jpeg" alt="Chichen Itza Ik Kil" class="activity-image-side">
                 </div>
 
                 <div class="activity-details">
@@ -363,7 +363,7 @@ $activites = $stmt_activites->fetchAll();
 
                 <div class="activity-image-container">
                     
-                    <img src="assets/chichen_itza_ekbalam.jpeg" alt="Chichen Itza Ek Balam" class="activity-image-side">
+                    <img src="chichen_itza__ekbalam.jpeg" alt="Chichen Itza Ek Balam" class="activity-image-side">
                 </div>
 
                 <div class="activity-details">
@@ -394,7 +394,7 @@ $activites = $stmt_activites->fetchAll();
 
                 <div class="activity-image-container">
                     
-                    <img src="assets/chichen_itza_xcanche.jpeg" alt="Chichen Itza X'Canché" class="activity-image-side">
+                    <img src="assets/chichen_itza/chichen_itza_xcanche.jpeg" alt="Chichen Itza X'Canché" class="activity-image-side">
                 </div>
 
                 <div class="activity-details">
@@ -426,7 +426,7 @@ $activites = $stmt_activites->fetchAll();
 
                 <div class="activity-image-container">
                     
-                    <img src="assets/chichen_itza_dzitnup.jpeg" alt="Chichen Itza Dzitnup" class="activity-image-side">
+                    <img src="chichen_itza/chichen_itza_dzitnup.jpeg" alt="Chichen Itza Dzitnup" class="activity-image-side">
                 </div>
 
                 <div class="activity-details">
