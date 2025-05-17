@@ -182,11 +182,11 @@ $activites = $stmt_activites->fetchAll();
 
       <div class="hotel-image-container">
         <div class="hotel-heading">
-          <h3><?= strtolower($hebergement['h_nom']) ?></h3>
+          <h3><?= ucwords(htmlspecialchars($hebergement['h_nom'])) ?></h3>
           <div class="hotel-stars"> <?= str_repeat('★', $hebergement['etoiles'])?>  </div>
           <div class="hotel-location"> <?= htmlspecialchars($hebergement['h_localisation'])?> </div>
 </div>
-        <img src="assets/<?= str_replace(' ', '_', strtolower($hebergement['h_nom'])) ?>.png" alt="<?= strtolower($hebergement['h_nom']) ?>" class="hotel-image-side">
+        <img src="assets/<?= str_replace(' ', '_', $hebergement['h_nom']) ?>.png" alt="<?= htmlspecialchars($hebergement['h_nom']) ?>" class="hotel-image-side">
 </div>
 <div class="hotel-details">
         <ul>
