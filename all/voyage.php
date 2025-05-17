@@ -22,7 +22,6 @@ if (!$stmt_voyage->execute()) {
     print_r($stmt_voyage->errorInfo());
     exit;
 }
-
 $voyage = $stmt_voyage->fetch();
 
 if (!$voyage) {
@@ -34,12 +33,18 @@ if (!$voyage) {
 // 🔍 Récupération des vols (aller et retour séparemment)
 $stmt_vols_aller = $pdo->prepare("SELECT * FROM vols WHERE id_voyage = :id AND type_vol = 'aller'");
 $stmt_vols_aller->bindParam(':id', $id, PDO::PARAM_INT);
-$stmt_vols_aller->execute();
+if (!$stmt_vols_aller->execute()){
+  print_r($stmt_vols_aller->errorInfo());
+  exit;
+}
 $vol_aller = $stmt_vols_aller->fetch();
 
 $stmt_vols_retour = $pdo->prepare("SELECT * FROM vols WHERE id_voyage = :id AND type_vol = 'retour'");
 $stmt_vols_retour->bindParam(':id', $id, PDO::PARAM_INT);
-$stmt_vols_retour->execute();
+if (!$stmt_vols_retour->execute()){
+  print_r($stmt_vols_retour->errorInfo());
+  exit;
+}
 $vol_retour = $stmt_vols_retour->fetch();
 
 
@@ -47,10 +52,24 @@ $vol_retour = $stmt_vols_retour->fetch();
 // 🔍 Récupération des hébergements + caractéristiques associées
 $stmt_hotels = $pdo->prepare("SELECT h.*, c.* FROM hebergements h LEFT JOIN hebergement_caracteristiques c ON h.id_hebergement = c.id_hebergement AND h.id_voyage = c.id_voyage WHERE h.id_voyage = :id");
 $stmt_hotels->bindParam(':id', $id, PDO::PARAM_INT);
-$stmt_hotels->execute();
+
+if (!$stmt_hotels->execute()){
+  print_r($stmt_hotels->errorInfo());
+  exit;
+}
 $hebergements = $stmt_hotels->fetchAll();
 
 
+
+// Récupération des activités du voyage
+$stmt_activites = $pdo->prepare("SELECT * FROM activites WHERE id_voyage = :id");
+$stmt_activites->bindParam(':id', $id, PDO::PARAM_INT);
+
+if (!$stmt_activites->execute()){
+  print_r($stmt_activites->errorInfo());
+  exit;
+}
+$activites = $stmt_activites->fetchAll();
 
 
 ?>
@@ -198,30 +217,27 @@ $hebergements = $stmt_hotels->fetchAll();
 <section class="activity-selection">
     <h2>Activités proposées</h2>
 
+    <?php foreach ($activites as $index => $activite): ?>
     <div class="activity-option horizontal">
-        <input type="checkbox" id="activity1" name="activity1" class="activity-checkbox" onchange="toggleDateInput(this, 'activity1-day')">
+        <input type="checkbox" id="activity<?= $index?>" name="activity<?= $index?>" class="activity-checkbox" onchange="toggleDateInput(this, 'activity<?= $index?>-day')">
         
             <div class="activity-content">
 
                 <div class="activity-image-container">
                     
-                    <img src="all/assets/chichen_itza/eglise.jpg" alt="Église Chichen Itza" class="activity-image-side">
-                    <p class="photo-credit">
-                        Crédit photo : <a href="https://commons.wikimedia.org/wiki/File:Church_at_Piste,_Yucat%C3%A1n,_Mexico.jpg" target="_blank">Wikimedia Commons</a>
-                    </p>
+                    <img src="all/assets/<?= str_replace(' ', '_', strtolower($activite['a_nom']))?>.jpg" alt="<?= htmlspecialchars($activite['a_nom'])?>" class="activity-image-side">
                 </div>
-
                 <div class="activity-details">
                   <div class="activity-title">
-                    <label for="activity1">
-                      <h3>Visite guidée de l'Église de Pisté</h3>
+                    <label for="activity<?= $index?>">
+                      <h3><?= htmlspecialchars($activite['a_nom'])?></h3>
 </label>
 </div>
                     <ul>
-                        <li>Durée : 1h30</li>
-                        <li>Mode de transport : À pied</li>
-                        <li>Départ : Réception de l'hôtel à 9h30</li>
-                        <li>Prix : 10€ par personne (gratuit pour les -3 ans)</li>
+                        <li><?= htmlspecialchars($activite['a_duree'])?></li>
+                        <li>Mode de transport : <?= htmlspecialchars($activite['mode_transport'])?></li>
+                        <li>Départ : Réception de l'hôtel à <?= htmlspecialchars($activite['a_heure_depart'])?></li>
+                        <li>Prix : <?= htmlspecialchars($activite['a_prix'])?>€ par personne </li>
                     </ul>
 
                     <div class="activity-date">
@@ -231,167 +247,7 @@ $hebergements = $stmt_hotels->fetchAll();
                 </div>
             </div>
 </div>
-
-<div class="activity-option horizontal">
-        <input type="checkbox" id="activity2" name="activity2" class="activity-checkbox" onchange="toggleDateInput(this, 'activity2-day')">
-        
-            <div class="activity-content">
-
-                <div class="activity-image-container">
-                    
-                    <img src="all/assets/chichen_itza/visite.jpeg" alt="Visite Chichen Itza" class="activity-image-side">
-                </div>
-
-                <div class="activity-details">
-                  <div class="activity-title">
-                    <label for="activity2">
-                      <h3>Visite guidée de Chichén Itza</h3>
-</label>
-</div>
-                    <ul>
-                        <li>Durée : 3h</li>
-                        <li>Mode de transport : À pied</li>
-                        <li>Départ : Réception de l'hôtel à 8h30</li>
-                        <li>Prix : 45€ par personne</li>
-                    </ul>
-
-                    <div class="activity-date">
-                        <label for="activity2-day">Sélectionnez un jour :</label>
-                        <input type="date" id="activity2-day" name="activity2-day" disabled>
-                    </div>
-                </div>
-            </div>
-</div>
-
-
-<div class="activity-option horizontal">
-        <input type="checkbox" id="activity3" name="activity3" class="activity-checkbox" onchange="toggleDateInput(this, 'activity1-day')">
-        
-            <div class="activity-content">
-
-                <div class="activity-image-container">
-                    
-                    <img src="all/assets/chichen_itza/ikkil.jpeg" alt="Chichen Itza Ik Kil" class="activity-image-side">
-                </div>
-
-                <div class="activity-details">
-                  <div class="activity-title">
-                    <label for="activity3">
-                      <h3>Visite guidée du Cenote Ik Kil</h3>
-</label>
-</div>
-                    <ul>
-                        <li>Durée : 2h</li>
-                        <li>Mode de transport : Bus</li>
-                        <li>Départ : Réception de l'hôtel à 9h30</li>
-                        <li>Prix : 15€ par personne</li>
-                    </ul>
-
-                    <div class="activity-date">
-                        <label for="activity3-day">Sélectionnez un jour :</label>
-                        <input type="date" id="activity3-day" name="activity3-day" disabled>
-                    </div>
-                </div>
-            </div>
-</div>
-
-
-<div class="activity-option horizontal">
-        <input type="checkbox" id="activity4" name="activity4" class="activity-checkbox" onchange="toggleDateInput(this, 'activity1-day')">
-        
-            <div class="activity-content">
-
-                <div class="activity-image-container">
-                    
-                    <img src="all/assets/chichen_itza/ekbalam.jpeg" alt="Chichen Itza Ek Balam" class="activity-image-side">
-                </div>
-
-                <div class="activity-details">
-                  <div class="activity-title">
-                    <label for="activity4">
-                      <h3>Visite guidée du site archéologique d'Ek Balam</h3>
-</label>
-</div>
-                    <ul>
-                        <li>Durée : 3h</li>
-                        <li>Mode de transport : Bus</li>
-                        <li>Départ : Réception de l'hôtel à 8h30</li>
-                        <li>Prix : 45€ par personne </li>
-                    </ul>
-
-                    <div class="activity-date">
-                        <label for="activity4-day">Sélectionnez un jour :</label>
-                        <input type="date" id="activity4-day" name="activity4-day" disabled>
-                    </div>
-                </div>
-            </div>
-</div>
-
-<div class="activity-option horizontal">
-        <input type="checkbox" id="activity5" name="activity5" class="activity-checkbox" onchange="toggleDateInput(this, 'activity5-day')">
-        
-            <div class="activity-content">
-
-                <div class="activity-image-container">
-                    
-                    <img src="all/assets/chichen_itza/xcanche.jpeg" alt="Chichen Itza X'Canché" class="activity-image-side">
-                </div>
-
-                <div class="activity-details">
-                  <div class="activity-title">
-                    <label for="activity5">
-                      <h3>Visite guidée du Cenote X'Canché</h3>
-</label>
-</div>
-                    <ul>
-                        <li>Durée : 2h30</li>
-                        <li>Mode de transport : Bus</li>
-                        <li>Départ : Réception de l'hôtel à 9h</li>
-                        <li>Prix : 25€ par personne</li>
-                    </ul>
-
-                    <div class="activity-date">
-                        <label for="activity5-day">Sélectionnez un jour :</label>
-                        <input type="date" id="activity5-day" name="activity5-day" disabled>
-                    </div>
-                </div>
-            </div>
-</div>
-
-
-<div class="activity-option horizontal">
-        <input type="checkbox" id="activity6" name="activity6" class="activity-checkbox" onchange="toggleDateInput(this, 'activity1-day')">
-        
-            <div class="activity-content">
-
-                <div class="activity-image-container">
-                    
-                    <img src="all/assets/chichen_itza/dzitnup.jpeg" alt="Chichen Itza Dzitnup" class="activity-image-side">
-                </div>
-
-                <div class="activity-details">
-                  <div class="activity-title">
-                    <label for="activity6">
-                      <h3>Visite guidée des Cénotes Dzitnup</h3>
-</label>
-</div>
-                    <ul>
-                        <li>Durée : 3h</li>
-                        <li>Mode de transport : Bus</li>
-                        <li>Départ : Réception de l'hôtel à 13h30</li>
-                        <li>Prix : 25€ par personne</li>
-                    </ul>
-
-                    <div class="activity-date">
-                        <label for="activity6-day">Sélectionnez un jour :</label>
-                        <input type="date" id="activity6-day" name="activity6-day" disabled>
-                    </div>
-                </div>
-            </div>
-</div>
-
-
-
+<?php endforeach; ?>
 </section>
 
 
