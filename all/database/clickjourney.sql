@@ -216,7 +216,7 @@ INSERT INTO vols(aeroport_depart, aeroport_arrivee, heure_depart, heure_arrivee,
 ('Aqaba(AQJ)', 'CHOIX_UTILISATEUR', '13:15:00', '17:15:00', '6h30min', 227, 'retour', @id_petra);
 
 -- Colisée
-SELECT id_voyage INTO @id_colisee FROM voyages WHERE titre ='Colisée';
+SELECT id_voyage INTO @id_colisee FROM voyages WHERE titre ='Colisee';
 INSERT INTO vols(aeroport_depart, aeroport_arrivee, heure_depart, heure_arrivee, duree, prix, type_vol, id_voyage) VALUES
 ('CHOIX_UTILISATEUR', 'Rome Ciampino(CIA)', '09:55:00', '11:55:00', '2h05min', 110.00, 'aller', @id_colisée), 
 ('Rome Ciampino(CIA)', 'CHOIX_UTILISATEUR', '16:15:00', '18:15:00', '2h05min', 110.00,'retour', @id_colisée);
