@@ -117,7 +117,7 @@ CREATE TABLE activites (
   a_nom VARCHAR(100) NOT NULL,
   a_description TEXT NOT NULL,
   a_duree VARCHAR(50) NOT NULL,
-  mode_transport ENUM('à pied', 'car', 'vélo') NOT NULL,
+  mode_transport ENUM('À pied', 'Car', 'Vélo') NOT NULL,
   a_heure_depart TIME NOT NULL,
   a_prix DECIMAL(10, 2) NOT NULL,
   FOREIGN KEY (id_voyage) REFERENCES voyages(id_voyage) ON DELETE CASCADE
@@ -175,7 +175,7 @@ INSERT INTO voyages(titre, duree) VALUES
 SET @id_chichen_itza = LAST_INSERT_ID();
 
 INSERT INTO voyages(titre, duree) VALUES
-('Christ Rédempteur', 6);
+('Christ Rédempteur', 7);
 SET @id_christ_redempteur = LAST_INSERT_ID();
 
 INSERT INTO voyages(titre, duree) VALUES
@@ -207,12 +207,12 @@ SET @id_chine = LAST_INSERT_ID();
 -- Chichén Itza
 INSERT INTO vols(aeroport_depart, aeroport_arrivee, heure_depart, heure_arrivee, duree, prix, type_vol, id_voyage) VALUES
 ('CHOIX_UTILISATEUR', 'Mérida(MID)', '08:15:00', '10:45:00', '10h30min', 229.00, 'aller', @id_chichen_itza), 
-('Mérida(MID)', 'CHOIX_UTILISATEUR', '12:35(UTC-6)', '07:05 J+1(UTC+2)', '10h30min', 229.00, 'retour', @id_chichen_itza );
+('Mérida(MID)', 'CHOIX_UTILISATEUR', '12:35:00', '07:05:00', '10h30min', 229.00, 'retour', @id_chichen_itza );
 
 -- Christ-Rédempteur
 INSERT INTO vols(aeroport_depart, aeroport_arrivee, heure_depart, heure_arrivee, duree, prix, type_vol, id_voyage) VALUES
-('CHOIX_UTILISATEUR', ' ', ' ', ' ', ' h min',  ,'aller', @id_christ_redempteur), 
-(' ', 'CHOIX_UTILISATEUR', ' ', ' ', ' h min',  , 'retour', @id_christ_redempteur );
+('CHOIX_UTILISATEUR', 'Rio de Janiero-Galeão(GIG)', '07:45:00', '14:20:00', '11h35min', 287..00 ,'aller', @id_christ_redempteur), 
+('Rio de Janiero-Galeão(GIG)', 'CHOIX_UTILISATEUR', '11:05:00', '03:20:00', '11h35min',  287.00, 'retour', @id_christ_redempteur );
 
 -- Pétra
 INSERT INTO vols(aeroport_depart, aeroport_arrivee, heure_depart, heure_arrivee, duree, prix, type_vol, id_voyage) VALUES
@@ -247,15 +247,15 @@ INSERT INTO vols(aeroport_depart, aeroport_arrivee, heure_depart, heure_arrivee,
 -- --------------------------------------------------------
 -- Chichén Itza
 INSERT INTO hebergements (id_hebergement, h_nom, etoiles, h_localisation, h_prix, id_voyage) VALUES
-(1, 'Hôtel Alba', 2, 'Pisté, Mexique', 309, @id_chichen_itza),
-(2, 'Hôtel Puerta', 3, 'Pisté, Mexique', 493, @id_chichen_itza),
-(3, 'Hôtel Maya', 5, 'Pisté, Mexique', 594, @id_chichen_itza);
+(1, 'Hôtel Alba', 2, 'Pisté, Mexique', 309.00, @id_chichen_itza),
+(2, 'Hôtel Puerta', 3, 'Pisté, Mexique', 493.00, @id_chichen_itza),
+(3, 'Hôtel Maya', 5, 'Pisté, Mexique', 594.00, @id_chichen_itza);
 
 -- Christ Rédempteur
 INSERT INTO hebergements (id_hebergement, h_nom, etoiles, h_localisation, h_prix, id_voyage) VALUES
-(1, 'Hôtel ',  , '  ', , @id_christ_redempteur),
-(2, 'Hôtel ',  , '  ', , @id_christ_redempteur),
-(3, 'Hôtel ',  , '  ', , @id_christ_redempteur);
+(1, 'Hôtel Jo&Joe', 2, ' Cosme Velho, Brésil', 289.00, @id_christ_redempteur),
+(2, 'Hôtel Os Jardins do Rio', 4, 'Cosme Velho, Brésil', 693.00, @id_christ_redempteur),
+(3, 'Hôtel Santa Tereza', 5, 'Santa Tereza, Brésil', 1232.00, @id_christ_redempteur);
 
 -- Pétra
 INSERT INTO hebergements (id_hebergement, h_nom, etoiles, h_localisation, h_prix, id_voyage) VALUES
@@ -301,9 +301,9 @@ INSERT INTO hebergement_caracteristiques(id_voyage, id_hebergement, transfert, n
 
 -- Christ Rédempteur
 INSERT INTO hebergement_caracteristiques(id_voyage, id_hebergement, transfert, nb_piscines, jacuzzi, spa, pension, wifi_gratuit, tv_chambres, climatisation, seche_cheveux, balcon_pv, laverie, pmr) VALUES
-(@id_christ_redempteur, 1, ' ',  , ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' ),
-(@id_christ_redempteur, 2, ' ',  , ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' ),
-(@id_christ_redempteur, 3, ' ',  , ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' );
+(@id_christ_redempteur, 1, 'oui', 1, 'non', 'non', 'demi-pension', 'oui', 'non', 'non', 'non', 'non', 'non', 'non' ),
+(@id_christ_redempteur, 2, 'oui', 2, 'non', 'oui', 'all inclusive', 'oui', 'oui', 'oui', 'non', 'non', 'non', 'oui' ),
+(@id_christ_redempteur, 3, 'oui', 1, 'oui', 'oui', 'all inclusive', 'oui', 'oui', 'oui', 'oui', ' oui', 'oui', 'oui' );
 
 -- Pétra
 INSERT INTO hebergement_caracteristiques(id_voyage, id_hebergement, transfert, nb_piscines, jacuzzi, spa, pension, wifi_gratuit, tv_chambres, climatisation, seche_cheveux, balcon_pv, laverie, pmr) VALUES
@@ -344,12 +344,12 @@ INSERT INTO hebergement_caracteristiques(id_voyage, id_hebergement, transfert, n
 -- --------------------------------------------------------
 -- Chichén Itza
 INSERT INTO activites(id_voyage, a_nom, a_description, a_duree, mode_transport, a_heure_depart, a_prix) VALUES
-(@id_chichen_itza, "Église de Pisté", "Découvrez l'Église de Pisté, un joyau colonial au coeur du village, témoin de l'histoire de Yucatàn. Plongez dans son atmosphère paisible et ses récits anciens lors d'une visite guidée captivante.", '1h30', 'à pied', '09:30:00', 10.00),
-(@id_chichen_itza, "Chichén Itza", "Explorez Chichén Itza, l'une des sept merveilles du monde, et plongez dans les mystères de la civilisation maya lors d'une visite guidée inoubliable. Découvrez la majestueuse pyramide de Kukulcàn, le temple des Guerriers et bien plus encore !", '3h', 'à pied', '08:30:00', 45.00),
-(@id_chichen_itza, "Cenote Ik Kil", "Plongez dans les eaux cristallines du Cenote Ik Kil, un joyau naturel au coeur de la jungle maya. Découvrez son histoire sacrée lors d'une visite guidée et vivez une expérience unique entre nature et légende.", '2h', 'car', '09:30:00', 15.00),
-(@id_chichen_itza, "Site archéologique Ek Balam", "Découvrez le site archéologique d'Ek Balam, un trésor maya méconnu entouré de jungle luxuriante. Grimpez au sommet de l'Acropole pour une vue imprenable et explorez ses mystères lors d'une visite guidée captivante.", '3h', 'car', '08:30:00', 45.00),
-(@id_chichen_itza, "Cenote X'Canché", "Évadez-vous au coeur de la jungle pour découvrir le Cenote X'Canché, un bassin naturel entouré de lianes et de végétation luxuriante. Profitez d'une visite guidée pour explorer ses eaux cristallines et en apprendre davantage sur les rituels sacrés des Mayas.",'2h30', 'car', '09:00:00', 25.00),
-(@id_chichen_itza, "Cenotes Dzitnup", "Plongez dans l'univers mystique des Cénotes Dzitnup, Xkeken et Samula, célèbres pour leurs formations spectaculaires et leurs eaux cristallines. Lors de la visite guidée, découvrez les légendes mayas qui entourent ces cavernes enchantées", '3h', 'car', '13:30:00', 25.00);
+(@id_chichen_itza, "Église de Pisté", "Découvrez l'Église de Pisté, un joyau colonial au coeur du village, témoin de l'histoire de Yucatàn. Plongez dans son atmosphère paisible et ses récits anciens lors d'une visite guidée captivante.", '1h30', 'À pied', '09:30:00', 10.00),
+(@id_chichen_itza, "Chichén Itza", "Explorez Chichén Itza, l'une des sept merveilles du monde, et plongez dans les mystères de la civilisation maya lors d'une visite guidée inoubliable. Découvrez la majestueuse pyramide de Kukulcàn, le temple des Guerriers et bien plus encore !", '3h', 'À pied', '08:30:00', 45.00),
+(@id_chichen_itza, "Cenote Ik Kil", "Plongez dans les eaux cristallines du Cenote Ik Kil, un joyau naturel au coeur de la jungle maya. Découvrez son histoire sacrée lors d'une visite guidée et vivez une expérience unique entre nature et légende.", '2h', 'Car', '09:30:00', 15.00),
+(@id_chichen_itza, "Site Archéologique d'Ek Balam", "Découvrez le site archéologique d'Ek Balam, un trésor maya méconnu entouré de jungle luxuriante. Grimpez au sommet de l'Acropole pour une vue imprenable et explorez ses mystères lors d'une visite guidée captivante.", '3h', 'Car', '08:30:00', 45.00),
+(@id_chichen_itza, "Cenote X'Canché", "Évadez-vous au coeur de la jungle pour découvrir le Cenote X'Canché, un bassin naturel entouré de lianes et de végétation luxuriante. Profitez d'une visite guidée pour explorer ses eaux cristallines et en apprendre davantage sur les rituels sacrés des Mayas.",'2h30', 'Car', '09:00:00', 25.00),
+(@id_chichen_itza, "Cenotes Dzitnup", "Plongez dans l'univers mystique des Cénotes Dzitnup, Xkeken et Samula, célèbres pour leurs formations spectaculaires et leurs eaux cristallines. Lors de la visite guidée, découvrez les légendes mayas qui entourent ces cavernes enchantées", '3h', 'Car', '13:30:00', 25.00);
 
 
 
