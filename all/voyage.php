@@ -30,16 +30,13 @@ if (!$voyage) {
     exit;
 }
 
-// 🔍 Récupération des étapes du voyage
-$stmt_etapes = $pdo->prepare("SELECT * FROM etapes WHERE id_voyage = :id ORDER BY date_arrivee ASC");
-$stmt_etapes->bindParam(':id', $id, PDO::PARAM_INT);
 
-if (!$stmt_etapes->execute()) {
-    print_r($stmt_etapes->errorInfo());
-    exit;
-}
+// 🔍 Récupération des vols
+$stmt_vols = $pdo->prepare("SELECT * FROM vols WHERE id_voyage = :id");
+$stmt_vols->bindParam(':id', $id, PDO::PARAM_INT);
+$stmt_vols->execute();
+$vols = $stmt_vols->fetchAll();
 
-$etapes = $stmt_etapes->fetchAll();
 
 // 🔍 Récupération des hébergements du voyage
 $stmt_hebergements = $pdo->prepare("SELECT * FROM hebergements WHERE id_voyage = :id");
@@ -47,11 +44,13 @@ $stmt_hebergements->bindParam(':id', $id, PDO::PARAM_INT);
 $stmt_hebergements->execute();
 $hebergements = $stmt_hebergements->fetchAll();
 
+
 // 🔍 Récupération des activités du voyage
 $stmt_activites = $pdo->prepare("SELECT * FROM activites WHERE id_voyage = :id");
 $stmt_activites->bindParam(':id', $id, PDO::PARAM_INT);
 $stmt_activites->execute();
 $activites = $stmt_activites->fetchAll();
+
 
 ?>
 
@@ -87,25 +86,21 @@ $activites = $stmt_activites->fetchAll();
             <p>📌 Spécificités : <?php echo nl2br(htmlspecialchars($voyage['specificites'])); ?></p>
         </div>
 
-        <h2>🗺️ Etapes du Voyage</h2>
 
-        <?php if (count($etapes) > 0): ?>
-            <div class="etapes">
-                <?php foreach ($etapes as $etape): ?>
-                    <div class="etape">
-                        <h3>🏞️ <?php echo htmlspecialchars($etape['titre']); ?></h3>
-                        <p>📅 Arrivée : <?php echo $etape['date_arrivee']; ?></p>
-                        <p>📅 Départ : <?php echo $etape['date_depart']; ?></p>
-                        <p>⏳ Durée : <?php echo $etape['duree']; ?> jours</p>
-                        <p>📍 Lieu : <?php echo htmlspecialchars($etape['nom_lieu']); ?></p>
-                    </div>
-                <?php endforeach; ?>
+        <h2>🛫 Vols</h2>
+        <div class="vols">
+            <?php foreach ($vols as $vol): ?>
+                <div class="vol">
+                    <h3><?php echo $vol['aeroport_depart']; ?> -> <?php echo $vol['aeroport_arrivee']; ?></h3>
+                    <p>Départ : <?php echo $vol['date_depart']; ?></p>
+                    <p>Arrivée : <?php echo $vol['date_arrivee']; ?></p>
+                    <p>Prix : <?php echo $vol['prix']; ?> €</p>
             </div>
-        <?php else: ?>
-            <p>⚠️ Aucune étape trouvée pour ce voyage.</p>
-        <?php endif; ?>
+            <?php endforeach; ?>
+            </div>
 
-        <h2>🏨 Hébergements proposés</h2>
+
+            <h2>🏨 Hébergements proposés</h2>
         <div class="hebergements">
             <?php foreach ($hebergements as $hebergement): ?>
                 <div class="hebergement">
@@ -114,6 +109,8 @@ $activites = $stmt_activites->fetchAll();
                 </div>
             <?php endforeach; ?>
         </div>
+
+       
 
         <h2>🎯 Activités disponibles</h2>
         <div class="activites">
