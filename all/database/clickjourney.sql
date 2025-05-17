@@ -38,42 +38,75 @@ CREATE TABLE aeroports (
 CREATE TABLE voyages (
   id_voyage INT AUTO_INCREMENT PRIMARY KEY,
   titre VARCHAR(100) NOT NULL,
-  date_debut DATE NOT NULL,
-  date_fin DATE NOT NULL,
-  duree INT DEFAULT NULL,
-  specificites TEXT DEFAULT NULL,
-  prix_total DECIMAL(10,2) DEFAULT NULL,
+  date_debut DATE DEFAULT NULL,
+  date_fin DATE DEFAULT NULL,
+  duree INT NOT NULL,
+  prix DECIMAL(10,2) DEFAULT NULL,
   statut ENUM('payé', 'en cours de modification', 'en attente') DEFAULT 'en attente',
   id_utilisateur INT DEFAULT NULL,
   FOREIGN KEY (id_utilisateur) REFERENCES utilisateurs(id) ON DELETE CASCADE
 );
+
 
 -- --------------------------------------------------------
 -- Table vols
 -- --------------------------------------------------------
 CREATE TABLE vols (
   id_vol INT AUTO_INCREMENT PRIMARY KEY,
-  aeroport_depart VARCHAR(100) NOT NULL,
+  aeroport_depart VARCHAR(100) DEFAULT NULL,
   aeroport_arrivee VARCHAR(100) NOT NULL,
-  date_depart DATETIME NOT NULL,
-  date_arrivee DATETIME NOT NULL,
+  heure_depart TIME NOT NULL,
+  heure_arrivee TIME NOT NULL,
+  duree VARCHAR(20) NOT NULL,
   prix DECIMAL(10,2) NOT NULL,
+  type_vol ENUM('aller', 'retour') NOT NULL,
   id_voyage INT NOT NULL,
   FOREIGN KEY (id_voyage) REFERENCES voyages(id_voyage) ON DELETE CASCADE
 );
+
 
 -- --------------------------------------------------------
 -- Table hebergements
 -- --------------------------------------------------------
 CREATE TABLE hebergements (
-  id_hebergement INT AUTO_INCREMENT PRIMARY KEY,
+  id_hebergement INT NOT NULL,
   nom VARCHAR(100) NOT NULL,
-  type_hebergement ENUM('hotel', 'tente', 'villa') NOT NULL,
-  niveau ENUM('3 étoiles', '4 étoiles', '5 étoiles', 'luxe') NOT NULL,
-  prix_par_nuit DECIMAL(10,2) NOT NULL,
+  etoiles INT NOT NULL,
+  localisation VARCHAR(100) NOT NULL,
+  prix DECIMAL(10,2) NOT NULL,
   id_voyage INT NOT NULL,
+  PRIMARY KEY (id_hebergement, id_voyage),
   FOREIGN KEY (id_voyage) REFERENCES voyages(id_voyage) ON DELETE CASCADE
 );
+
+
+
+-- --------------------------------------------------------
+-- Table des caractéristiques des hebergements
+-- --------------------------------------------------------
+CREATE TABLE hebergement_caracteristiques (
+  id_caracteristique INT AUTO_INCREMENT PRIMARY KEY,
+  transfert ENUM('oui', 'non') NOT NULL,
+  nb_piscines INT NOT NULL,
+  jacuzzi ENUM('oui', 'non') NOT NULL,
+  spa ENUM('oui', 'non') NOT NULL,
+  chaises_longues ENUM('oui', 'non') NOT NULL DEFAULT 'oui',
+  parasols_plage ENUM('oui', 'non') NOT NULL DEFAULT 'oui',
+  pension ENUM('petit-dejeuner', 'demi-pension', 'all inclusive') NOT NULL,
+  wifi_gratuit ENUM('oui', 'non') NOT NULL,
+  tv_chambres ENUM('oui', 'non') NOT NULL,
+  climatisation ENUM('oui', 'non') NOT NULL,
+  seche_cheveux ENUM('oui', 'non') NOT NULL,
+  balcon_pv ENUM('oui', 'non') NOT NULL,
+  laverie ENUM('oui', 'non') NOT NULL,
+  pmr ENUM('oui', 'non') NOT NULL,
+  id_hebergement INT NOT NULL,
+  id_voyage INT NOT NULL, 
+  FOREIGN KEY (id_hebergement, id_voyage) REFERENCES hebergements(id_hebergement, id_voyage) ON DELETE CASCADE
+);
+
+
+
 
 -- --------------------------------------------------------
 -- Table activites
@@ -81,12 +114,17 @@ CREATE TABLE hebergements (
 CREATE TABLE activites (
   id_activite INT AUTO_INCREMENT PRIMARY KEY,
   nom VARCHAR(100) NOT NULL,
-  type_activite ENUM('sportive', 'culturelle', 'aventure', 'détente') NOT NULL,
-  prix_par_personne DECIMAL(10,2) NOT NULL,
-  description TEXT,
+  description TEXT NOT NULL,
+  duree VARCHAR(50) NOT NULL,
+  mode_transport ENUM('à pied', 'car', 'vélo') NOT NULL,
+  heure_depart TIME NOT NULL,
+  prix DECIMAL(10, 2) NOT NULL,
   id_voyage INT NOT NULL,
   FOREIGN KEY (id_voyage) REFERENCES voyages(id_voyage) ON DELETE CASCADE
 );
+
+
+
 -- --------------------------------------------------------
 -- Table paiements
 -- --------------------------------------------------------
@@ -125,6 +163,91 @@ INSERT INTO aeroports (nom, ville, region) VALUES
 ('Aéroport de Rennes', 'Rennes', 'bretagne'),
 ('Aéroport de Strasbourg', 'Strasbourg', 'grand-est'),
 ('Aéroport de Toulouse', 'Toulouse', 'occitanie');
+
+
+
+
+-- --------------------------------------------------------
+-- Insertion des 7 voyages 
+-- --------------------------------------------------------
+INSERT INTO voyages(titre, duree) VALUES
+('Chichén Itza', 6),
+SET @id_chichen_itza = LAST_INSERT_ID();
+
+INSERT INTO voyages(titre, duree,) VALUES
+('Christ Rédempteur', 6),
+SET @id_christ_redempteur = LAST_INSERT_ID();
+
+INSERT INTO voyages(titre, duree,) VALUES
+('Pétra', 6),
+SET @id_petra = LAST_INSERT_ID();
+
+INSERT INTO voyages(titre, duree) VALUES
+('Colisée', 6),
+SET @id_colisee = LAST_INSERT_ID();
+
+INSERT INTO voyages(titre, duree) VALUES
+('Machu Picchu', 6),
+SET @id_machu_picchu = LAST_INSERT_ID();
+
+INSERT INTO voyages(titre, duree) VALUES
+('Taj Mahal', 6),
+SET @id_taj_mahal = LAST_INSERT_ID();
+
+INSERT INTO voyages(titre, duree) VALUES
+('Grande Muraille de Chine', 6),
+SET @id_chine = LAST_INSERT_ID();
+
+
+
+
+-- --------------------------------------------------------
+-- Insertion des vols associés aux voyages 
+-- --------------------------------------------------------
+-- Chichén Itza
+INSERT INTO vols(aeroport_depart, aeroport_arrivee, heure_depart, heure_arrivee, duree, prix, type_vol, id_voyage) VALUES
+('CHOIX_UTILISATEUR', 'Mérida(MID)', '08:15(UTC+2)', '10:45(UTC-6)', '10h30min', 229, 'aller', @id_chichen_itza), 
+('Mérida(MID)', 'CHOIX_UTILISATEUR', '12:35(UTC-6)', '07:05 J+1(UTC+2)', '10h30min', 229, 'retour', @id_chichen_itza );
+
+-- Christ-Rédempteur
+INSERT INTO vols(aeroport_depart, aeroport_arrivee, heure_depart, heure_arrivee, duree, prix, type_vol, id_voyage) VALUES
+('CHOIX_UTILISATEUR', ' ', ' (UTC )', ' (UTC )', ' h min',  ,'aller', @id_christ_redempteur), 
+(' ', 'CHOIX_UTILISATEUR', ' (UTC )', ' (UTC )', ' h min',  , 'retour', @id_christ_redempteur );
+
+-- Pétra
+INSERT INTO vols(aeroport_depart, aeroport_arrivee, heure_depart, heure_arrivee, duree, prix, type_vol, id_voyage) VALUES
+('CHOIX_UTILISATEUR', ' ', ' (UTC )', ' (UTC )', ' h min',  , 'aller',  @id_petra), 
+(' ', 'CHOIX_UTILISATEUR', ' (UTC )', ' (UTC )', ' h min',  , 'retour', @id_petra);
+
+-- Colisée
+INSERT INTO vols(aeroport_depart, aeroport_arrivee, heure_depart, heure_arrivee, duree, prix, type_vol, id_voyage) VALUES
+('CHOIX_UTILISATEUR', ' ', ' (UTC )', ' (UTC )', ' h min',  , 'aller', @id_colisée), 
+(' ', 'CHOIX_UTILISATEUR', ' (UTC )', ' (UTC )', ' h min',  ,'retour', @id_colisée);
+
+-- Machu Picchu
+INSERT INTO vols(aeroport_depart, aeroport_arrivee, heure_depart, heure_arrivee, duree, prix, type_vol, id_voyage) VALUES
+('CHOIX_UTILISATEUR', ' ', ' (UTC )', ' (UTC )', ' h min',  , 'aller', @id_machu_picchu), 
+(' ', 'CHOIX_UTILISATEUR', ' (UTC )', ' (UTC )', ' h min',  , 'retour', @id_machu_picchu);
+
+-- Taj Mahal
+INSERT INTO vols(aeroport_depart, aeroport_arrivee, heure_depart, heure_arrivee, duree, prix, type_vol, id_voyage) VALUES
+('CHOIX_UTILISATEUR', ' ', ' (UTC )', ' (UTC )', ' h min',  , 'aller', @id_taj_mahal), 
+(' ', 'CHOIX_UTILISATEUR', ' (UTC )', ' (UTC )', ' h min',  , 'retour', @id_taj_mahal);
+
+-- Grande Muraille de Chine
+INSERT INTO vols(aeroport_depart, aeroport_arrivee, heure_depart, heure_arrivee, duree, prix, type_vol, id_voyage) VALUES
+('CHOIX_UTILISATEUR', ' ', ' (UTC )', ' (UTC )', ' h min',  , 'aller', @id_chine), 
+(' ', 'CHOIX_UTILISATEUR', ' (UTC )', ' (UTC )', ' h min',  , 'retour', @id_chine);
+
+
+
+
+-- --------------------------------------------------------
+-- Insertion des hôtels associés aux voyages 
+-- --------------------------------------------------------
+-- Chichén Itza
+
+
 
 
 

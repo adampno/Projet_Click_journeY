@@ -79,49 +79,383 @@ $activites = $stmt_activites->fetchAll();
     </header>
 
 
-        <div class="voyage-container">
-            <h1>🌍 <?php echo htmlspecialchars($voyage['titre']); ?></h1>
-            <p>📅 Départ : <?php echo $voyage['date_debut']; ?> - Retour : <?php echo $voyage['date_fin']; ?></p>
-            <p>💰 Prix Total : <?php echo $voyage['prix_total']; ?> €</p>
-            <p>📌 Spécificités : <?php echo nl2br(htmlspecialchars($voyage['specificites'])); ?></p>
-        </div>
+
+<div class="sidebar-summary" id="sidebar-summary">
+<h3>Récapitulatif</h3>
+<p>Adultes : <span id="sum-adults">1</span></p>
+<p>Enfants : <span id="sum-children">0</span></p>
+<p>Chambres nécessaires : <span id="sum-rooms">1</span></p>
+<p>Prix total : <span id="price-summary">0€</span></p>
+</div>
 
 
-        <h2>🛫 Vols</h2>
-        <div class="vols">
-            <?php foreach ($vols as $vol): ?>
-                <div class="vol">
-                    <h3><?php echo $vol['aeroport_depart']; ?> -> <?php echo $vol['aeroport_arrivee']; ?></h3>
-                    <p>Départ : <?php echo $vol['date_depart']; ?></p>
-                    <p>Arrivée : <?php echo $vol['date_arrivee']; ?></p>
-                    <p>Prix : <?php echo $vol['prix']; ?> €</p>
-            </div>
-            <?php endforeach; ?>
-            </div>
+
+    <section class="passenger-form">
+    <h2>Participants au voyage</h2>
+    <div class="form-grid">
+    <form id="travelersForm">
+        <label for="adults">Nombre d'adultes :</label>
+        <input type="number" id="adults" name="adults" min="1" value="1" required>
+        <label for="children">Nombre d'enfants :</label>
+        <input type="number" id="children" name="children" min="0" value="0" required>
+        <div id="childrenAges"></div>
+        <label for="departure-date">Date de départ :</label>
+        <input type="date" id="departure-date" name="departure_date" required>
+    <p>Durée : 6 jours (fixe)</p>
+</form>
+  </div>
+</section>
 
 
-            <h2>🏨 Hébergements proposés</h2>
-        <div class="hebergements">
-            <?php foreach ($hebergements as $hebergement): ?>
-                <div class="hebergement">
-                    <h3><?php echo $hebergement['nom']; ?> (<?php echo $hebergement['niveau']; ?>)</h3>
-                    <p>Prix par nuit : <?php echo $hebergement['prix_par_nuit']; ?> €</p>
+  <section class="flight-info">
+  <div class="flight-wrapper">
+    <h2>Vol aller</h2>
+    <div class="flight-box">
+      <div class="flight-row">
+        <span class="airport">🛫 Paris (CDG)</span>
+        <div class="flight-line">
+          <hr><span class="plane">✈️</span><hr>
+</div>
+<span class="airport">Mérida (MID) 🛬</span>
+</div>
+<div class="flight-details">
+  <span>Départ : 8:15 (UTC+2)</span>
+  <span>Durée : 10h30min</span>
+  <span>Arrivée : 10h45 (UTC-6)</span>
+</div>
+</div>
+
+<hr class="inner-separator">
+
+<h2>Vol retour</h2>
+<div class="flight-box">
+  <div class="flight-row">
+    <span class="airport">🛫 Mérida (MID)</span>
+    <div class="flight-line">
+      <hr><span class="plane">✈️</span><hr>
+</div>
+<span class="airport">Paris (CDG) 🛬</span>
+</div>
+<div class="flight-details">
+  <span>Départ : 12:35 (UTC-6)</span>
+  <span>Durée : 10h30min</span>
+  <span>Arrivée : 07:05 J+1 (UTC+2)</span>
+</div>
+</div>
+<div class="flight-price">
+  <span>Prix Total :</span> <span class="price-amount">458€/pers.</span>
+  </span>
+</div>
+</div>
+</section>
+    
+
+
+
+<section class="hotel-selection">
+<h2>Sélectionnez votre hôtel </h2>
+
+<div class="hotel-option horizontal">
+    <input type="radio" id="hotel-alba" name="hotel" value="alba">
+    <label for="hotel-alba">
+      <div class="hotel-content">
+
+      <div class="hotel-image-container">
+        <div class="hotel-heading">
+          <h3>Hôtel Alba</h3>
+          <div class="hotel-stars">★★</div>
+          <div class="hotel-location">📍 Pisté</div>
+</div>
+        <img src="assets/hotel_alba.png" alt="Hôtel Alba" class="hotel-image-side">
+</div>
+
+<div class="hotel-details">
+        <ul>
+            <li>Transfert aéroport : oui</li>
+            <li>Piscines : 2 (extérieures)| Jacuzzi : non | Spa : non </li>
+            <li>Services disponibles : chaises longues et parasols de plage</li>
+            <li>Pension : Petit-déjeuner inclus | Restaurant (payant) | Bar (payant)</li>
+            <li>Wifi gratuit | TV communes | Climatisation : non</li>
+            <li>Aire de pique-nique | Jardin | Terasse sur le toit</li>
+            <li>Laverie : non</li>
+            <li>Accessibilité PMR : non (pas d'ascenseur)</li>
+            <li>Prix par chambre double (1 ou 2 pers.) : 309€</li>
+</ul>
+</div>
+</div>
+</label>
+</div>
+
+<div class="hotel-option horizontal">
+    <input type="radio" id="hotel-puerta" name="hotel" value="puerta">
+    <label for="hotel-puerta">
+      <div class="hotel-content">
+
+      <div class="hotel-image-container">
+        <div class="hotel-heading">
+          <h3>Hôtel Puerta</h3>
+          <div class="hotel-stars">★★★</div>
+          <div class="hotel-location">📍 Pisté</div>
+</div>
+        <img src="assets/hotel_puerta.png" alt="Hôtel Puerta" class="hotel-image-side">
+</div>
+
+<div class="hotel-details">
+        <ul>
+            <li>Transfert aéroport : oui</li>
+            <li>Piscines : 2 (intérieure et extérieure)| Jacuzzi : non | Spa : oui </li>
+            <li>Services disponibles : chaises longues et parasols de plage</li>
+            <li>Pension : Petit-déjeuner et déjeuner inclus | Restaurant | Bar </li>
+            <li>Wifi gratuit | TV communes et chambres | Climatisation : oui</li>
+            <li>Aire de pique-nique | Jardin | Salon commun | Terasses</li>
+            <li>Laverie : oui</li>
+            <li>Accessibilité PMR : oui</li>
+            <li>Prix par chambre double (1 ou 2 pers.) : 493€</li>
+</ul>
+</div>
+</div>
+</label>
+</div>
+
+<div class="hotel-option horizontal">
+    <input type="radio" id="hotel-maya" name="hotel" value="maya">
+    <label for="hotel-maya">
+      <div class="hotel-content">
+
+      <div class="hotel-image-container">
+        <div class="hotel-heading">
+          <h3>Hôtel Maya</h3>
+          <div class="hotel-stars">★★★★★</div>
+          <div class="hotel-location">📍 Pisté</div>
+</div>
+        <img src="assets/hotel_maya.png" alt="Hôtel Maya" class="hotel-image-side">
+</div>
+
+<div class="hotel-details">
+   
+        <ul>
+            <li>Transfert aéroport : oui</li>
+            <li>Piscines : 3 (2 extérieures 1 intérieure) | Jacuzzi : oui | Spa : oui | Pool bar </li>
+            <li>Services disponibles : chaises longues et parasols de plage</li>
+            <li>Pension : Tous repas inclus </li>
+            <li>Restaurant avec vue sur la cité antique</li>
+            <li>Wifi gratuit | TV communes et chambres | Climatisation : oui</li>
+            <li>Balcon privé | Baignoire/douche | Sèche-cheveux</li>
+            <li>Billard | Piano </li>
+            <li>Aire de pique-nique | Salons communs | Jardins | Terasses</li>
+            <li>Laverie : oui</li>
+            <li>Accessibilité PMR : oui</li>
+            <li>Prix par chambre double (1 ou 2 pers.) : 594€</li>
+</ul>
+</div>
+</div>
+</label>
+</div>
+</section>
+
+
+
+<section class="activity-selection">
+    <h2>Activités proposées</h2>
+
+    <div class="activity-option horizontal">
+        <input type="checkbox" id="activity1" name="activity1" class="activity-checkbox" onchange="toggleDateInput(this, 'activity1-day')">
+        
+            <div class="activity-content">
+
+                <div class="activity-image-container">
+                    
+                    <img src="assets/chichen_itza_eglise.jpg" alt="Église Chichen Itza" class="activity-image-side">
+                    <p class="photo-credit">
+                        Crédit photo : <a href="https://commons.wikimedia.org/wiki/File:Church_at_Piste,_Yucat%C3%A1n,_Mexico.jpg" target="_blank">Wikimedia Commons</a>
+                    </p>
                 </div>
-            <?php endforeach; ?>
-        </div>
 
-       
+                <div class="activity-details">
+                  <div class="activity-title">
+                    <label for="activity1">
+                      <h3>Visite guidée de l'Église de Pisté</h3>
+</label>
+</div>
+                    <ul>
+                        <li>Durée : 1h30</li>
+                        <li>Mode de transport : À pied</li>
+                        <li>Départ : Réception de l'hôtel à 9h30</li>
+                        <li>Prix : 10€ par personne (gratuit pour les -3 ans)</li>
+                    </ul>
 
-        <h2>🎯 Activités disponibles</h2>
-        <div class="activites">
-            <?php foreach ($activites as $activite): ?>
-                <div class="activite">
-                    <h3><?php echo $activite['nom']; ?> (<?php echo $activite['type_activite']; ?>)</h3>
-                    <p>Prix par personne : <?php echo $activite['prix_par_personne']; ?> €</p>
-                    <p>Description : <?php echo $activite['description']; ?></p>
+                    <div class="activity-date">
+                        <label for="activity1-day">Sélectionnez un jour :</label>
+                        <input type="date" id="activity1-day" name="activity1-day" disabled>
+                    </div>
                 </div>
-            <?php endforeach; ?>
-        </div>
+            </div>
+</div>
+
+<div class="activity-option horizontal">
+        <input type="checkbox" id="activity2" name="activity2" class="activity-checkbox" onchange="toggleDateInput(this, 'activity2-day')">
+        
+            <div class="activity-content">
+
+                <div class="activity-image-container">
+                    
+                    <img src="assets/chichen_itza_visite.jpeg" alt="Visite Chichen Itza" class="activity-image-side">
+                </div>
+
+                <div class="activity-details">
+                  <div class="activity-title">
+                    <label for="activity2">
+                      <h3>Visite guidée de Chichén Itza</h3>
+</label>
+</div>
+                    <ul>
+                        <li>Durée : 3h</li>
+                        <li>Mode de transport : À pied</li>
+                        <li>Départ : Réception de l'hôtel à 8h30</li>
+                        <li>Prix : 45€ par personne</li>
+                    </ul>
+
+                    <div class="activity-date">
+                        <label for="activity2-day">Sélectionnez un jour :</label>
+                        <input type="date" id="activity2-day" name="activity2-day" disabled>
+                    </div>
+                </div>
+            </div>
+</div>
+
+
+<div class="activity-option horizontal">
+        <input type="checkbox" id="activity3" name="activity3" class="activity-checkbox" onchange="toggleDateInput(this, 'activity1-day')">
+        
+            <div class="activity-content">
+
+                <div class="activity-image-container">
+                    
+                    <img src="assets/chichen_itza_ikkil.jpeg" alt="Chichen Itza Ik Kil" class="activity-image-side">
+                </div>
+
+                <div class="activity-details">
+                  <div class="activity-title">
+                    <label for="activity3">
+                      <h3>Visite guidée du Cenote Ik Kil</h3>
+</label>
+</div>
+                    <ul>
+                        <li>Durée : 2h</li>
+                        <li>Mode de transport : Bus</li>
+                        <li>Départ : Réception de l'hôtel à 9h30</li>
+                        <li>Prix : 15€ par personne</li>
+                    </ul>
+
+                    <div class="activity-date">
+                        <label for="activity3-day">Sélectionnez un jour :</label>
+                        <input type="date" id="activity3-day" name="activity3-day" disabled>
+                    </div>
+                </div>
+            </div>
+</div>
+
+
+<div class="activity-option horizontal">
+        <input type="checkbox" id="activity4" name="activity4" class="activity-checkbox" onchange="toggleDateInput(this, 'activity1-day')">
+        
+            <div class="activity-content">
+
+                <div class="activity-image-container">
+                    
+                    <img src="assets/chichen_itza_ekbalam.jpeg" alt="Chichen Itza Ek Balam" class="activity-image-side">
+                </div>
+
+                <div class="activity-details">
+                  <div class="activity-title">
+                    <label for="activity4">
+                      <h3>Visite guidée du site archéologique d'Ek Balam</h3>
+</label>
+</div>
+                    <ul>
+                        <li>Durée : 3h</li>
+                        <li>Mode de transport : Bus</li>
+                        <li>Départ : Réception de l'hôtel à 8h30</li>
+                        <li>Prix : 45€ par personne </li>
+                    </ul>
+
+                    <div class="activity-date">
+                        <label for="activity4-day">Sélectionnez un jour :</label>
+                        <input type="date" id="activity4-day" name="activity4-day" disabled>
+                    </div>
+                </div>
+            </div>
+</div>
+
+<div class="activity-option horizontal">
+        <input type="checkbox" id="activity5" name="activity5" class="activity-checkbox" onchange="toggleDateInput(this, 'activity5-day')">
+        
+            <div class="activity-content">
+
+                <div class="activity-image-container">
+                    
+                    <img src="assets/chichen_itza_xcanche.jpeg" alt="Chichen Itza X'Canché" class="activity-image-side">
+                </div>
+
+                <div class="activity-details">
+                  <div class="activity-title">
+                    <label for="activity5">
+                      <h3>Visite guidée du Cenote X'Canché</h3>
+</label>
+</div>
+                    <ul>
+                        <li>Durée : 2h30</li>
+                        <li>Mode de transport : Bus</li>
+                        <li>Départ : Réception de l'hôtel à 9h</li>
+                        <li>Prix : 25€ par personne</li>
+                    </ul>
+
+                    <div class="activity-date">
+                        <label for="activity5-day">Sélectionnez un jour :</label>
+                        <input type="date" id="activity5-day" name="activity5-day" disabled>
+                    </div>
+                </div>
+            </div>
+</div>
+
+
+<div class="activity-option horizontal">
+        <input type="checkbox" id="activity6" name="activity6" class="activity-checkbox" onchange="toggleDateInput(this, 'activity1-day')">
+        
+            <div class="activity-content">
+
+                <div class="activity-image-container">
+                    
+                    <img src="assets/chichen_itza_dzitnup.jpeg" alt="Chichen Itza Dzitnup" class="activity-image-side">
+                </div>
+
+                <div class="activity-details">
+                  <div class="activity-title">
+                    <label for="activity6">
+                      <h3>Visite guidée des Cénotes Dzitnup</h3>
+</label>
+</div>
+                    <ul>
+                        <li>Durée : 3h</li>
+                        <li>Mode de transport : Bus</li>
+                        <li>Départ : Réception de l'hôtel à 13h30</li>
+                        <li>Prix : 25€ par personne</li>
+                    </ul>
+
+                    <div class="activity-date">
+                        <label for="activity6-day">Sélectionnez un jour :</label>
+                        <input type="date" id="activity6-day" name="activity6-day" disabled>
+                    </div>
+                </div>
+            </div>
+</div>
+
+
+
+</section>
+
+
+
 
         <footer>
         <p>&copy; 2025 Wander7. Tous droits réservés.</p>
