@@ -174,11 +174,11 @@ INSERT INTO voyages(titre, duree) VALUES
 ('Chichén Itza', 6);
 SET @id_chichen_itza = LAST_INSERT_ID();
 
-INSERT INTO voyages(titre, duree,) VALUES
+INSERT INTO voyages(titre, duree) VALUES
 ('Christ Rédempteur', 6);
 SET @id_christ_redempteur = LAST_INSERT_ID();
 
-INSERT INTO voyages(titre, duree,) VALUES
+INSERT INTO voyages(titre, duree) VALUES
 ('Pétra', 6);
 SET @id_petra = LAST_INSERT_ID();
 

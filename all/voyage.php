@@ -31,25 +31,26 @@ if (!$voyage) {
 }
 
 
-// 🔍 Récupération des vols
-$stmt_vols = $pdo->prepare("SELECT * FROM vols WHERE id_voyage = :id");
-$stmt_vols->bindParam(':id', $id, PDO::PARAM_INT);
-$stmt_vols->execute();
-$vols = $stmt_vols->fetchAll();
+// 🔍 Récupération des vols (aller et retour séparemment)
+$stmt_vols_aller = $pdo->prepare("SELECT * FROM vols WHERE id_voyage = :id AND type_vol = 'aller'");
+$stmt_vols_aller->bindParam(':id', $id, PDO::PARAM_INT);
+$stmt_vols_aller->execute();
+$vol_aller = $stmt_vols_aller->fetch();
+
+$stmt_vols_retour = $pdo->prepare("SELECT * FROM vols WHERE id_voyage = :id AND type_vol = 'retour'");
+$stmt_vols_retour->bindParam(':id', $id, PDO::PARAM_INT);
+$stmt_vols_retour->execute();
+$vol_retour = $stmt_vols_retour->fetch();
 
 
-// 🔍 Récupération des hébergements du voyage
-$stmt_hebergements = $pdo->prepare("SELECT * FROM hebergements WHERE id_voyage = :id");
-$stmt_hebergements->bindParam(':id', $id, PDO::PARAM_INT);
-$stmt_hebergements->execute();
-$hebergements = $stmt_hebergements->fetchAll();
+
+// 🔍 Récupération des hébergements + caractéristiques associées
+$stmt_hotels = $pdo->prepare("SELECT h.*, c.* FROM hebergements h LEFT JOIN hebergement_caracteristiques c ON h.id_hebergement = c.id_hebergement AND h.id_voyage = c.id_voyage WHERE h.id_voyage = :id");
+$stmt_hotels->bindParam(':id', $id, PDO::PARAM_INT);
+$stmt_hotels->execute();
+$hebergements = $stmt_hotels->fetchAll();
 
 
-// 🔍 Récupération des activités du voyage
-$stmt_activites = $pdo->prepare("SELECT * FROM activites WHERE id_voyage = :id");
-$stmt_activites->bindParam(':id', $id, PDO::PARAM_INT);
-$stmt_activites->execute();
-$activites = $stmt_activites->fetchAll();
 
 
 ?>
@@ -112,16 +113,16 @@ $activites = $stmt_activites->fetchAll();
     <h2>Vol aller</h2>
     <div class="flight-box">
       <div class="flight-row">
-        <span class="airport">🛫 Paris (CDG)</span>
+        <span class="airport">🛫 <?= htmlspecialchars($vol_aller['aeroport_depart'])?></span>
         <div class="flight-line">
           <hr><span class="plane">✈️</span><hr>
 </div>
-<span class="airport">Mérida (MID) 🛬</span>
+<span class="airport"> <?= htmlspecialchars($vol_aller['aeroport_arrivee'])?>🛬</span>
 </div>
 <div class="flight-details">
-  <span>Départ : 8:15 (UTC+2)</span>
-  <span>Durée : 10h30min</span>
-  <span>Arrivée : 10h45 (UTC-6)</span>
+  <span>Départ : <?= htmlspecialchars($vol_aller['heure_depart'])?></span>
+  <span>Durée : <?= htmlspecialchars($vol_aller['duree'])?></span>
+  <span>Arrivée : <?= htmlspecialchars($vol_aller['heure_arrivee'])?></span>
 </div>
 </div>
 
@@ -130,21 +131,20 @@ $activites = $stmt_activites->fetchAll();
 <h2>Vol retour</h2>
 <div class="flight-box">
   <div class="flight-row">
-    <span class="airport">🛫 Mérida (MID)</span>
+    <span class="airport">🛫 <?= htmlspecialchars($vol_retour['aeroport_depart'])?></span>
     <div class="flight-line">
       <hr><span class="plane">✈️</span><hr>
 </div>
-<span class="airport">Paris (CDG) 🛬</span>
+<span class="airport"><?= htmlspecialchars($vol_retour['aeroport_arrivee'])?> 🛬</span>
 </div>
 <div class="flight-details">
-  <span>Départ : 12:35 (UTC-6)</span>
-  <span>Durée : 10h30min</span>
-  <span>Arrivée : 07:05 J+1 (UTC+2)</span>
+  <span>Départ : <?=htmlspecialchars($vol_retour['heure_depart'])?></span>
+  <span>Durée : <?=htmlspecialchars($vol_retour['duree'])?></span>
+  <span>Arrivée : <?=htmlspecialchars($vol_retour['heure_arrivee'])?></span>
 </div>
 </div>
 <div class="flight-price">
-  <span>Prix Total :</span> <span class="price-amount">458€/pers.</span>
-  </span>
+  <span>Prix Total :</span> <span class="price-amount"><?= htmlspecialchars($vol_aller['prix'] + $vol_retour['prix'])?>€/pers.</span>
 </div>
 </div>
 </section>
@@ -155,102 +155,42 @@ $activites = $stmt_activites->fetchAll();
 <section class="hotel-selection">
 <h2>Sélectionnez votre hôtel </h2>
 
+<?php foreach ($hebergements as $hebergement): ?>
 <div class="hotel-option horizontal">
-    <input type="radio" id="hotel-alba" name="hotel" value="alba">
-    <label for="hotel-alba">
+    <input type="radio" id="hotel-<?= strtolower($hebergement['h_nom']) ?>" name="hotel" value="<?= strtolower($hebergement['h_nom']) ?>">
+    <label for="hotel-<?= strtolower($hebergement['h_nom']) ?>">
       <div class="hotel-content">
 
       <div class="hotel-image-container">
         <div class="hotel-heading">
-          <h3>Hôtel Alba</h3>
-          <div class="hotel-stars">★★</div>
-          <div class="hotel-location">📍 Pisté</div>
+          <h3><?= strtolower($hebergement['h_nom']) ?></h3>
+          <div class="hotel-stars"> <?= str_repeat('★', $hebergement['etoiles'])?>  </div>
+          <div class="hotel-location"> <?= htmlspecialchars($hebergement['h_localisation'])?> </div>
 </div>
-        <img src="assets/hotel_alba.png" alt="Hôtel Alba" class="hotel-image-side">
+        <img src="assets/<?= strtolower($hebergement['h_nom']) ?>.png" alt="<?= strtolower($hebergement['h_nom']) ?>" class="hotel-image-side">
 </div>
-
 <div class="hotel-details">
         <ul>
-            <li>Transfert aéroport : oui</li>
-            <li>Piscines : 2 (extérieures)| Jacuzzi : non | Spa : non </li>
+            <li>Transfert aéroport : <?= $hebergement['transfert']?></li>
+            <li>Piscines : <?= $hebergement['nb_piscines']?> </li>
+            <li>Jacuzzi : <?= $hebergement['jacuzzi']?></li>
+            <li>Spa : <?= $hebergement['spa']?></li>
             <li>Services disponibles : chaises longues et parasols de plage</li>
-            <li>Pension : Petit-déjeuner inclus | Restaurant (payant) | Bar (payant)</li>
-            <li>Wifi gratuit | TV communes | Climatisation : non</li>
-            <li>Aire de pique-nique | Jardin | Terasse sur le toit</li>
-            <li>Laverie : non</li>
-            <li>Accessibilité PMR : non (pas d'ascenseur)</li>
-            <li>Prix par chambre double (1 ou 2 pers.) : 309€</li>
+            <li>Pension : P<?= $hebergement['pension']?></li>
+            <li>Wifi gratuit : <?= $hebergement['wifi_gratuit']?></li>
+            <li>TV chambres : <?= $hebergement['tv_chambres']?></li>
+            <li>Climatisation : <?= $hebergement['climatisation']?></li>
+            <li>Sèche-cheveux : <?= $hebergement['seche_cheveux']?></li>
+            <li>Balcon privé : <?= $hebergement['balcon_pv']?></li>
+            <li>Laverie : <?= $hebergement['laverie']?></li>
+            <li>Accessibilité PMR : <?= $hebergement['pmr']?></li>
+            <li>Prix par chambre double (1 ou 2 pers.) : <?= $hebergement['h_prix']?> €</li>
 </ul>
 </div>
 </div>
 </label>
 </div>
-
-<div class="hotel-option horizontal">
-    <input type="radio" id="hotel-puerta" name="hotel" value="puerta">
-    <label for="hotel-puerta">
-      <div class="hotel-content">
-
-      <div class="hotel-image-container">
-        <div class="hotel-heading">
-          <h3>Hôtel Puerta</h3>
-          <div class="hotel-stars">★★★</div>
-          <div class="hotel-location">📍 Pisté</div>
-</div>
-        <img src="assets/hotel_puerta.png" alt="Hôtel Puerta" class="hotel-image-side">
-</div>
-
-<div class="hotel-details">
-        <ul>
-            <li>Transfert aéroport : oui</li>
-            <li>Piscines : 2 (intérieure et extérieure)| Jacuzzi : non | Spa : oui </li>
-            <li>Services disponibles : chaises longues et parasols de plage</li>
-            <li>Pension : Petit-déjeuner et déjeuner inclus | Restaurant | Bar </li>
-            <li>Wifi gratuit | TV communes et chambres | Climatisation : oui</li>
-            <li>Aire de pique-nique | Jardin | Salon commun | Terasses</li>
-            <li>Laverie : oui</li>
-            <li>Accessibilité PMR : oui</li>
-            <li>Prix par chambre double (1 ou 2 pers.) : 493€</li>
-</ul>
-</div>
-</div>
-</label>
-</div>
-
-<div class="hotel-option horizontal">
-    <input type="radio" id="hotel-maya" name="hotel" value="maya">
-    <label for="hotel-maya">
-      <div class="hotel-content">
-
-      <div class="hotel-image-container">
-        <div class="hotel-heading">
-          <h3>Hôtel Maya</h3>
-          <div class="hotel-stars">★★★★★</div>
-          <div class="hotel-location">📍 Pisté</div>
-</div>
-        <img src="assets/hotel_maya.png" alt="Hôtel Maya" class="hotel-image-side">
-</div>
-
-<div class="hotel-details">
-   
-        <ul>
-            <li>Transfert aéroport : oui</li>
-            <li>Piscines : 3 (2 extérieures 1 intérieure) | Jacuzzi : oui | Spa : oui | Pool bar </li>
-            <li>Services disponibles : chaises longues et parasols de plage</li>
-            <li>Pension : Tous repas inclus </li>
-            <li>Restaurant avec vue sur la cité antique</li>
-            <li>Wifi gratuit | TV communes et chambres | Climatisation : oui</li>
-            <li>Balcon privé | Baignoire/douche | Sèche-cheveux</li>
-            <li>Billard | Piano </li>
-            <li>Aire de pique-nique | Salons communs | Jardins | Terasses</li>
-            <li>Laverie : oui</li>
-            <li>Accessibilité PMR : oui</li>
-            <li>Prix par chambre double (1 ou 2 pers.) : 594€</li>
-</ul>
-</div>
-</div>
-</label>
-</div>
+<?php endforeach; ?>
 </section>
 
 
@@ -265,7 +205,7 @@ $activites = $stmt_activites->fetchAll();
 
                 <div class="activity-image-container">
                     
-                    <img src="chichen_itza__eglise.jpg" alt="Église Chichen Itza" class="activity-image-side">
+                    <img src="all/assets/chichen_itza/eglise.jpg" alt="Église Chichen Itza" class="activity-image-side">
                     <p class="photo-credit">
                         Crédit photo : <a href="https://commons.wikimedia.org/wiki/File:Church_at_Piste,_Yucat%C3%A1n,_Mexico.jpg" target="_blank">Wikimedia Commons</a>
                     </p>
@@ -299,7 +239,7 @@ $activites = $stmt_activites->fetchAll();
 
                 <div class="activity-image-container">
                     
-                    <img src="chichen_itza__visite.jpeg" alt="Visite Chichen Itza" class="activity-image-side">
+                    <img src="all/assets/chichen_itza/visite.jpeg" alt="Visite Chichen Itza" class="activity-image-side">
                 </div>
 
                 <div class="activity-details">
@@ -331,7 +271,7 @@ $activites = $stmt_activites->fetchAll();
 
                 <div class="activity-image-container">
                     
-                    <img src="chichen_itza__ikkil.jpeg" alt="Chichen Itza Ik Kil" class="activity-image-side">
+                    <img src="all/assets/chichen_itza/ikkil.jpeg" alt="Chichen Itza Ik Kil" class="activity-image-side">
                 </div>
 
                 <div class="activity-details">
@@ -363,7 +303,7 @@ $activites = $stmt_activites->fetchAll();
 
                 <div class="activity-image-container">
                     
-                    <img src="chichen_itza__ekbalam.jpeg" alt="Chichen Itza Ek Balam" class="activity-image-side">
+                    <img src="all/assets/chichen_itza/ekbalam.jpeg" alt="Chichen Itza Ek Balam" class="activity-image-side">
                 </div>
 
                 <div class="activity-details">
@@ -394,7 +334,7 @@ $activites = $stmt_activites->fetchAll();
 
                 <div class="activity-image-container">
                     
-                    <img src="assets/chichen_itza/chichen_itza_xcanche.jpeg" alt="Chichen Itza X'Canché" class="activity-image-side">
+                    <img src="all/assets/chichen_itza/xcanche.jpeg" alt="Chichen Itza X'Canché" class="activity-image-side">
                 </div>
 
                 <div class="activity-details">
@@ -426,7 +366,7 @@ $activites = $stmt_activites->fetchAll();
 
                 <div class="activity-image-container">
                     
-                    <img src="chichen_itza/chichen_itza_dzitnup.jpeg" alt="Chichen Itza Dzitnup" class="activity-image-side">
+                    <img src="all/assets/chichen_itza/dzitnup.jpeg" alt="Chichen Itza Dzitnup" class="activity-image-side">
                 </div>
 
                 <div class="activity-details">
