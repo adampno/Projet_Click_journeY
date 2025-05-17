@@ -172,31 +172,24 @@ INSERT INTO aeroports (nom, ville, region) VALUES
 -- --------------------------------------------------------
 INSERT INTO voyages(titre, duree) VALUES
 ('Chichén Itza', 6);
-SET @id_chichen_itza = LAST_INSERT_ID();
 
 INSERT INTO voyages(titre, duree) VALUES
 ('Christ Rédempteur', 7);
-SET @id_christ_redempteur = LAST_INSERT_ID();
 
 INSERT INTO voyages(titre, duree) VALUES
 ('Pétra', 6);
-SET @id_petra = LAST_INSERT_ID();
 
 INSERT INTO voyages(titre, duree) VALUES
 ('Colisée', 6);
-SET @id_colisee = LAST_INSERT_ID();
 
 INSERT INTO voyages(titre, duree) VALUES
 ('Machu Picchu', 6);
-SET @id_machu_picchu = LAST_INSERT_ID();
 
 INSERT INTO voyages(titre, duree) VALUES
 ('Taj Mahal', 6);
-SET @id_taj_mahal = LAST_INSERT_ID();
 
 INSERT INTO voyages(titre, duree) VALUES
 ('Grande Muraille de Chine', 6);
-SET @id_chine = LAST_INSERT_ID();
 
 
 
@@ -205,36 +198,43 @@ SET @id_chine = LAST_INSERT_ID();
 -- Insertion des vols associés aux voyages 
 -- --------------------------------------------------------
 -- Chichén Itza
+SELECT id_voyage INTO @id_chichen_itza FROM voyages WHERE titre ='Chichén Itza';
 INSERT INTO vols(aeroport_depart, aeroport_arrivee, heure_depart, heure_arrivee, duree, prix, type_vol, id_voyage) VALUES
 ('CHOIX_UTILISATEUR', 'Mérida(MID)', '08:15:00', '10:45:00', '10h30min', 229.00, 'aller', @id_chichen_itza), 
 ('Mérida(MID)', 'CHOIX_UTILISATEUR', '12:35:00', '07:05:00', '10h30min', 229.00, 'retour', @id_chichen_itza );
 
 -- Christ-Rédempteur
+SELECT id_voyage INTO @id_christ_redempteur FROM voyages WHERE titre ='Christ Rédempteur';
 INSERT INTO vols(aeroport_depart, aeroport_arrivee, heure_depart, heure_arrivee, duree, prix, type_vol, id_voyage) VALUES
-('CHOIX_UTILISATEUR', 'Rio de Janiero-Galeão(GIG)', '07:45:00', '14:20:00', '11h35min', 287..00 ,'aller', @id_christ_redempteur), 
+('CHOIX_UTILISATEUR', 'Rio de Janeiro-Galeão(GIG)', '07:45:00', '14:20:00', '11h35min', 287.00 ,'aller', @id_christ_redempteur), 
 ('Rio de Janiero-Galeão(GIG)', 'CHOIX_UTILISATEUR', '11:05:00', '03:20:00', '11h35min',  287.00, 'retour', @id_christ_redempteur );
 
 -- Pétra
+SELECT id_voyage INTO @id_petra FROM voyages WHERE titre ='Pétra';
 INSERT INTO vols(aeroport_depart, aeroport_arrivee, heure_depart, heure_arrivee, duree, prix, type_vol, id_voyage) VALUES
 ('CHOIX_UTILISATEUR', ' ', ' ', ' ', ' h min',  , 'aller',  @id_petra), 
 (' ', 'CHOIX_UTILISATEUR', ' ', ' ', ' h min',  , 'retour', @id_petra);
 
 -- Colisée
+SELECT id_voyage INTO @id_colisee FROM voyages WHERE titre ='Colisée';
 INSERT INTO vols(aeroport_depart, aeroport_arrivee, heure_depart, heure_arrivee, duree, prix, type_vol, id_voyage) VALUES
 ('CHOIX_UTILISATEUR', ' ', ' ', ' ', ' h min',  , 'aller', @id_colisée), 
 (' ', 'CHOIX_UTILISATEUR', ' ', ' ', ' h min',  ,'retour', @id_colisée);
 
 -- Machu Picchu
+SELECT id_voyage INTO @id_machu_picchu FROM voyages WHERE titre ='Machu Picchu';
 INSERT INTO vols(aeroport_depart, aeroport_arrivee, heure_depart, heure_arrivee, duree, prix, type_vol, id_voyage) VALUES
 ('CHOIX_UTILISATEUR', ' ', ' ', ' ', ' h min',  , 'aller', @id_machu_picchu), 
 (' ', 'CHOIX_UTILISATEUR', ' ', ' ', ' h min',  , 'retour', @id_machu_picchu);
 
 -- Taj Mahal
+SELECT id_voyage INTO @id_taj_mahal FROM voyages WHERE titre ='Taj Mahal';
 INSERT INTO vols(aeroport_depart, aeroport_arrivee, heure_depart, heure_arrivee, duree, prix, type_vol, id_voyage) VALUES
 ('CHOIX_UTILISATEUR', ' ', ' ', ' ', ' h min',  , 'aller', @id_taj_mahal), 
 (' ', 'CHOIX_UTILISATEUR', ' ', ' ', ' h min',  , 'retour', @id_taj_mahal);
 
 -- Grande Muraille de Chine
+SELECT id_voyage INTO @id_chine FROM voyages WHERE titre ='Grande Muraille de Chine';
 INSERT INTO vols(aeroport_depart, aeroport_arrivee, heure_depart, heure_arrivee, duree, prix, type_vol, id_voyage) VALUES
 ('CHOIX_UTILISATEUR', ' ', ' ', ' ', ' h min',  , 'aller', @id_chine), 
 (' ', 'CHOIX_UTILISATEUR', ' ', ' ', ' h min',  , 'retour', @id_chine);
@@ -352,7 +352,16 @@ INSERT INTO activites(id_voyage, a_nom, a_description, a_duree, mode_transport, 
 (@id_chichen_itza, "Cenotes Dzitnup", "Plongez dans l'univers mystique des Cénotes Dzitnup, Xkeken et Samula, célèbres pour leurs formations spectaculaires et leurs eaux cristallines. Lors de la visite guidée, découvrez les légendes mayas qui entourent ces cavernes enchantées", '3h', 'Car', '13:30:00', 25.00);
 
 
-
+-- Christ Rédempteur
+INSERT INTO activites(id_voyage, a_nom, a_description, a_duree, mode_transport, a_heure_depart, a_prix) VALUES
+(@id_christ_redempteur, "Christ Rédempteur", "Admirez l'une des 7 merveilles du monde moderne, perchée au sommet du mont Corcovado, offrant une vue spectaculaire sur Rio.", '4h', 'À pied', '08:00:00', 17.00),
+(@id_christ_redempteur, "Pão de Açùcar", "Montez en téléphérique jusqu'au sommet pour une vue imprenable sur la baie de Guanabara et les plages emblématiques de Rio", '2h30', 'Car', '14:00:00', 30.00),
+(@id_christ_redempteur, "Jardin botanique de Rio", 'Explorez un havre de paix abritant une incroyable diversité de plantes tropicales et de palmiers majestueux.', '2h30', 'Car', '10:00:00', 12.00),
+(@id_christ_redempteur, "Musée do Amanhã", "Plongez dans un musée futuriste dédié aux sciences et à la durabilité, situé au bord de la baie de Guanabara.", '3h', 'Car', '14:00:00', 5.00),
+(@id_christ_redempteur, "Quartier de Santa Teresa", "Flânez dans ce quartier bohème aux ruelles pavées, rempli d'artistes, de galeries et de charmantes maisons coloniales.", '2h', 'Car', '16:00:00', 0.00),
+(@id_christ_redempteur, "Visite guidée d'une favela", "Découvrez la vie quotidienne et la culture vibrante des favelas de Rio lors d'une visite guidée respectueuse.", '3h30', 'Car', '09:30:00', 9.00),
+(@id_christ_redempteur, "Excursion à Ilha Grande", "Évadez-vous sur cette île paradisiaque aux plages immaculées et eaux cristallines, idéale pour la randonnée et la plongée.", '12h', 'Car', '07:30:00', 75.00),
+(@id_christ_redempteur, "Cours de cuisine brésilienne à Copacabana", "Plongez dans l'univers savoureux de la gastronomie brésilienne lors d'un atelier interactif.", '4h', 'Car', '13:00:00', 146.00);
 
 
 -- Insertion de données de test
