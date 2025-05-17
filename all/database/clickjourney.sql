@@ -177,7 +177,7 @@ INSERT INTO voyages(titre, duree) VALUES
 ('Christ Rédempteur', 7);
 
 INSERT INTO voyages(titre, duree) VALUES
-('Pétra', 6);
+('Pétra', 5);
 
 INSERT INTO voyages(titre, duree) VALUES
 ('Colisée', 6);
@@ -212,8 +212,8 @@ INSERT INTO vols(aeroport_depart, aeroport_arrivee, heure_depart, heure_arrivee,
 -- Pétra
 SELECT id_voyage INTO @id_petra FROM voyages WHERE titre ='Pétra';
 INSERT INTO vols(aeroport_depart, aeroport_arrivee, heure_depart, heure_arrivee, duree, prix, type_vol, id_voyage) VALUES
-('CHOIX_UTILISATEUR', ' ', ' ', ' ', ' h min',  , 'aller',  @id_petra), 
-(' ', 'CHOIX_UTILISATEUR', ' ', ' ', ' h min',  , 'retour', @id_petra);
+('CHOIX_UTILISATEUR', 'Aqaba(AQJ)', '09:45:00', '16:45:00', '6h30min', 227, 'aller',  @id_petra), 
+('Aqaba(AQJ)', 'CHOIX_UTILISATEUR', '13:15:00', '17:15:00', '6h30min', 227, 'retour', @id_petra);
 
 -- Colisée
 SELECT id_voyage INTO @id_colisee FROM voyages WHERE titre ='Colisée';
@@ -259,9 +259,9 @@ INSERT INTO hebergements (id_hebergement, h_nom, etoiles, h_localisation, h_prix
 
 -- Pétra
 INSERT INTO hebergements (id_hebergement, h_nom, etoiles, h_localisation, h_prix, id_voyage) VALUES
-(1, 'Hôtel ',  , '  ', , @id_petra),
-(2, 'Hôtel ',  , '  ', , @id_petra),
-(3, 'Hôtel ',  , '  ', , @id_petra);
+(1, 'Hôtel Petra Premium', 3, 'Wadi Musa, Jordanie', 420.00, @id_petra),
+(2, 'Hôtel Petra Moon', 4, 'Petra, Jordanie', 640.00, @id_petra),
+(3, 'Hôtel Mövenpick Resort', 5, 'Petra, Jordanie', 725.00, @id_petra);
 
 -- Colisée
 INSERT INTO hebergements (id_hebergement, h_nom, etoiles, h_localisation, h_prix, id_voyage) VALUES
@@ -307,9 +307,9 @@ INSERT INTO hebergement_caracteristiques(id_voyage, id_hebergement, transfert, n
 
 -- Pétra
 INSERT INTO hebergement_caracteristiques(id_voyage, id_hebergement, transfert, nb_piscines, jacuzzi, spa, pension, wifi_gratuit, tv_chambres, climatisation, seche_cheveux, balcon_pv, laverie, pmr) VALUES
-(@id_petra, 1, ' ',  , ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' ),
-(@id_petra, 2, ' ',  , ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' ),
-(@id_petra, 3, ' ',  , ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' );
+(@id_petra, 1, 'oui', 1, 'non', 'non', 'petit-dejeuner', 'oui', 'non', 'non', 'non', 'non', 'oui', 'oui' ),
+(@id_petra, 2, 'oui', 2, 'oui', 'non', 'demi-pension', 'oui', 'oui', 'non', 'non', 'non', 'oui', 'oui' ),
+(@id_petra, 3, 'oui', 4, 'oui', 'oui', 'all inclusive', 'oui', 'oui', 'oui', 'oui', 'oui', 'oui', 'oui' );
 
 -- Colisée
 INSERT INTO hebergement_caracteristiques(id_voyage, id_hebergement, transfert, nb_piscines, jacuzzi, spa, pension, wifi_gratuit, tv_chambres, climatisation, seche_cheveux, balcon_pv, laverie, pmr) VALUES
@@ -362,6 +362,18 @@ INSERT INTO activites(id_voyage, a_nom, a_description, a_duree, mode_transport, 
 (@id_christ_redempteur, "Visite guidée d'une favela", "Découvrez la vie quotidienne et la culture vibrante des favelas de Rio lors d'une visite guidée respectueuse.", '3h30', 'Car', '09:30:00', 9.00),
 (@id_christ_redempteur, "Excursion à Ilha Grande", "Évadez-vous sur cette île paradisiaque aux plages immaculées et eaux cristallines, idéale pour la randonnée et la plongée.", '12h', 'Car', '07:30:00', 75.00),
 (@id_christ_redempteur, "Cours de cuisine brésilienne à Copacabana", "Plongez dans l'univers savoureux de la gastronomie brésilienne lors d'un atelier interactif.", '4h', 'Car', '13:00:00', 146.00);
+
+
+-- Petra
+INSERT INTO activites(id_voyage, a_nom, a_description, a_duree, mode_transport, a_heure_depart, a_prix) VALUES
+(@id_petra, "Traversée du Siq", "Marchez à travers un canyon étroit aux parois de grès rose menant à l'emblématique Trésor, une façade monumentale taillée dans la roche.", '1h', 'À pied', '11:00:00', 44.00),
+(@id_petra, "Randonnée vers le Monastère", "Gravissez environ 800 marches pour atteindre le Monastère de Ad-Deir, un édifice majestueux offrant une vue panoramique sur les montagnes environnantes.", '2h30', 'À pied', '10:00:00', 33.00),
+(@id_petra, "Petra by night", "Expérience magique où le Siq et le Trésor sont illuminés par des centaines de bougies, accompagnée de musique traditionelle.", '2h', 'À pied', '11:00:00', 21.00),
+(@id_petra, "Cours de cuisine jordanienne au Petra Kitchen", "Apprenez à préparer des plats traditionnels comme le mansaf ou le maqluba, suivi d'un dîner convivial.", '3h', 'À pied', '17:00:00', 64.00),
+(@id_petra, "Randonnée au Haut Lieu du Sacrifice", "Ascension vers un ancien site cérémoniel offrant une vue imprenable sur Pétra et ses environs", '2h', 'À pied', '10:00:00', 25.00),
+(@id_petra, "Visite du château de Shobak", "Explorez une forteresse croisée du XIIe siècle perchée sur une colline, offrant un aperçu de l'histoire médiévale de la région.", '5h', 'Car', '08:00:00', 191.00),
+(@id_petra, "Excursion au Wadi Rum", "Découvrez le désert du Wadi Rum en 4x4, célèbre pour ses paysages lunaires et ses formations rocheuses spectaculaires.", '10h', 'Car', '09:00:00', 180.00);
+
 
 
 -- Insertion de données de test

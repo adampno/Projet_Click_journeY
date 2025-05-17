@@ -195,7 +195,7 @@ $activites = $stmt_activites->fetchAll();
             <li>Jacuzzi : <?= $hebergement['jacuzzi']?></li>
             <li>Spa : <?= $hebergement['spa']?></li>
             <li>Services disponibles : chaises longues et parasols de plage</li>
-            <li>Pension : P<?= $hebergement['pension']?></li>
+            <li>Pension : <?= $hebergement['pension']?></li>
             <li>Wifi gratuit : <?= $hebergement['wifi_gratuit']?></li>
             <li>TV chambres : <?= $hebergement['tv_chambres']?></li>
             <li>Climatisation : <?= $hebergement['climatisation']?></li>
