@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 // Activation des erreurs PHP pour debug
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -91,9 +93,14 @@ $activites = $stmt_activites->fetchAll();
           <li><a href="index.php">Accueil</a></li>
           <li><a href="aproposdenous.php">À propos de nous</a></li>
           <li><a href="explorer.php">Explorer</a></li>
+          <?php if (isset($_SESSION['user'])):?>
           <li><a href="profil.php">Mon profil</a></li>
+          <?php else: ?>
+            <li><a href="seconnecter.php">Se connecter</a></li>
+          <?php endif; ?>
+          <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin'): ?>
           <li><a href="admin.php">Admin</a></li>
-          <li><a href="seconnecter.php">Se connecter</a></li>
+          <?php endif; ?>
         </ul>
       </nav>
     </header>
