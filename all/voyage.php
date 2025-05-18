@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // Connexion à la base de données
-require_once "config.php";
+require_once "database/database.php";
 
 // Récupération de l'ID du voyage depuis l'URL
 $id = $_GET['voyage'] ?? null;
