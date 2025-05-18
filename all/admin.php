@@ -15,18 +15,23 @@ $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
 </head>
 
 <body>
-    <header>
-        <img class="logo" src="assets/LogoWander7.png" alt="logo">
-        <nav>
-            <ul class="nav_links">
-                <li><a href="index.php">Accueil</a></li>
-                <li><a href="aproposdenous.php">À propos de nous </a></li>
-                <li><a href="explorer.php">Explorer</a></li>
-                <li><a href="profil.php">Mon profil</a></li>
-                <li><a href="admin.php">Admin</a></li>
-                <li><a href="seconnecter.php">Se connecter</a></li>
-            </ul>
-        </nav>
+<header>
+      <img class="logo" src="assets/LogoWander7.png" alt="logo">
+      <nav>
+        <ul class="nav_links">
+          <li><a href="index.php">Accueil</a></li>
+          <li><a href="aproposdenous.php">À propos de nous</a></li>
+          <li><a href="explorer.php">Explorer</a></li>
+          <?php if (isset($_SESSION['user'])):?>
+          <li><a href="profil.php">Mon profil</a></li>
+          <?php else: ?>
+            <li><a href="seconnecter.php">Se connecter</a></li>
+          <?php endif; ?>
+          <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin'): ?>
+          <li><a href="admin.php">Admin</a></li>
+          <?php endif; ?>
+        </ul>
+      </nav>
     </header>
 
     <main>
