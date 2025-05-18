@@ -75,9 +75,10 @@ body {
 
 /* Informations du profil */
 .profile-item {
+    position : relative;
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     font-size: 1.2rem;
     color: black;
     width: 100%;
@@ -108,11 +109,21 @@ body {
 
 /* Icône de modification */
 .edit-icon {
+    position : absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
     cursor: pointer;
     font-size: 1.2rem;
-    color: #5A1E1E;
+    color: #007bff;
     margin-left: 10px;
 }
+
+
+.edit-icon:hover {
+    color: #0056b3;
+}
+
 
 /* Bouton d'enregistrement */
 .button-container {

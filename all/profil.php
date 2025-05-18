@@ -18,11 +18,18 @@ require_once "database/database.php";
 $userId = $_SESSION['user']['id'];
 
 // Requête pour récupérer les informations de l'utilisateur
-$stmt = $pdo->preprare("SELECT nom, prenom, email, region, telephone FROM utilisateurs WHERE id = ?");
-$stmt>execute([$userId]);
+$stmt = $pdo->prepare("SELECT nom, prenom, email, region, telephone, sexe, date_naissance, date_inscription, derniere_connexion FROM utilisateurs WHERE id = ?");
+$stmt->execute([$userId]);
 $utilisateur = $stmt->fetch(PDO::FETCH_ASSOC);
 
+if(!$utilisateur){
+    echo "Utilisateur non trouvé.";
+    exit;
+}
 ?>
+
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -30,6 +37,9 @@ $utilisateur = $stmt->fetch(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Profil</title>
     <link rel="stylesheet" href="style/profil.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 </head>
 
 <body>
@@ -54,50 +64,108 @@ $utilisateur = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
 
-    <!-- Titre -->
+    <?php if (isset($_GET['success']) && $_GET['success'] === 'modification_reussie'): ?>
+    <p style="color: green;">✅ Les modifications ont été enregistrées avec succès.</p>
+<?php elseif (isset($_GET['error']) && $_GET['error'] === 'modification_echouee'): ?>
+    <p style="color: red;">❌ Échec de l'enregistrement des modifications.</p>
+<?php endif; ?>
+
+
     <h1 class="profile-title">Mon Profil</h1>
 
-    <!-- Conteneur du profil -->
+<form id="profileForm" action="controllers/update_profil.php" method="post">
     <div class="profile-container">
-        
-        <!-- Nom et prénom -->
+        <!-- Champs modifiables -->
+        <!-- Nom -->
         <div class="profile-item">
-            <i class="fa-solid fa-user"></i>
-            <label for="nom">Nom & Prénom :</label>
-            <input type="text" id="nom" value="Dupont Jean">
-            <i class="fa-solid fa-pen edit-icon"></i>
+            <label>Nom :</label>
+            <input type="text" name="nom" value="<?= $utilisateur['nom']?>" readonly>
+            <i class="fas fa-pen edit-icon" onclick="enableEdit(this)"></i>
         </div>
-
-        <!-- Numéro de téléphone -->
+        <!-- Prénom -->
         <div class="profile-item">
-            <i class="fa-solid fa-phone"></i>
-            <label for="telephone">Téléphone :</label>
-            <input type="tel" id="telephone" value="0612345678">
-            <i class="fa-solid fa-pen edit-icon"></i>
+            <label>Prénom :</label>
+            <input type="text" name="prenom" value="<?= $utilisateur['prenom']?>" readonly>
+            <i class="fas fa-pen edit-icon" onclick="enableEdit(this)"></i>
         </div>
-
-        <!-- Domicile -->
+        <!-- Téléphone -->
         <div class="profile-item">
-            <i class="fa-solid fa-map-marker-alt"></i>
-            <label for="domicile">Domicile :</label>
-            <input type="text" id="domicile" value="Île-de-France">
-            <i class="fa-solid fa-pen edit-icon"></i>
+            <label>Télephone :</label>
+            <input type="tel" name="telephone" value="<?= $utilisateur['telephone']?>" readonly>
+            <i class="fas fa-pen edit-icon" onclick="enableEdit(this)"></i>
+        </div>
+         <!-- Région -->
+        <div class="profile-item">
+            <label>Région :</label>
+            <select name="region">
+    <option value="">-- Sélectionnez une région --</option>
+    <option value="auvergne-rhone-alpes" <?= $utilisateur['region'] === 'auvergne-rhone-alpes' ? 'selected' : '' ?>>Auvergne-Rhône-Alpes</option>
+    <option value="bourgogne-franche-comte" <?= $utilisateur['region'] === 'bourgogne-franche-comte' ? 'selected' : '' ?>>Bourgogne-Franche-Comté</option>
+    <option value="bretagne" <?= $utilisateur['region'] === 'bretagne' ? 'selected' : '' ?>>Bretagne</option>
+    <option value="centre-val-de-loire" <?= $utilisateur['region'] === 'centre-val-de-loire' ? 'selected' : '' ?>>Centre-Val de Loire</option>
+    <option value="corse" <?= $utilisateur['region'] === 'corse' ? 'selected' : '' ?>>Corse</option>
+    <option value="grand-est" <?= $utilisateur['region'] === 'grand-est' ? 'selected' : '' ?>>Grand Est</option>
+    <option value="hauts-de-france" <?= $utilisateur['region'] === 'hauts-de-france' ? 'selected' : '' ?>>Hauts-de-France</option>
+    <option value="ile-de-france" <?= $utilisateur['region'] === 'ile-de-france' ? 'selected' : '' ?>>Île-de-France</option>
+    <option value="normandie" <?= $utilisateur['region'] === 'normandie' ? 'selected' : '' ?>>Normandie</option>
+    <option value="nouvelle-aquitaine" <?= $utilisateur['region'] === 'nouvelle-aquitaine' ? 'selected' : '' ?>>Nouvelle-Aquitaine</option>
+    <option value="occitanie" <?= $utilisateur['region'] === 'occitanie' ? 'selected' : '' ?>>Occitanie</option>
+    <option value="pays-de-la-loire" <?= $utilisateur['region'] === 'pays-de-la-loire' ? 'selected' : '' ?>>Pays de la Loire</option>
+    <option value="provence-alpes-cote-d-azur" <?= $utilisateur['region'] === 'provence-alpes-cote-d-azur' ? 'selected' : '' ?>>Provence-Alpes-Côte d'Azur</option>
+    <option value="outre-mer" <?= $utilisateur['region'] === 'outre-mer' ? 'selected' : '' ?>>Outre-Mer</option>
+</select>
+        </div>
+         <!-- Sexe -->
+        <div class="profile-item">
+            <label>Sexe :</label>
+            <select name="sexe">
+                    <option value="">-- Sélectionnez --</option>
+                    <option value="homme" <?= $utilisateur['sexe'] === 'homme' ? 'selected' : '' ?>>Homme</option>
+                    <option value="femme" <?= $utilisateur['sexe'] === 'femme' ? 'selected' : '' ?>>Femme</option>
+                    <option value="non_precise" <?= $utilisateur['sexe'] === 'non_precise' ? 'selected' : '' ?>>Préfère ne pas préciser</option>
+                </select>
+</div>
+
+         <!-- Date de naissance -->
+        <div class="profile-item">
+            <label>Date de Naissance :</label>
+            <input type="date" name="date_naissance" value="<?= $utilisateur['date_naissance']?>">
         </div>
 
         <!-- Email -->
         <div class="profile-item">
-            <i class="fa-solid fa-envelope"></i>
-            <label for="email">Email :</label>
-            <input type="email" id="email" value="DupontJean@gmail.com">
-            <i class="fa-solid fa-pen edit-icon"></i>
+            <label>Email :</label>
+            <input type="email" name="email" value="<?= $utilisateur['email']?>" required>
+            <i class="fas fa-pen edit-icon" onclick="enableEdit(this)"></i>
         </div>
 
+        
+        <!-- Champs non modifiables -->
+         <!-- Date d'inscription-->
+        <div class="profile-item">
+            <label>Date d'inscription  :</label>
+            <input type="text" value="<?= $utilisateur['date_inscription']?>" readonly>
+          </div>
+        <!-- Dernière connexion-->
+        <div class="profile-item">
+            <label>Dernière connexion :</label>
+            <input type="text" value="<?= $utilisateur['derniere_connexion']?>" readonly>
     </div>
+          </div>
 
     <!-- Bouton d'enregistrement -->
     <div class="button-container">
-        <button class="save-button">Enregistrer les modifications</button>
+        <button class="save-button" type="submit">Enregistrer les modifications</button>
     </div>
+          </form>
+
+        <script>
+            function enableEdit(icon){
+                const input = icon.previousElementSibling;
+                input.removeAttribute('readonly');
+                input.focus();
+            }
+            </script>
 
 
 

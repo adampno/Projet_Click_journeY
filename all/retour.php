@@ -12,7 +12,7 @@ $_GET["transaction"];
 
 
 
-header("location: init_paiment.php");
+header("location: init_paiement.php");
 ?>
 
 

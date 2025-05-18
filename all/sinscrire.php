@@ -39,6 +39,11 @@ $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
         <div class="signup-inner-container">
             <h2>Inscription</h2>
 
+            <!-- Gestion des erreurs -->
+ <?php if (isset($_GET['error']) && $_GET['error'] === 'email_exists'): ?>
+    <div class="error-message">⚠️ Un compte existe déjà avec cet email.</div>
+    <?php endif; ?>
+
             <form action="controllers/control_sinscrire.php" method="post">
                 <!-- Nom -->
                 <label for="nom">Nom :</label>
@@ -124,10 +129,6 @@ $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
         </form>
         
 
-<!-- Gestion des erreurs -->
- <?php if (isset($_GET['error']) && $_GET['error'] === 'email_exists'): ?>
-    <p style="color: red;">⚠️ Un compte existe déjà avec cet email.</p>
-    <?php endif; ?>
 
 
     </div>
@@ -136,6 +137,8 @@ $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
     <footer>
         <p>&copy; 2025 Wander7. Tous droits réservés.</p>
     </footer>
+
+
 
 </body>
 </html>

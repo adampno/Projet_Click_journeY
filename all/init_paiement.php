@@ -7,7 +7,7 @@ $vendeur = "MI-2_E";
 $api_key = getAPIKey($vendeur);
 
 // URL de retour 
-$retour = "retour_paiement.php";
+$retour = "retour.php";
 
 // Calcul du contrôle
 $control = md5($api_key . "#" . $transaction . "#" . $montant . "#" . $vendeur . "#" . $retour . "#");

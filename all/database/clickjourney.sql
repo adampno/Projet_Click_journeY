@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS utilisateurs(
   date_naissance DATE NOT NULL,
   region VARCHAR(100) NOT NULL,
   telephone VARCHAR(15) NOT NULL,
-  sexe ENUM('homme', 'femme', 'non_precise') DEFAULT 'non_precise',
+  sexe ENUM('Homme', 'Femme', 'Non_precise') DEFAULT 'Non_precise',
   date_inscription TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   derniere_connexion TIMESTAMP NULL
 );
