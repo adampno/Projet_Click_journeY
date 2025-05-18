@@ -9,7 +9,7 @@ ini_set('display_errors', 1);
 require_once "database/database.php";
 
 // Récupération de l'ID du voyage depuis l'URL
-$id = $_GET['voyage'] ?? null;
+$id = $_GET['id'] ?? null;
 if ($id === null) {
     echo "❌ ID de voyage non fourni.";
     exit;
@@ -17,7 +17,7 @@ if ($id === null) {
 $id = (int) $id;
 
 // 🔍 Récupération des informations du voyage
-$stmt_voyage = $pdo->prepare("SELECT * FROM voyages WHERE id_voyage = :id LIMIT 1");
+$stmt_voyage = $pdo->prepare("SELECT v.*, h.h_localisation AS pays FROM voyages v LEFT JOIN hebergements h ON v.id_voyage = h.id_voyage WHERE v.id_voyage =:id LIMIT 1");
 $stmt_voyage->bindParam(':id', $id, PDO::PARAM_INT);
 
 if (!$stmt_voyage->execute()) {
@@ -75,7 +75,6 @@ $activites = $stmt_activites->fetchAll();
 
 
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -83,10 +82,9 @@ $activites = $stmt_activites->fetchAll();
         <link rel="stylesheet" href="style/voyage.css">
         <title><?php echo htmlspecialchars($voyage['titre']); ?> | Wander7</title>
     </head>
-
     <body>
 
-    <header>
+<header>
       <img class="logo" src="assets/LogoWander7.png" alt="logo">
       <nav>
         <ul class="nav_links">
@@ -103,7 +101,18 @@ $activites = $stmt_activites->fetchAll();
           <?php endif; ?>
         </ul>
       </nav>
-    </header>
+          </header>
+
+            <section class="banner">
+      <img class="banner-image" src="assets/<?= strtolower(str_replace(' ', '_', $voyage['titre'])) ?>_banner.jpg" alt="<?= $voyage['titre']?>">
+    <div class="banner-overlay">
+      <h1><?= $voyage['titre'] ?></h1>
+      <p><?= $voyage['pays']?></p>
+  </div>
+</section>
+
+
+<main>
 
 
 

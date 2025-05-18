@@ -1,11 +1,33 @@
 <?php
 session_start(); // Active la gestion des sessions
-require_once "config.php";
+require_once "database/database.php";
 
 $estConnecte = isset($_SESSION['user']);
 $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
 
 $titre = $_GET['titre'] ?? null;
+
+try{
+  // Requête SQL pour récupérer les voyages
+  $query = "SELECT
+  v.id_voyage,
+  v.titre,
+  v.date_debut,
+  v.date_fin,
+  v.prix,
+  v.duree
+  FROM voyages v";
+
+  $stmt = $pdo->prepare($query);
+  $stmt->execute();
+  $voyages = $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+catch(PDOException $e){
+  die("Erreur lors de la récupération des voyages : " . $e->getMessage());
+}
+
+
 
 try {
     $query = "SELECT 
@@ -13,22 +35,28 @@ try {
                 v.titre,
                 v.date_debut,
                 v.date_fin,
-                v.prix_total,
-                v.specificites,
-                h.nom AS hebergement,
-                h.type_hebergement,
-                a.nom AS activite,
-                a.type_activite
+                v.prix AS prix_total,
+                v.duree,
+                v.statut,
+                GROUP_CONCAT(DISTINCT h.h_nom SEPARATOR ', ') AS hebergement,
+                GROUP_CONCAT(DISTINCT h.h_localisation SEPARATOR ', ') AS localisations,
+                GROUP_CONCAT(DISTINCT h.etoiles SEPARATOR ', ') AS etoiles,
+                GROUP_CONCAT(DISTINCT h.h_prix SEPARATOR ', ') AS prix_hebergements,
+                GROUP_CONCAT(DISTINCT a.a_nom SEPARATOR ', ') AS activites,
+                GROUP_CONCAT(DISTINCT a.a_description SEPARATOR ', ') AS descriptions,
+                GROUP_CONCAT(DISTINCT a.a_duree SEPARATOR ', ') AS durees,
+                GROUP_CONCAT(DISTINCT a.mode_transport SEPARATOR ', ') AS transports,
+                GROUP_CONCAT(DISTINCT a.a_heure_depart SEPARATOR ', ') AS heures_depart,
+                GROUP_CONCAT(DISTINCT a.a_prix SEPARATOR ', ') AS prix_activites
               FROM voyages v
               LEFT JOIN hebergements h ON v.id_voyage = h.id_voyage
               LEFT JOIN activites a ON v.id_voyage = a.id_voyage
               WHERE (
                    v.titre LIKE :titre OR 
-                   h.nom LIKE :titre OR 
-                   h.type_hebergement LIKE :titre OR 
-                   a.nom LIKE :titre OR 
-                   a.type_activite LIKE :titre OR
-                   v.specificites LIKE :titre
+                   h.h_nom LIKE :titre OR 
+                   h.h_localisation LIKE :titre OR 
+                   a.a_nom LIKE :titre OR 
+                   a.a_description LIKE :titre 
               )
               GROUP BY v.id_voyage";
 
@@ -89,18 +117,6 @@ try {
           <ul>
           <?php if (empty($voyages)): ?>
               <li>Aucun résultat trouvé pour cette recherche.</li>
-          <?php else: ?>
-              <?php foreach ($voyages as $voyage): ?>
-                  <li>
-                      <h3><?= $voyage['titre'] ?></h3>
-                      <p>Date de début : <?= $voyage['date_debut'] ?></p>
-                      <p>Date de fin : <?= $voyage['date_fin'] ?></p>
-                      <p>Prix : <?= $voyage['prix_total'] ?> €</p>
-                      <p>Hébergement : <?= $voyage['hebergement'] ?> (<?= $voyage['type_hebergement'] ?>)</p>
-                      <p>Activité : <?= $voyage['activite'] ?> (<?= $voyage['type_activite'] ?>)</p>
-                      <p>Spécificités : <?= $voyage['specificites'] ?></p>
-                  </li>
-              <?php endforeach; ?>
           <?php endif; ?>
           </ul>
         </section>
@@ -165,86 +181,32 @@ try {
       <h2>Nos voyages</h2>
       
       <div class="merveilles-grid">
-       
+       <?php foreach ($voyages as $voyage): ?>
         <div class="merveille-card">
-          <a href="<?php echo $estConnecte ? 'grandemuraille.php' : 'seconnecter.php'; ?>">
-            <img src="assets/greatWall_index.jpg" alt="La Grande Muraille de Chine">
-            <div class="merveille-info">
-              <h3>Grande Muraille de Chine</h3>
-              <p>À partir de 1499€</p>
-              <p>8 jours | 5 étapes</p>
-            </div>
-          </a>
-        </div>
 
-        <div class="merveille-card">
-          <a href="<?php echo $estConnecte ? 'christredempteur.php' : 'seconnecter.php'; ?>">
-            <img src="assets/christRedeemer_index.jpg" alt="Christ Rédempteur">
+          <a href="<?= $estConnecte ? 'voyage.php?id=' . $voyage['id_voyage'] : 'seconnecter.php'; ?>">
+            <img src="assets/<?= strtolower(str_replace(' ', '_', $voyage['titre']))?>_index.jpg" alt="<?= $voyage['titre']?>">
             <div class="merveille-info">
-              <h3>Christ Rédempteur</h3>
-              <p>À partir de 1299€</p>
-              <p>7 jours | 4 étapes</p>
-            </div>
-          </a>
-        </div>
+              <h3><?= $voyage['titre'] ?></h3>
+              <?php if (!empty($voyage['prix_total'])): ?>
+              <p>À partir de <?= $voyage['prix_total']?>€</p>
+              <?php else: ?> 
+                <p>Prix non disponible</p>
+                <?php endif; ?>
+              
+              <p><?= $voyage['duree'] ?> jours </p>
 
-        <div class="merveille-card">
-          <a href="voyages.php?id=chichen itza">
-          
-            <img src="assets/machuPicchu_index.jpg" alt="Machu Picchu">
-            <div class="merveille-info">
-              <h3>Machu Picchu</h3>
-              <p>À partir de 1599€</p>
-              <p>10 jours | 6 étapes</p>
-            </div>
-          </a>
-        </div>
+                <?php if (!empty($voyage['activites'])): ?>
+                  <p><?= substr_count($voyage['activites'], ',') +1 ?> activités disponibles</p>
+                  <?php else: ?>
+                    <p>Aucune activité</p>
+                    <?php endif; ?>
 
-        <div class="merveille-card">
-          <a href="<?php echo $estConnecte ? 'chichenitza.php' : 'seconnecter.php'; ?>">
-            <img src="assets/chichenItza_index.jpg" alt="Chichén Itzá">
-            <div class="merveille-info">
-              <h3>Chichén Itzá</h3>
-              <p>À partir de 1399€</p>
-              <p>5 jours | 5 étapes</p>
             </div>
           </a>
         </div>
-
-        <div class="merveille-card">
-          <a href="<?php echo $estConnecte ? 'colisee.php' : 'seconnecter.php'; ?>">
-            <img src="assets/colosseum_index.jpg" alt="Colisée de Rome">
-            <div class="merveille-info">
-              <h3>Colisée de Rome</h3>
-              <p>À partir de 1199€</p>
-              <p>6 jours | 4 étapes</p>
-            </div>
-          </a>
-        </div>
-
-        <div class="merveille-card">
-          <a href="<?php echo $estConnecte ? 'tajmahal.php' : 'seconnecter.php'; ?>">
-            <img src="assets/tajmahal_index.jpg" alt="Taj Mahal">
-            <div class="merveille-info">
-              <h3>Taj Mahal</h3>
-              <p>À partir de 1399€</p>
-              <p>8 jours | 5 étapes</p>
-            </div>
-          </a>
-        </div>
-
-     
-        <div class="merveille-card center-card">
-          <a href="<?php echo $estConnecte ? 'petra.php' : 'seconnecter.php'; ?>">
-            <img src="assets/petra_index.jpg" alt="Pétra">
-            <div class="merveille-info">
-              <h3>Pétra</h3>
-              <p>À partir de 1699€</p>
-              <p>11 jours | 7 étapes</p>
-            </div>
-          </a>
-        </div>
-      </div>
+        <?php endforeach; ?>
+              </div>
     </section>
 
 

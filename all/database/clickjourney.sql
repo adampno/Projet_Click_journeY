@@ -44,6 +44,7 @@ CREATE TABLE voyages (
   duree INT NOT NULL,
   prix DECIMAL(10,2) DEFAULT NULL,
   statut ENUM('payé', 'en cours de modification', 'en attente') DEFAULT 'en attente',
+  pays VARCHAR(100) NOT NULL,
   id_utilisateur INT DEFAULT NULL,
   FOREIGN KEY (id_utilisateur) REFERENCES utilisateurs(id) ON DELETE CASCADE
 );
@@ -171,26 +172,26 @@ INSERT INTO aeroports (nom, ville, region) VALUES
 -- --------------------------------------------------------
 -- Insertion des 7 voyages 
 -- --------------------------------------------------------
-INSERT INTO voyages(titre, duree) VALUES
-('Chichén Itza', 6);
+INSERT INTO voyages(titre, duree, prix, pays) VALUES
+('Chichén Itza', 6, 767.00, 'Mexique');
 
-INSERT INTO voyages(titre, duree) VALUES
-('Christ Rédempteur', 7);
+INSERT INTO voyages(titre, duree, prix, pays) VALUES
+('Christ Rédempteur', 7, 863.00, 'Brésil');
 
-INSERT INTO voyages(titre, duree) VALUES
-('Pétra', 5);
+INSERT INTO voyages(titre, duree, prix, pays) VALUES
+('Pétra', 5, 874.00, 'Jordanie');
 
-INSERT INTO voyages(titre, duree) VALUES
-('Colisée', 5);
+INSERT INTO voyages(titre, duree, prix, pays) VALUES
+('Colisée', 5, 655.00, 'Italie');
 
-INSERT INTO voyages(titre, duree) VALUES
-('Machu Picchu', 7);
+INSERT INTO voyages(titre, duree, prix, pays) VALUES
+('Machu Picchu', 7, 1073.00, 'Pérou');
 
-INSERT INTO voyages(titre, duree) VALUES
-('Taj Mahal', 8);
+INSERT INTO voyages(titre, duree, prix, pays) VALUES
+('Taj Mahal', 8, 1011.00, 'Inde');
 
-INSERT INTO voyages(titre, duree) VALUES
-('Grande Muraille de Chine', 9);
+INSERT INTO voyages(titre, duree, prix, pays) VALUES
+('Grande Muraille de Chine', 9, 905.00, 'Chine');
 
 
 
