@@ -3,6 +3,8 @@ session_start(); // Active la gestion des sessions
 $estConnecte = isset($_SESSION['user']);
 $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
 ?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -32,7 +34,7 @@ $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
         <div class="signup-inner-container">
             <h2>Inscription</h2>
 
-            <form>
+            <form action="controllers/control_sinscrire.php" method="post">
                 <!-- Nom -->
                 <label for="nom">Nom :</label>
                 <input type="text" id="nom" name="nom" required>
@@ -76,6 +78,10 @@ $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
 </select>
 <p class="info-text">Votre domicile nous permet de vous proposer des vols au départ des aéroports les plus proches de chez vous.</p>
 
+                <!-- Date de naissance -->
+                 <label for="date_naissance">Date de naissance :</label>
+                 <input type="date" id="date_naissance" name="date_naissance" required>
+
 
                 <!-- Adresse email -->
                 <label for="email">Adresse mail :</label>
@@ -111,9 +117,17 @@ $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
             <!-- Bouton d'inscription -->
             <button type="submit" class="signup-button">S'inscrire</button>
         </form>
-        </div>
-    </main>
+        
 
+<!-- Gestion des erreurs -->
+ <?php if (isset($_GET['error']) && $_GET['error'] === 'email_exists'): ?>
+    <p style="color: red;">⚠️ Un compte existe déjà avec cet email.</p>
+    <?php endif; ?>
+
+
+    </div>
+        </main>
+        
     <footer>
         <p>&copy; 2025 Wander7. Tous droits réservés.</p>
     </footer>
