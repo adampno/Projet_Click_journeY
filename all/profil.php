@@ -1,7 +1,27 @@
 <?php
 session_start(); // Active la gestion des sessions
+
+
+// Vérificationsi l'utilisateur est connecté
+if (!isset($_SESSION['user'])){
+    header("Location: seconnecter.php");
+    exit;
+}
+
 $estConnecte = isset($_SESSION['user']);
 $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
+
+// Connexion à la base de données
+require_once "database/database.php";
+
+// Récupération de l'ID de l'utilisateur connecté
+$userId = $_SESSION['user']['id'];
+
+// Requête pour récupérer les informations de l'utilisateur
+$stmt = $pdo->preprare("SELECT nom, prenom, email, region, telephone FROM utilisateurs WHERE id = ?");
+$stmt>execute([$userId]);
+$utilisateur = $stmt->fetch(PDO::FETCH_ASSOC);
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
