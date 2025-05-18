@@ -186,10 +186,10 @@ INSERT INTO voyages(titre, duree) VALUES
 ('Machu Picchu', 7);
 
 INSERT INTO voyages(titre, duree) VALUES
-('Taj Mahal', 6);
+('Taj Mahal', 8);
 
 INSERT INTO voyages(titre, duree) VALUES
-('Grande Muraille de Chine', 6);
+('Grande Muraille de Chine', 9);
 
 
 
@@ -249,13 +249,13 @@ INSERT INTO vols(aeroport_depart, aeroport_arrivee, heure_depart, heure_arrivee,
 
 -- Taj Mahal
 INSERT INTO vols(aeroport_depart, aeroport_arrivee, heure_depart, heure_arrivee, duree, prix, type_vol, id_voyage) VALUES
-('CHOIX_UTILISATEUR', ' ', ' ', ' ', ' h min',  , 'aller', @id_taj_mahal), 
-(' ', 'CHOIX_UTILISATEUR', ' ', ' ', ' h min',  , 'retour', @id_taj_mahal);
+('CHOIX_UTILISATEUR', 'Agra(AGR)', '08:10:00', '23:25:00', '11h45min',  407.50, 'aller', @id_taj_mahal), 
+('Agra(AGR)', 'CHOIX_UTILISATEUR', '10:35:00', '16:20:00', '11h45min', 407.50, 'retour', @id_taj_mahal);
 
 -- Grande Muraille de Chine
 INSERT INTO vols(aeroport_depart, aeroport_arrivee, heure_depart, heure_arrivee, duree, prix, type_vol, id_voyage) VALUES
-('CHOIX_UTILISATEUR', ' ', ' ', ' ', ' h min',  , 'aller', @id_chine), 
-(' ', 'CHOIX_UTILISATEUR', ' ', ' ', ' h min',  , 'retour', @id_chine);
+('CHOIX_UTILISATEUR', 'Pékin-Capitale(PEK)', '06:45:00', '00:00:00', '11h15min', 282.50, 'aller', @id_chine), 
+('Pékin-Capitale(PEK)', 'CHOIX_UTILISATEUR', '09:40:00', '14:55', '11h15min',  282.50, 'retour', @id_chine);
 
 
 
@@ -295,15 +295,15 @@ INSERT INTO hebergements (id_hebergement, h_nom, etoiles, h_localisation, h_prix
 
 -- Taj Mahal
 INSERT INTO hebergements (id_hebergement, h_nom, etoiles, h_localisation, h_prix, id_voyage) VALUES
-(1, 'Hôtel ',  , '  ', , @id_taj_mahal),
-(2, 'Hôtel ',  , '  ', , @id_taj_mahal),
-(3, 'Hôtel ',  , '  ', , @id_taj_mahal);
+(1, 'Hôtel Sidhartha', 1, 'Taj Mahal, Inde', 196.00, @id_taj_mahal),
+(2, 'Hôtel Taj Resorts', 3, 'Taj Ganj, Inde', 356.00, @id_taj_mahal),
+(3, 'Hôtel Oberoi Amarvillas', 5, 'Taj Mahal, Inde', 970.00, @id_taj_mahal);
 
 -- Grande Muraille de Chine
 INSERT INTO hebergements (id_hebergement, h_nom, etoiles, h_localisation, h_prix, id_voyage) VALUES
-(1, 'Hôtel ',  , '  ', , @id_chine),
-(2, 'Hôtel ',  , '  ', , @id_chine),
-(3, 'Hôtel ',  , '  ', , @id_chine);
+(1, 'Hôtel Great Wall', 1.5, 'Badaling, Chine', 340.00, @id_chine),
+(2, 'Hôtel Express Beijing', 3, 'Yanqing, Chine', 467.00, @id_chine),
+(3, 'Hôtel Unbound Collection', 5, 'Shuiguan, Chine', 1039.00, @id_chine);
 
 
 
@@ -343,15 +343,15 @@ INSERT INTO hebergement_caracteristiques(id_voyage, id_hebergement, transfert, n
 
 -- Taj Mahal
 INSERT INTO hebergement_caracteristiques(id_voyage, id_hebergement, transfert, nb_piscines, jacuzzi, spa, pension, wifi_gratuit, tv_chambres, climatisation, seche_cheveux, balcon_pv, laverie, pmr) VALUES
-(@id_taj_mahal, 1, ' ',  , ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' ),
-(@id_taj_mahal, 2, ' ',  , ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' ),
-(@id_taj_mahal, 3, ' ',  , ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' );
+(@id_taj_mahal, 1, 'oui', 0, 'non', 'non', 'petit-dejeuner', 'non', 'non', 'non', 'non', 'non', 'non', 'non' ),
+(@id_taj_mahal, 2, 'oui', 1, 'non', 'non', 'demi-pension', 'oui', 'non', 'non', 'non', 'non', 'non', 'oui' ),
+(@id_taj_mahal, 3, 'oui', 5, 'oui', 'non', 'all inclusive', 'non', 'oui', 'oui', 'oui', 'oui', 'oui', 'oui' );
 
 -- Grande Muraille de Chine
 INSERT INTO hebergement_caracteristiques(id_voyage, id_hebergement, transfert, nb_piscines, jacuzzi, spa, pension, wifi_gratuit, tv_chambres, climatisation, seche_cheveux, balcon_pv, laverie, pmr) VALUES
-(@id_chine, 1, ' ',  , ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' ),
-(@id_chine, 2, ' ',  , ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' ),
-(@id_chine, 3, ' ',  , ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' );
+(@id_chine, 1, 'oui', 0, 'non', 'non', 'petit-dejeuner', 'non', 'non', 'non', 'non', 'non', 'non', 'non' ),
+(@id_chine, 2, 'oui', 1, 'non', 'non', 'petit-dejeuner', 'oui', 'oui', 'non', 'non', 'non', 'oui', 'oui' ),
+(@id_chine, 3, 'oui', 3, 'oui', 'oui', 'all inclusive', 'oui', 'oui', 'oui', 'oui', 'oui', 'oui', 'oui' );
 
 
 
@@ -362,8 +362,8 @@ INSERT INTO hebergement_caracteristiques(id_voyage, id_hebergement, transfert, n
 -- --------------------------------------------------------
 -- Chichén Itza
 INSERT INTO activites(id_voyage, a_nom, a_description, a_duree, mode_transport, a_heure_depart, a_prix) VALUES
-(@id_chichen_itza, "Église de Pisté", "Découvrez l'Église de Pisté, un joyau colonial au coeur du village, témoin de l'histoire de Yucatàn. Plongez dans son atmosphère paisible et ses récits anciens lors d'une visite guidée captivante.", '1h30', 'À pied', '09:30:00', 10.00),
 (@id_chichen_itza, "Chichén Itza", "Explorez Chichén Itza, l'une des sept merveilles du monde, et plongez dans les mystères de la civilisation maya lors d'une visite guidée inoubliable. Découvrez la majestueuse pyramide de Kukulcàn, le temple des Guerriers et bien plus encore !", '3h', 'À pied', '08:30:00', 45.00),
+(@id_chichen_itza, "Église de Pisté", "Découvrez l'Église de Pisté, un joyau colonial au coeur du village, témoin de l'histoire de Yucatàn. Plongez dans son atmosphère paisible et ses récits anciens lors d'une visite guidée captivante.", '1h30', 'À pied', '09:30:00', 10.00),
 (@id_chichen_itza, "Cenote Ik Kil", "Plongez dans les eaux cristallines du Cenote Ik Kil, un joyau naturel au coeur de la jungle maya. Découvrez son histoire sacrée lors d'une visite guidée et vivez une expérience unique entre nature et légende.", '2h', 'Car', '09:30:00', 15.00),
 (@id_chichen_itza, "Site Archéologique d'Ek Balam", "Découvrez le site archéologique d'Ek Balam, un trésor maya méconnu entouré de jungle luxuriante. Grimpez au sommet de l'Acropole pour une vue imprenable et explorez ses mystères lors d'une visite guidée captivante.", '3h', 'Car', '08:30:00', 45.00),
 (@id_chichen_itza, "Cenote X'Canché", "Évadez-vous au coeur de la jungle pour découvrir le Cenote X'Canché, un bassin naturel entouré de lianes et de végétation luxuriante. Profitez d'une visite guidée pour explorer ses eaux cristallines et en apprendre davantage sur les rituels sacrés des Mayas.",'2h30', 'Car', '09:00:00', 25.00),
@@ -406,7 +406,7 @@ INSERT INTO activites(id_voyage, a_nom, a_description, a_duree, mode_transport, 
 -- Machu Picchu
 INSERT INTO activites(id_voyage, a_nom, a_description, a_duree, mode_transport, a_heure_depart, a_prix) VALUES
 (@id_machu_picchu, "Ascension du Huayna Picchu", "Grimpez au sommet emblématique qui surplombe la cité inca pour une vue panoramique spectaculaire.", '2h', 'À pied', '09:00:00', 49.00),
-(@id_machu_picchu, "Randonnée jusqu'à la porte du Soleil", "Suivez les traces des Incas jusqu'à cette anciene porte d'entrée offrant une vue imprenable sur le sanctuaire.", '2h30', 'À pied', 0.00),
+(@id_machu_picchu, "Randonnée jusqu'à la porte du Soleil", "Suivez les traces des Incas jusqu'à cette anciene porte d'entrée offrant une vue imprenable sur le sanctuaire.", '2h30', 'À pied', '10:00:00',0.00),
 (@id_machu_picchu, "Détente aux bains d'Aguas Calientes", "Profitez d'une relaxation bien méritée dans ces sources chaudes naturelles après une journée d'exploration.", '1h30', 'À pied','18:00:00', 5.00),
 (@id_machu_picchu, "Visite du Temple du Soleil", "Admirez l'architecture impressionnante de ce temple dédié au dieu Soleil, témoin de l'ingéniosité inca.", '30min', 'À pied', '10:00:00', 7.00),
 (@id_machu_picchu, "Jardins de Mandor", "Explorez une végétation luxuriante et découvrez une cascade cachée dans ce jardin botanique paisible.", '3h', 'À pied', '14:00:00', 2.50),
@@ -416,12 +416,27 @@ INSERT INTO activites(id_voyage, a_nom, a_description, a_duree, mode_transport, 
 
 
 
-
-
-
-
 -- Taj Mahal
+INSERT INTO activites(id_voyage, a_nom, a_description, a_duree, mode_transport, a_heure_depart, a_prix) VALUES
+(@id_taj_mahal, "Visite du Taj Mahal", "Admirez l'un des monuments les plus emblématiques du monde, symbole éternel de l'amour, construit par l'empereur moghol Shah Jahan en mémoire de son épouse Mumtaz Mahal.", '4h', 'Car', '14:30:00', 13.50),
+(@id_taj_mahal, "Visite du Fort d'Agra", "Explorez cette forteresse moghole du XVIe siècle, classée au patrimoine mondial de l'UNESCO, offrant une vue imprenable sur le Taj Mahal.", '2h', 'À pied', '11:00:00', 7.50),
+(@id_taj_mahal, "Balade en bateau sur la rivière Yamuna", "Profitez d'une promenade paisible en bateau offrant une perspective unique sur le Taj Mahal, particulièrement magique au lever ou au coucher du soleil.", '1h', 'À pied', '19:30:00', 12.00),
+(@id_taj_mahal, "Spectacle 'Mohabbat the Taj'", "Assistez à une représentation théâtrale racontant l'histoire d'amour derrière la construction du Taj Mahal, avec des costumes somptueux et des décors grandioses.", '1h30', 'À pied', '16:00:00', 14.00),
+(@id_taj_mahal, "Cours de cuisine indienne", "Apprenez à préparer des plats traditionnels indiens dans une ambiance conviviale, suivi d'un repas partagé avec vos hôtes.", '3h', 'Car', '18:30:00', 18.00),
+(@id_taj_mahal, "Visite des marchés locaux d'Agra", "Découvrez l'artisanat local, les épices et les textiles dans des marchés animés comme Sadar Bazaar.", '2h', 'À pied', '14:00:00', 0.00),
+(@id_taj_mahal, "Visite du Tombeau d'Itimad-ud-Daulah", "Explorez ce mausolée en marbre blanc, précurseur du Taj Mahal, célèbre pour ses incrustations de pierres précieuses et son architecture raffinée.", '1h30', 'Car', '10:00:00', 3.50),
+(@id_taj_mahal, "Jardins de Mehtab Bagh", "Profitez d'une vue panoramique sur le Taj Mahal depuis ces jardins paisibles situés de l'autre côté de la rivière Yamuna.", '1h30', 'Car', '17:30:00', 4.50);
+
 
 
 -- Grande Muraille de Chine
-
+INSERT INTO activites(id_voyage, a_nom, a_description, a_duree, mode_transport, a_heure_depart, a_prix) VALUES
+(@id_chine, "Grande Muraille de Chine", "Découvrez l'un des monuments les plus emblématiques au monde, inscrit au patrimoine mondial de l'UNESCO.", '5h', 'Car', '13:30:00', 19.00),
+(@id_chine, "Descente en toboggan à Mutianyu", "Pour redescendre de la Muraille, optez pour une expérience unique en glissant le long d'un toboggan métallique serpentant à travers les arbres !", '10min', 'À pied', '18:30:00', 5.00),
+(@id_chine, "Téléphérique de Mutianyu", "Empruntez le téléphérique pour accéder directement à l'une des sections les plus impressionnantes de la Grande Muraille.", '15min', 'À pied', '11:00:00', 12.00),
+(@id_chine, "Visite des Tombeaux de Ming", "Découvrez la mécropole impériale où reposent 13 empereurs de la dynastie Ming, accessible par la majestueuse Voie des Esprits.", '2h30', 'Car', '10:00:00', 10.00),
+(@id_chine, "Dégustation de canard laqué à Pekin", "Savourez le célèbre canard laqué de Pékin, un plat emblématique de la cuisine chinoise, dans un restaurant traditionnel.", '3h30', 'Car', '10:45:00', 20.50),
+(@id_chine, "Exploration de la Plateforme Nuage", "Admirez cette structure ornée de sculptures bouddhistes et d'inscriptions multilingues, située dans une vallée pittoresque.", '2h30', '14:00:00', 5.00),
+(@id_chine, "Visite de la Cité Interdite", "Explorez l'ancien palais impérial, un chef-d'œuvre d'architecture et d'histoire, classé au patrimoine mondialde l'UNESCO.", '4h', 'Car', '08:30:00', 6.00),
+(@id_chine, "Balade en pousse-pousse dans les hutongs de Pékin", "Découvrez les ruelles traditionnelles de Pékin en pousse-poussen une immersion dans la vie locale.", '1h', 'À pied', '15:00:00', 15.00),
+(@id_chine, "Excursion à Chengde", "Visitez les palais et les temples lamaïstes de Chengde, offrant un aperçu de la spiritualité et de l'architecture impériale.", '10h', 'Car', '08:00:00', 32.00);
