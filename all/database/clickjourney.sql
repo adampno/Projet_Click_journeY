@@ -8,7 +8,7 @@ USE clickjourney;
 -- --------------------------------------------------------
 -- Table utilisateurs
 -- --------------------------------------------------------
-CREATE TABLE utilisateurs (
+CREATE TABLE IF NOT EXISTS utilisateurs(
   id INT AUTO_INCREMENT PRIMARY KEY,
   nom VARCHAR(100) NOT NULL,
   prenom VARCHAR(100) NOT NULL,
@@ -16,8 +16,9 @@ CREATE TABLE utilisateurs (
   mot_de_passe VARCHAR(255) NOT NULL,
   role ENUM('utilisateur', 'admin') NOT NULL DEFAULT 'utilisateur',
   date_naissance DATE NOT NULL,
-  adresse TEXT NOT NULL,
   region VARCHAR(100) NOT NULL,
+  telephone VARCHAR(15) NOT NULL,
+  sexe ENUM('homme', 'femme', 'non_precise') DEFAULT 'non_precise',
   date_inscription TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   derniere_connexion TIMESTAMP NULL
 );

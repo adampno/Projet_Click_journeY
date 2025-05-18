@@ -1,8 +1,18 @@
 <?php
 session_start(); // Active la gestion des sessions
+
+
+// Vérification des erreurs
+if (isset($_SESSION['sign_in_up_error'])) {
+    echo "<p style='color: red;'>".$_SESSION['sign_in_up_error']."</p>";
+    unset($_SESSION['sign_in_up_error']); // Supprime le message après l'affichage
+}
+
 $estConnecte = isset($_SESSION['user']);
 $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
 ?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
   <head>
