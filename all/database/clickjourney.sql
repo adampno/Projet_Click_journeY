@@ -398,7 +398,7 @@ INSERT INTO activites(id_voyage, a_nom, a_description, a_duree, mode_transport, 
 (@id_colisee, "Visite du Colisée", "Plongez dans l'histoire en explorant l'amphithéâtre emblématique de Rome, autrefois le théâtre de combats de gladiateurs et de spectacles publics.", '2h', 'À pied', '08:00:00', 16.00),
 (@id_colisee, "Découverte du Vatican", "Explorez les trésors artistiques et spirituels du Vatican, y compris la Chapelle Sixtine et la majestueuse Basilique Saint-Pierre.", '3h30', 'Car', '13:30:00', 18.00),
 (@id_colisee, "Balade au Panthéon", "Admirez l'architecture impressionnante du Panthéon, un temple antique dédié à toutes les divinités, célèbre pour sa coupole et son oculus.", '1h', 'À pied', '10:00:00', 0.00),
-(@id_colisee, "Cours de cuisine italienne", "Plongez dans l'art culinaire italien en apprenant à préparer des pâtes fraiches et un tiramisu traditionnel aux côtés d'un chef local.", '3h', 'À pied', '3h', '14:00:00', 66.00),
+(@id_colisee, "Cours de cuisine italienne", "Plongez dans l'art culinaire italien en apprenant à préparer des pâtes fraiches et un tiramisu traditionnel aux côtés d'un chef local.", '3h', 'À pied', '14:00:00', 66.00),
 (@id_colisee, "Détente à la plage de Santa Severa", "Évadez-vous du tumulte urbain pour une journée de détente sur la plage de Santa Severa, réputée pour son sable fin, ses eaux claires et son château médiéval en toile de fond.", '11h', 'Car', '08:30:00', 10.00),
 (@id_colisee, "Promenade à la Villa Borghèse", "Profitez d'une promenade dans ce vaste parc paysager, abritant des musées, des jardins et des vues panoramiques sur Rome", '2h30', 'Car', '09:30:00', 15.00);
 
