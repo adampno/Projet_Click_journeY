@@ -321,7 +321,7 @@ INSERT INTO hebergement_caracteristiques(id_voyage, id_hebergement, transfert, n
 INSERT INTO hebergement_caracteristiques(id_voyage, id_hebergement, transfert, nb_piscines, jacuzzi, spa, pension, wifi_gratuit, tv_chambres, climatisation, seche_cheveux, balcon_pv, laverie, pmr) VALUES
 (@id_christ_redempteur, 1, 'oui', 1, 'non', 'non', 'demi-pension', 'oui', 'non', 'non', 'non', 'non', 'non', 'non' ),
 (@id_christ_redempteur, 2, 'oui', 2, 'non', 'oui', 'all inclusive', 'oui', 'oui', 'oui', 'non', 'non', 'non', 'oui' ),
-(@id_christ_redempteur, 3, 'oui', 1, 'oui', 'oui', 'all inclusive', 'oui', 'oui', 'oui', 'oui', ' oui', 'oui', 'oui' );
+(@id_christ_redempteur, 3, 'oui', 1, 'oui', 'oui', 'all inclusive', 'oui', 'oui', 'oui', 'oui', 'oui', 'oui', 'oui' );
 
 -- Pétra
 INSERT INTO hebergement_caracteristiques(id_voyage, id_hebergement, transfert, nb_piscines, jacuzzi, spa, pension, wifi_gratuit, tv_chambres, climatisation, seche_cheveux, balcon_pv, laverie, pmr) VALUES
@@ -436,7 +436,7 @@ INSERT INTO activites(id_voyage, a_nom, a_description, a_duree, mode_transport, 
 (@id_chine, "Téléphérique de Mutianyu", "Empruntez le téléphérique pour accéder directement à l'une des sections les plus impressionnantes de la Grande Muraille.", '15min', 'À pied', '11:00:00', 12.00),
 (@id_chine, "Visite des Tombeaux de Ming", "Découvrez la mécropole impériale où reposent 13 empereurs de la dynastie Ming, accessible par la majestueuse Voie des Esprits.", '2h30', 'Car', '10:00:00', 10.00),
 (@id_chine, "Dégustation de canard laqué à Pekin", "Savourez le célèbre canard laqué de Pékin, un plat emblématique de la cuisine chinoise, dans un restaurant traditionnel.", '3h30', 'Car', '10:45:00', 20.50),
-(@id_chine, "Exploration de la Plateforme Nuage", "Admirez cette structure ornée de sculptures bouddhistes et d'inscriptions multilingues, située dans une vallée pittoresque.", '2h30', '14:00:00', 5.00),
+(@id_chine, "Exploration de la Plateforme Nuage", "Admirez cette structure ornée de sculptures bouddhistes et d'inscriptions multilingues, située dans une vallée pittoresque.", '2h30', 'Car', '14:00:00', 5.00),
 (@id_chine, "Visite de la Cité Interdite", "Explorez l'ancien palais impérial, un chef-d'œuvre d'architecture et d'histoire, classé au patrimoine mondialde l'UNESCO.", '4h', 'Car', '08:30:00', 6.00),
 (@id_chine, "Balade en pousse-pousse dans les hutongs de Pékin", "Découvrez les ruelles traditionnelles de Pékin en pousse-poussen une immersion dans la vie locale.", '1h', 'À pied', '15:00:00', 15.00),
 (@id_chine, "Excursion à Chengde", "Visitez les palais et les temples lamaïstes de Chengde, offrant un aperçu de la spiritualité et de l'architecture impériale.", '10h', 'Car', '08:00:00', 32.00);
