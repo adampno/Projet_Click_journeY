@@ -21,7 +21,7 @@ $control = md5($api_key . "#" . $transaction . "#" . $montant . "#" . $vendeur .
 </head>
 <body>
     <h2>Paiement de <?= $montant ?> €</h2>
-    <form action="https://www.plateforme-smc.fr/cybank/index.php" method="POST">
+    <form action="https://www.plateforme-smc.fr/cybank/init_paiement.php" method="POST">
         <input type="hidden" name="transaction" value="<?= $transaction ?>">
         <input type="hidden" name="montant" value="<?= $montant ?>">
         <input type="hidden" name="vendeur" value="<?= $vendeur ?>">
