@@ -14,14 +14,18 @@ $options = [
 
 // Connexion à MySQL (sans sélectionner de base au départ)
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$db", $user, $pass, $options);
-} catch (PDOException $e) {
+    $pdo = new PDO("mysql:host=$host", $user, $pass, $options);
+ 
+    // Création de la base de données si elle n'existe pas 
+    $pdo->exec("CREATE DATABASE IF NOT EXISTS $db");
+
+    $pdo->exec("USE $db");
+} 
+
+catch (PDOException $e) {
     die("Erreur de connexion : " . $e->getMessage());
 }
 
-
-// Sélectionner la base de données
-$pdo->exec("USE $db");
 
 
 
