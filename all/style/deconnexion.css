@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10%;
+    background: linear-gradient(#046ce4, #148aea, #1e99ef);
+    width: 100%;
+    position: fixed;
+    top: 0;
+}
+
+.logo {
+    cursor: pointer;
+    width: 120px;
+    background-color: white;
+    border-radius: 10% 30% 50% 70%;
+}
+
+.nav_links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav_links li {
+    display: inline;
+}
+
+.nav_links a {
+    font-weight: 500;
+    font-size: 16px;
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    transition: 0.3s;
+}
+
+.nav_links a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+main {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+
+.btn-confirm {
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+  }
+  
+  
+  .btn-cancel {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+  }
+  
+  
+.confirmation-container {
+    background-color: white;
+    padding: 40px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    width: 400px;
+}
+
+.confirmation-container h2{
+    margin-bottom: 20px;
+    color: #333;
+
+}
+
+
+.btn-confirm, .btn-cancel {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 5px;
+    font-size: 16px;
+    text-decoration: none;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+
+.btn-confirm {
+    background-color: #2ecc71;
+}
+
+.btn-confirm:hover {
+    background-color: #27ae60;
+}
+
+.btn-cancel {
+    background-color: #e74c3c;
+}
+
+.btn-cancel:hover {
+    background-color: #c0392b;
+}
+
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #1e99ef;
+    color: white;
+    margin-top: 20px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}

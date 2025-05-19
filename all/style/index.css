@@ -55,6 +55,8 @@ main {
     padding: 50px 20px;
 }
 
+
+
 .feature__container {
     display: flex; /* Changement de grid à flex */
     justify-content: center; /* Centrage horizontal */

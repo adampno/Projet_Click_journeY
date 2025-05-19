@@ -92,6 +92,7 @@ try {
           <li><a href="explorer.php">Explorer</a></li>
           <?php if (isset($_SESSION['user'])):?>
           <li><a href="profil.php">Mon profil</a></li>
+          <li><a href="deconnexion.php">Se déconnecter</a></li>
           <?php else: ?>
             <li><a href="seconnecter.php">Se connecter</a></li>
           <?php endif; ?>
