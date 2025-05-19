@@ -57,7 +57,7 @@ $topDestinations = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <div class="destinations-grid">
 
   <?php foreach ($topDestinations as $destination): ?>
-      <a href="<?= $estConnecte ? "voyage.php?voyage=".$destination['id_voyage'] :"seconnecter.php" ?>" class="destination-card">
+      <a href="<?= $estConnecte ? "voyage.php?id=".$destination['id_voyage'] :"seconnecter.php" ?>" class="destination-card">
 
     <img src="assets/<?= strtolower(str_replace(' ', '', $destination['titre'])) ?>_index.jpg" alt="<?= $destination['titre'] ?>">
     <div class="destination-info">
