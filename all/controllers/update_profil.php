@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-
 // Vérification si l'utilisateur est connecté
 if (!isset($_SESSION['user'])){
     header('Location: ../seconnecter/php');
@@ -46,9 +45,3 @@ if ($success){
     exit;
 }
 ?>
-
-
-
-
-
-

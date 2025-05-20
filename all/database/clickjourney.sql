@@ -304,9 +304,9 @@ INSERT INTO hebergements (id_hebergement, h_nom, etoiles, h_localisation, h_prix
 
 -- Taj Mahal
 INSERT INTO hebergements (id_hebergement, h_nom, etoiles, h_localisation, h_prix, id_voyage) VALUES
-(1, 'Hôtel Sidhartha', 1, 'Taj Mahal, Inde', 196.00, @id_taj_mahal),
+(1, 'Hôtel Sidhartha', 1, 'Agra, Inde', 196.00, @id_taj_mahal),
 (2, 'Hôtel Taj Resorts', 3, 'Taj Ganj, Inde', 356.00, @id_taj_mahal),
-(3, 'Hôtel Oberoi Amarvillas', 5, 'Taj Mahal, Inde', 970.00, @id_taj_mahal);
+(3, 'Hôtel Oberoi Amarvillas', 5, 'Agra, Inde', 970.00, @id_taj_mahal);
 
 -- Grande Muraille de Chine
 INSERT INTO hebergements (id_hebergement, h_nom, etoiles, h_localisation, h_prix, id_voyage) VALUES

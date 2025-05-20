@@ -134,8 +134,6 @@ h3 {
     margin: 0 5px;
 }
 
-
-
 .flight-info {
     display: flex;
     justify-content: center;
@@ -156,6 +154,8 @@ h3 {
     font-size: 1.3rem;
     color: #046ce4;
     margin-bottom: 15px;
+    text-align: center;
+    
 }
 
 .inner-separator {
