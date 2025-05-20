@@ -51,6 +51,39 @@ $vol_retour = $stmt_vols_retour->fetch();
 
 
 
+// Récupération de l'utilisateur connecté
+$user_id = $_SESSION['user']['id'] ?? null;
+
+
+// Récupération de la région de l'utilisateur
+$stmt_region = $pdo->prepare("SELECT region FROM utilisateurs WHERE id = :utilisateurs_id");
+$stmt_region->bindParam(':utilisateurs_id', $user_id, PDO::PARAM_INT);
+if (!$stmt_region->execute()){
+  print_r($stmt_region->errorInfo());
+  exit;
+}
+$user_region = $stmt_region->fetchColumn();
+
+
+// Récupération de l'aéroport associé à la région de l'utilisateur
+$stmt_aeroport = $pdo->prepare("SELECT nom FROM aeroports WHERE region = :region LIMIT 1");
+$stmt_aeroport->bindParam(':region', $user_region);
+if (!$stmt_aeroport->execute()){
+  print_r($stmt_aeroport->errorInfo());
+  exit;
+}
+$aeroport_region = $stmt_aeroport->fetchColumn();
+
+
+
+// Remplacement des données dans les vols
+if($aeroport_region){
+  $vol_aller['aeroport_depart'] = $aeroport_region;
+  $vol_retour['aeroport_arrivee'] = $aeroport_region;
+}
+
+
+
 // 🔍 Récupération des hébergements + caractéristiques associées
 $stmt_hotels = $pdo->prepare("SELECT h.*, c.* FROM hebergements h LEFT JOIN hebergement_caracteristiques c ON h.id_hebergement = c.id_hebergement AND h.id_voyage = c.id_voyage WHERE h.id_voyage = :id");
 $stmt_hotels->bindParam(':id', $id, PDO::PARAM_INT);
@@ -125,11 +158,11 @@ $activites = $stmt_activites->fetchAll();
     <h2>Vol aller</h2>
     <div class="flight-box">
       <div class="flight-row">
-        <span class="airport">🛫 <?= htmlspecialchars($vol_aller['aeroport_depart'])?></span>
+        <span class="airport">🛫 Aéroport de <?= htmlspecialchars($vol_aller['aeroport_depart'])?></span>
         <div class="flight-line">
           <hr><span class="plane">✈️</span><hr>
 </div>
-<span class="airport"> <?= htmlspecialchars($vol_aller['aeroport_arrivee'])?>🛬</span>
+<span class="airport">Aéroport de <?= htmlspecialchars($vol_aller['aeroport_arrivee'])?>🛬</span>
 </div>
 <div class="flight-details">
   <span>Départ : <?= htmlspecialchars($vol_aller['heure_depart'])?></span>
@@ -143,11 +176,11 @@ $activites = $stmt_activites->fetchAll();
 <h2>Vol retour</h2>
 <div class="flight-box">
   <div class="flight-row">
-    <span class="airport">🛫 <?= htmlspecialchars($vol_retour['aeroport_depart'])?></span>
+    <span class="airport">🛫 Aéroport de <?= htmlspecialchars($vol_retour['aeroport_depart'])?></span>
     <div class="flight-line">
       <hr><span class="plane">✈️</span><hr>
 </div>
-<span class="airport"><?= htmlspecialchars($vol_retour['aeroport_arrivee'])?> 🛬</span>
+<span class="airport">Aéroport de <?= htmlspecialchars($vol_retour['aeroport_arrivee'])?> 🛬</span>
 </div>
 <div class="flight-details">
   <span>Départ : <?=htmlspecialchars($vol_retour['heure_depart'])?></span>

@@ -29,7 +29,6 @@ CREATE TABLE IF NOT EXISTS utilisateurs(
 CREATE TABLE aeroports (
   id_aeroport INT AUTO_INCREMENT PRIMARY KEY,
   nom VARCHAR(100) NOT NULL,
-  ville VARCHAR(100) NOT NULL,
   region VARCHAR(100) NOT NULL
 );
 
@@ -159,23 +158,20 @@ CREATE TABLE paiements (
 -- --------------------------------------------------------
 -- Insertion des aéroports en France
 -- --------------------------------------------------------
-INSERT INTO aeroports (nom, ville, region) VALUES
-('Aéroport de Bordeaux', 'Bordeaux', 'nouvelle-aquitaine'),
-('Aéroport de Brest', 'Brest', 'bretagne'),
-('Aéroport de Caen', 'Caen', 'normandie'),
-('Aéroport de Clermont Ferrand', 'Clermont', 'auvergne-rhone-alpes'),
-('Aéroport de Dijon', 'Dijon', 'bourgogne-franche-comte'),
-('Aéroport de Grenoble', 'Grenoble', 'auvergne-rhone-alpes'),
-('Aéroport de Lille', 'Lille', 'hauts-de-france'),
-('Aéroport de Lyon', 'Lyon', 'auvergne-rhone-alpes'),
-('Aéroport de Marseille', 'Marseille', 'provence-alpes-cote-d-azur'),
-('Aéroport de Montpellier', 'Montpellier', 'occitanie'),
-('Aéroport de Nantes', 'Nantes', 'pays-de-la-loire'),
-('Aéroport de Nice', 'Nice', 'provence-alpes-cote-d-azur'),
-('Aéroport de Paris', 'Paris', 'ile-de-france'),
-('Aéroport de Rennes', 'Rennes', 'bretagne'),
-('Aéroport de Strasbourg', 'Strasbourg', 'grand-est'),
-('Aéroport de Toulouse', 'Toulouse', 'occitanie');
+INSERT INTO aeroports (nom, region) VALUES
+('Caen-Carpiquet (CFR)', 'normandie'),
+('Dole-Jura (DLE)', 'bourgogne-franche-comte'),
+('Lille-Lesquin (LIL)', 'hauts-de-france'),
+('Lyon-Saint-Exupéry (LYS)', 'auvergne-rhone-alpes'),
+('Nantes Atlantique (NTE)', 'pays-de-la-loire'),
+('Marseille-Provence (MRS)', 'provence-alpes-cote-d-azur'),
+('Paris-Orly (ORY)', 'ile-de-france'),
+('Rennes-Saint_Jacques (RNS)', 'bretagne'),
+('Strasbourg (SXB)', 'grand-est'),
+('Toulouse-Blagnac (TLS)', 'occitanie'),
+('Tours Val de Loire (TUF)', 'centre-val-de-loire'),
+('Ajaccio-Napoléon-Bonaparte (AJA)', 'corse'),
+('Guadeloupe Pôle Caraïbes (PTP)', 'outre-mer');
 
 
 

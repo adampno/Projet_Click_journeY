@@ -109,7 +109,7 @@ h3 {
     padding: 20px 25px;
     margin: 20px auto;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    max-width: 750px;
+    max-width: 825px;
     width: 100%;
 }
 
@@ -131,7 +131,7 @@ h3 {
     flex: 1;
     border: none;
     border-top: 1.5px dashed #999;
-    margin: 0 8px;
+    margin: 0 5px;
 }
 
 
@@ -147,7 +147,7 @@ h3 {
     border: 1px solid #cfdcec;
     border-radius: 12px;
     padding: 30px;
-    max-width: 750px;
+    max-width: 900px;
     width: 100%;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
