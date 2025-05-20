@@ -142,10 +142,15 @@ CREATE TABLE paiements (
   cryptogramme VARCHAR(4) NOT NULL,
 
   -- Infos transaction
+  transaction_id VARCHAR(50) NOT NULL UNIQUE,
+  vendeur VARCHAR(50) NOT NULL,
+  control_hash VARCHAR(64) NOT NULL,
+  
   date_transaction DATETIME DEFAULT CURRENT_TIMESTAMP,
   montant DECIMAL(10,2) NOT NULL,
   statut ENUM('en_attente', 'validé', 'annulé') DEFAULT 'en_attente',
 
+ 
   FOREIGN KEY (id_user) REFERENCES utilisateurs(id) ON DELETE CASCADE,
   FOREIGN KEY (id_voyage) REFERENCES voyages(id_voyage) ON DELETE CASCADE
 );
