@@ -1,59 +1,60 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:500');
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;  /* Assure que le body prend toute la hauteur de la page */
+  min-height: 100vh;
+  /* Assure que le body prend toute la hauteur de la page */
   font-family: "Montserrat", sans-serif;
-  color: black; /* Assurer que le texte est bien noir */
+  color: black;
+  /* Assurer que le texte est bien noir */
 }
 
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 10%;
-    background: linear-gradient(#046ce4, #148aea, #1e99ef);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 10%;
+  background: linear-gradient(#046ce4, #148aea, #1e99ef);
 }
 
 .logo {
-    cursor: pointer;
-    width: 120px;
-    background-color: white;
-    border-radius: 10% 30% 50% 70%;
+  cursor: pointer;
+  width: 120px;
+  background-color: white;
+  border-radius: 10% 30% 50% 70%;
 }
 
 .nav_links {
-    list-style: none;
-    display: flex;
-    gap: 20px; /* Espacement entre les éléments */
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  /* Espacement entre les éléments */
 }
 
 .nav_links li {
-    display: inline;
+  display: inline;
 }
 
 .nav_links a {
-    font-weight: 500;
-    font-size: 16px;
-    color: white;
-    text-decoration: none;
-    padding: 10px 15px;
-    transition: 0.3s;
+  font-weight: 500;
+  font-size: 16px;
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  transition: 0.3s;
 }
 
 .nav_links a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
 }
-
-
 
 .global-error-container {
   display: flex;
@@ -81,76 +82,74 @@ header {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1)
 }
 
-
-
 .login-main-container {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url("loginimages/background.jpg");
-    background-size: cover;
-    background-position: center;
-  }
-  
-  .login-inner-container {
-    width: 80%;
-    display: flex;
-  }
-  
-  .login-col1 {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 1rem;
-    color: black;
-  }
-  
-  .login-col1 h1 {
-    font-size: 3rem;
-    font-weight: 900;
-    margin-bottom: 2rem;
-  }
-  
-  .login-col1 p {
-    font-size: 1.2rem;
-    font-weight: 500;
-    margin-bottom: 2rem;
-  }
-  
-  .login-col2 {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 4rem;
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .login-col2 h2 {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: #333;
-    margin-bottom: 2rem;
-  }
-  
-  .login-col2 label {
-    font-size: 1rem;
-    color: #333;
-    margin-bottom: 0.5rem;
-  }
-  
-  .login-col2 input {
-    width: 100%;
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("loginimages/background.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.login-inner-container {
+  width: 80%;
+  display: flex;
+}
+
+.login-col1 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+  color: black;
+}
+
+.login-col1 h1 {
+  font-size: 3rem;
+  font-weight: 900;
+  margin-bottom: 2rem;
+}
+
+.login-col1 p {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+.login-col2 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-col2 h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.login-col2 label {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.login-col2 input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
 .login-a {
   font-size: 1rem;
   color: #333;
@@ -165,64 +164,62 @@ header {
   font-family: "Montserrat", sans-serif;
   text-decoration: underline;
   color: blue;
-  font-weight:bold;
-  cursor:pointer;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .underline-link:hover {
-  color:darkblue;
+  color: darkblue;
   text-decoration: none;
 }
 
-  .login-button {
-    background-color: #1e99ef;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    height: 3rem;
-    font-size: 1rem;
-    font-weight: 900;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .login-button:hover {
-    background-color: #1e99ef;
-  }
+.login-button {
+  background-color: #1e99ef;
+  color: white;
+  border: none;
+  padding: 3px;
+  border-radius: 8px;
+  height: 3rem;
+  font-size: 1rem;
+  font-weight: 900;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
+.login-button:hover {
+  background-color: #1e99ef;
+}
 
-  .error-message-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  .error-message {
-    color: #a94442;
-    background-color: #f8d7da;
-    border: 1px solid #f5c6cb;
-    padding: 15px 25px;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 600;
-    max-width: 700px;
-    width: 100%;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
+.error-message-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
 
+.error-message {
+  color: #a94442;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 15px 25px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  max-width: 700px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
 
-  
-  main {
-    text-align: center;
-    padding: 50px 20px;
-    flex: 1;
+main {
+  text-align: center;
+  padding: 50px 20px;
+  flex: 1;
 }
 
 footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #1e99ef;
-    color: white;
+  text-align: center;
+  padding: 20px;
+  background-color: #1e99ef;
+  color: white;
 }

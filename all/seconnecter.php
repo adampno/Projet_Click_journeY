@@ -69,8 +69,8 @@ $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
             <label for="email" class="login-email">Email</label><br />
             <input type="text" id="email" name="email" required/><br />
 
-            <label for="password">Mot de passe</label><br />
-            <input type="password" id="password" name="password" required/><br />
+          <label for="password"> Mot de passe </label><br />
+          <input type="password" id="password" name="password" required/><br />
 
             <button class="login-button" type="submit">Je me connecte</button>
           </form>
@@ -82,8 +82,9 @@ $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
       </div>
     </div>
 
-    <footer>
-      <p>&copy; 2025 Wander7. Tous droits réservés.</p>
-    </footer>
+  <footer>
+    <p>&copy; 2025 Wander7. Tous droits réservés.</p>
+  </footer>
+
   </body>
 </html>

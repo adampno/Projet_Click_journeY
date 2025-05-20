@@ -25,7 +25,8 @@ body {
 
 body {
     font-family: "Montserrat", sans-serif;
-    color: black; /* Assurer que le texte est bien noir */
+    color: black;
+    /* Assurer que le texte est bien noir */
 }
 
 header {
@@ -47,7 +48,8 @@ header {
 .nav_links {
     list-style: none;
     display: flex;
-    gap: 20px; /* Espacement entre les éléments */
+    gap: 20px;
+    /* Espacement entre les éléments */
 }
 
 .nav_links li {
@@ -107,7 +109,7 @@ header {
     display: block;
 }
 
-.signup-inner-container input, 
+.signup-inner-container input,
 .signup-inner-container select {
     width: 100%;
     padding: 0.75rem;
@@ -138,7 +140,8 @@ p.info-text {
 .checkbox-container {
     display: flex;
     align-items: center;
-    font-size: 1rem; /* Adapte la taille au reste de la page */
+    font-size: 1rem;
+    /* Adapte la taille au reste de la page */
     font-weight: 500;
     color: #333;
     cursor: pointer;
@@ -166,13 +169,13 @@ p.info-text {
 }
 
 /* Effet lorsque la case est cochée */
-.checkbox-container input:checked + .checkmark {
+.checkbox-container input:checked+.checkmark {
     background-color: #046ce4;
     border: none;
 }
 
 /* Ajout du symbole "✓" lorsqu'elle est cochée */
-.checkbox-container input:checked + .checkmark::after {
+.checkbox-container input:checked+.checkmark::after {
     content: "✓";
     position: absolute;
     left: 4px;
@@ -189,7 +192,7 @@ p.info-text {
 
 
 
-.error-message{
+.error-message {
     color: red;
     background-color: #ffe6e6;
     border: 1px solid red;
@@ -201,10 +204,11 @@ p.info-text {
 }
 
 
-@keyframes fadeIn{
+@keyframes fadeIn {
     from {
-        opacity : 0;
+        opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -236,7 +240,7 @@ footer {
     text-align: center;
     padding: 20px;
     background-color: #1e99ef;
-    color:white;
+    color: white;
     margin-top: auto;
     width: 100%;
 }
