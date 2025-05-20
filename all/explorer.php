@@ -175,9 +175,6 @@ try {
 </div>
 
 
-
-
-
             <section class="merveilles-container">
       <h2>Nos voyages</h2>
       

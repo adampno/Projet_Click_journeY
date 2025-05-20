@@ -104,11 +104,20 @@ $activites = $stmt_activites->fetchAll();
       </nav>
           </header>
 
-<div class="hero-background" style="background-image: url('assets./<?= htmlspecialchars(str_replace(' ', '_', $voyage['titre']))?>_hero.jpeg');"></div>
+<div class="hero-wrapper">
+ <img src="assets/<?= strtolower(str_replace(' ', '_', $voyage['titre'])) ?>_hero.jpg" alt="<?= htmlspecialchars($voyage['titre']) ?>" class="hero-image">
+
+ <div class="hero-text">
+  <h1><?= htmlspecialchars($voyage['titre']) ?></h1>
+  <p><?= htmlspecialchars($voyage['pays']) ?></p>
+          </div>
+
+ <div class="hero-overlay" id="heroOverlay"></div>
+</div>
+
+<main class="page-content">
 
 
-
-<main>
 
 <div class="sidebar-summary" id="sidebar-summary">
 <h3>Récapitulatif</h3>
@@ -120,21 +129,7 @@ $activites = $stmt_activites->fetchAll();
 
 
 
-    <section class="passenger-form">
-    <h2>Participants au voyage</h2>
-    <div class="form-grid">
-    <form id="travelersForm">
-        <label for="adults">Nombre d'adultes :</label>
-        <input type="number" id="adults" name="adults" min="1" value="1" required>
-        <label for="children">Nombre d'enfants :</label>
-        <input type="number" id="children" name="children" min="0" value="0" required>
-        <div id="childrenAges"></div>
-        <label for="departure-date">Date de départ :</label>
-        <input type="date" id="departure-date" name="departure_date" required>
-    <p>Durée : 6 jours (fixe)</p>
-</form>
-  </div>
-</section>
+
 
 
   <section class="flight-info">
@@ -264,23 +259,12 @@ $activites = $stmt_activites->fetchAll();
 </section>
 
 
-
+    </main>
 
         <footer>
         <p>&copy; 2025 Wander7. Tous droits réservés.</p>
     </footer>
-
-
-    <script>
-window.addEventListener('scroll', function() {
-  if (window.scrollY > 50) {
-    document.body.classList.add('scrolled');
-  } else {
-    document.body.classList.remove('scrolled');
-  }
-});
-</script>
-
+   
 
     </body>
 </html>
