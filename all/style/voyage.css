@@ -102,119 +102,6 @@ h3 {
   
 
 
-
-.sidebar-summary {
-    position: fixed;
-    top: 100px;
-    right: 30px;
-    width: 250px;
-    background: white;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    border-radius: 10px;
-    padding: 20px;
-    z-index: 10;
-    font-size: 0.95rem;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-
-.sidebar-summary h3 {
-    color: #046ce4;
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-}
-
-
-.sidebar-summary p {
-    margin: 10px 0;
-}
-
-
-.passenger-form {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 30px 40px;
-    background-color: white;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    text-align: left;
-}
-
-.passenger-form h2 {
-    font-size: 1.6rem;
-    margin-bottom: 25px;
-    font-weight: 600;
-    color: #046ce4;
-    text-align: center;
-}
-
-
-.passenger-form label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 500;
-    color: #333;
-}
-
-.passenger-form input[type="number"],
-.passenger-form input[type="date"] {
-    width: 100%;
-    padding: 10px 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
-}
-
-
-.passenger-form input:focus {
-    border-color: #046ce4;
-    outline: none;
-}
-
-.passenger-form button {
-    width: 100%;
-    background: #046ce4;
-    margin-top: 20px;
-    color: white;
-    border: none;
-    padding: 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s;
-    font-size: 1rem;
-}
-
-.passenger-form button:hover {
-    background-color: #024ca2;
-}
-
-
-#childrenAges label {
-    margin-top: 10px;
-    font-weight: 500;
-}
-
-#childrenAges input {
-    margin-bottom: 15px;
-}
-
-
-.form-grid {
-    display: flex;
-    gap: 30px;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-#travelersForm {
-    flex: 1;
-    min-width: 250px;
-}
-
-
-
 .flight-box {
     background-color: #ffffff;
     border: 1px solid #cfdcec;
@@ -458,11 +345,6 @@ h3 {
     color: #046ce4;
 }
 
-
-
-.photo-credit a:hover {
-    text-decoration: underline;
-}
 
 
 .activity-title{

@@ -63,7 +63,7 @@ $topDestinations = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <?php foreach ($topDestinations as $destination): ?>
       <a href="<?= $estConnecte ? 'voyage.php?id=' . $destination['id_voyage'] :'seconnecter.php?error=unauthorized_access' ?>" class="destination-card">
 
-    <img src="assets/<?= strtolower(str_replace(' ', '', $destination['titre'])) ?>_index.jpg" alt="<?= $destination['titre'] ?>">
+    <img src="assets/<?= strtolower(str_replace(' ', '_', $destination['titre'])) ?>_index.jpg" alt="<?= $destination['titre'] ?>">
     <div class="destination-info">
     <h3><?= $destination['titre'] ?></h3>
     <div class="rating">★★★★★</div>

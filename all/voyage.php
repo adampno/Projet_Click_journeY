@@ -119,18 +119,6 @@ $activites = $stmt_activites->fetchAll();
 
 
 
-<div class="sidebar-summary" id="sidebar-summary">
-<h3>Récapitulatif</h3>
-<p>Adultes : <span id="sum-adults">1</span></p>
-<p>Enfants : <span id="sum-children">0</span></p>
-<p>Chambres nécessaires : <span id="sum-rooms">1</span></p>
-<p>Prix total : <span id="price-summary">0€</span></p>
-</div>
-
-
-
-
-
 
   <section class="flight-info">
   <div class="flight-wrapper">
