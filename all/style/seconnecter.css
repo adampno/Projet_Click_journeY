@@ -195,6 +195,7 @@ header {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
+  margin-top: 40px;
 }
 
 .error-message {
