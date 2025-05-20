@@ -71,6 +71,7 @@ $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
 
           <label for="password"> Mot de passe </label><br />
           <input type="password" id="password" name="password" required/><br />
+          <button type="button" id="toggle-password">👁️ Afficher le mot de passe</button><br><br>
 
             <button class="login-button" type="submit">Je me connecte</button>
           </form>
@@ -85,6 +86,23 @@ $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
   <footer>
     <p>&copy; 2025 Wander7. Tous droits réservés.</p>
   </footer>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const passwordField = document.getElementById("password");
+    const toggleButton = document.getElementById("toggle-password");
+
+    toggleButton.addEventListener("click", function () {
+      if (passwordField.type === "password") {
+        passwordField.type = "text";
+        toggleButton.textContent = "🙈 Masquer le mot de passe";
+      } else {
+        passwordField.type = "password";
+        toggleButton.textContent = "👁️ Afficher le mot de passe";
+      }
+    });
+  });
+</script>
 
   </body>
 </html>
