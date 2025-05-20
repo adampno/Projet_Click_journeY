@@ -185,7 +185,7 @@ try {
        <?php foreach ($voyages as $voyage): ?>
         <div class="merveille-card">
 
-          <a href="<?= $estConnecte ? 'voyage.php?id=' . $voyage['id_voyage'] : 'seconnecter.php'; ?>">
+          <a href="<?= $estConnecte ? 'voyage.php?id=' . $voyage['id_voyage'] : 'seconnecter.php?error=unauthorized_access'; ?>">
             <img src="assets/<?= strtolower(str_replace(' ', '_', $voyage['titre']))?>_index.jpg" alt="<?= $voyage['titre']?>">
             <div class="merveille-info">
               <h3><?= $voyage['titre'] ?></h3>

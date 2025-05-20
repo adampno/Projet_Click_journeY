@@ -104,18 +104,11 @@ $activites = $stmt_activites->fetchAll();
       </nav>
           </header>
 
-            <section class="banner">
-      <img class="banner-image" src="assets/<?= strtolower(str_replace(' ', '_', $voyage['titre'])) ?>_banner.jpg" alt="<?= $voyage['titre']?>">
-    <div class="banner-overlay">
-      <h1><?= $voyage['titre'] ?></h1>
-      <p><?= $voyage['pays']?></p>
-  </div>
-</section>
+<div class="hero-background" style="background-image: url('assets./<?= htmlspecialchars(str_replace(' ', '_', $voyage['titre']))?>_hero.jpeg');"></div>
+
 
 
 <main>
-
-
 
 <div class="sidebar-summary" id="sidebar-summary">
 <h3>Récapitulatif</h3>
@@ -276,6 +269,18 @@ $activites = $stmt_activites->fetchAll();
         <footer>
         <p>&copy; 2025 Wander7. Tous droits réservés.</p>
     </footer>
+
+
+    <script>
+window.addEventListener('scroll', function() {
+  if (window.scrollY > 50) {
+    document.body.classList.add('scrolled');
+  } else {
+    document.body.classList.remove('scrolled');
+  }
+});
+</script>
+
 
     </body>
 </html>
