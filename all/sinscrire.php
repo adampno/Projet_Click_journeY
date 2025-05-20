@@ -104,6 +104,7 @@ $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
                     pattern="(?=.*[A-Z])(?=.*\d).{8,}" 
                     title="Le mot de passe doit contenir au moins 8 caractères, une lettre majuscule et un chiffre." 
                     required>
+                <button type="button" id="toggle-password">👁️ Afficher le mot de passe</button><br><br>
                 <p class="info-text">Votre mot de passe doit contenir au moins 8 caractères, une lettre majuscule et un chiffre.</p>
 
                 
@@ -139,6 +140,22 @@ $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
         <p>&copy; 2025 Wander7. Tous droits réservés.</p>
     </footer>
 
+    <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const passwordField = document.getElementById("password");
+    const toggleButton = document.getElementById("toggle-password");
+
+    toggleButton.addEventListener("click", function () {
+      if (passwordField.type === "password") {
+        passwordField.type = "text";
+        toggleButton.textContent = "🙈 Masquer le mot de passe";
+      } else {
+        passwordField.type = "password";
+        toggleButton.textContent = "👁️ Afficher le mot de passe";
+      }
+    });
+  });
+</script>
 
 
 </body>
