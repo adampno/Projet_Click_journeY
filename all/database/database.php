@@ -28,7 +28,7 @@ foreach ($passwords as $pass){
     }
 }
 
-if ($connected){
+if (!$connected){
     die("Erreur de connexion à MySQL avec tous les mots de passe testés.");
 }
 
