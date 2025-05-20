@@ -132,17 +132,23 @@ CREATE TABLE activites (
 -- --------------------------------------------------------
 CREATE TABLE paiements (
   id_paiement INT AUTO_INCREMENT PRIMARY KEY,
-  montant DECIMAL(10,2) NOT NULL,
-  date_transaction DATETIME DEFAULT CURRENT_TIMESTAMP,
-  methode_paiement VARCHAR(20) NOT NULL,
-  statut ENUM('en_attente', 'validé', 'annulé') DEFAULT 'en_attente',
-  id_utilisateur INT NOT NULL,
+  id_user INT NOT NULL,
   id_voyage INT NOT NULL,
-  reference_paiement VARCHAR(50) DEFAULT NULL,
-  FOREIGN KEY (id_utilisateur) REFERENCES utilisateurs(id) ON DELETE CASCADE,
+
+  -- Coordonnées bancaires
+  numero_carte VARCHAR(25) NOT NULL,
+  nom_titulaire VARCHAR(100) NOT NULL,
+  date_validite DATE NOT NULL,
+  cryptogramme VARCHAR(4) NOT NULL,
+
+  -- Infos transaction
+  date_transaction DATETIME DEFAULT CURRENT_TIMESTAMP,
+  montant DECIMAL(10,2) NOT NULL,
+  statut ENUM('en_attente', 'validé', 'annulé') DEFAULT 'en_attente',
+
+  FOREIGN KEY (id_user) REFERENCES utilisateurs(id) ON DELETE CASCADE,
   FOREIGN KEY (id_voyage) REFERENCES voyages(id_voyage) ON DELETE CASCADE
 );
-
 
 
 -- --------------------------------------------------------
