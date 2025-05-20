@@ -47,32 +47,31 @@ try {
 <head>
     <meta charset="UTF-8">
     <title>Paiement</title>
-    <style>
-        body { font-family: Arial, sans-serif; background: #111; color: #fff; padding: 2em; }
-        .box { background: #222; padding: 1.5em; border-radius: 10px; max-width: 500px; margin: auto; }
-        h2 { color: #00ffff; }
-        button { padding: 10px 20px; background: #00ffff; border: none; cursor: pointer; font-weight: bold; }
-    </style>
+    <link rel="stylesheet" href="style/paiement.css">
+   
 </head>
 <body>
-    <div class="box">
-        <h2>Récapitulatif</h2>
-        <p><strong>Destination :</strong> <?= htmlspecialchars($titre) ?></p>
-        <p><strong>Total à payer :</strong> <?= number_format($montant, 2, ',', ' ') ?> €</p>
+    <div class="page-wrapper">
+        <div class="box">
+            <h2>Récapitulatif</h2>
+            <p><strong>Destination :</strong> <?= htmlspecialchars($titre) ?></p>
+            <p><strong>Total à payer :</strong> <?= number_format($montant, 2, ',', ' ') ?> €</p>
 
-        <h2>Paiement</h2>
-        <form action="https://www.plateforme-smc.fr/cybank/index.php" method="POST">
-            <input type="hidden" name="transaction" value="<?= htmlspecialchars($transaction_id) ?>">
-            <input type="hidden" name="montant" value="<?= $montant_formate;?>">
-            <input type="hidden" name="vendeur" value="<?= htmlspecialchars($vendeur) ?>">
-            <input type="hidden" name="retour" value="<?= htmlspecialchars($retour) ?>">
-            <input type="hidden" name="control" value="<?= htmlspecialchars($control_hash) ?>">
-            <button type="submit">Payer <?= $montant_formate; ?> €</button>
-        </form>
+            <h2>Paiement</h2>
+            <form action="https://www.plateforme-smc.fr/cybank/index.php" method="POST">
+                <input type="hidden" name="transaction" value="<?= htmlspecialchars($transaction_id) ?>">
+                <input type="hidden" name="montant" value="<?= $montant_formate;?>">
+                <input type="hidden" name="vendeur" value="<?= htmlspecialchars($vendeur) ?>">
+                <input type="hidden" name="retour" value="<?= htmlspecialchars($retour) ?>">
+                <input type="hidden" name="control" value="<?= htmlspecialchars($control_hash) ?>">
+                <button type="submit">Payer <?= $montant_formate; ?> €</button>
+            </form>
+        </div>
     </div>
 
     <footer>
         <p>&copy; 2025 Wander7. Tous droits réservés.</p>
     </footer>
 </body>
+
 </html>
