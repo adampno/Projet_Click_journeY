@@ -53,6 +53,39 @@ header {
     border-radius: 5px;
 }
 
+
+
+.error-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+
+
+.error-message {
+  color: #a94442;
+  background-color: #f2dede;
+  border: 1px solid #ebccd1;
+  padding: 10px 20px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  text-align: center;
+  max-width: 500px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+
+.error-icon {
+  font-size: 18px;
+}
+
+
+
 .login-main-container {
     height: 100vh;
     display: flex;

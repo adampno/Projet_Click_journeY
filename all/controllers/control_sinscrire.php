@@ -62,11 +62,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
         // Vérification de l'insertion
         if ($stmt->rowCount() > 0) {
-            echo "✅ Insertion réussie.";
             header("Location: ../seconnecter.php?success=inscription_reussie");
             exit;
         } else {
-            echo "⚠️ Insertion échouée.";
             exit;
         }
 

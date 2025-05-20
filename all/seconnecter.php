@@ -3,11 +3,12 @@ session_start(); // Active la gestion des sessions
 
 
 // Vérification des erreurs
-if (isset($_SESSION['sign_in_up_error'])) {
-    echo "<p style='color: red;'>".$_SESSION['sign_in_up_error']."</p>";
-    unset($_SESSION['sign_in_up_error']); // Supprime le message après l'affichage
-}
-
+if (isset($_SESSION['sign_in_up_error'])): ?>
+    <div class="error-message">
+    <?= $_SESSION['sign_in_up_error']; ?>
+</div>
+    <?php unset($_SESSION['sign_in_up_error']);// Supprime le message après l'affichage
+endif; 
 $estConnecte = isset($_SESSION['user']);
 $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
 ?>
@@ -45,10 +46,25 @@ $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
     </header>
 
  
+    <div class="error-container">
+    <?php if (isset($_GET['error']) && $_GET['error'] === 'login_failed'): ?>
+        <div class="error-message">
+            <span class="error-icon">⚠️</span> 
+            Email ou mot de passe incorrect.
+        </div>
+    <?php elseif (isset($_GET['error']) && $_GET['error'] === 'server_error'): ?>
+        <div class="error-message">
+            <span class="error-icon">⚠️</span> 
+            Erreur serveur. Veuillez réessayer plus tard.
+        </div>
+    <?php endif; ?>
+</div>
+
     <div class="login-main-container">
       <div class="login-inner-container">
 
         <div class="login-col1">
+
           <h1 class="login-h1">Vous avez déjà un compte</h1>
           <p class="login-p">
             Déjà membre ? Identifiez-vous et accédez aux informations de votre espace.
@@ -56,12 +72,14 @@ $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
         </div>  
 
         <div class="login-col2">
+
+
         <form action="controllers/control_seconnecter.php" method="post" id="login-form" name="login">
           <label for="email" class="login-email">  Email </label><br />
-          <input type="text" id="email" name="email" /><br />
+          <input type="text" id="email" name="email" required/><br />
 
           <label for="password"> Mot de passe </label><br />
-          <input type="password" id="password" name="password" /><br />
+          <input type="password" id="password" name="password" required/><br />
 
           <button class="login-button" type="submit">Je me connecte</button>
        </form>

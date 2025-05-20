@@ -4,13 +4,34 @@
 $host = 'localhost';
 $db = 'clickjourney';
 $user = 'root'; // Remplacez par votre utilisateur MySQL
-$pass = 'root';    // Remplacez par votre mot de passe MySQL
+
+// Teste deux cas de mot de passe windows avec xamp et mac avec mamp
+$passwords = ['root', ''];
+$pdo = null;
+$connected = false;
+
 
 // Options de PDO
 $options = [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
 ];
+
+
+foreach ($passwords as $pass){
+    try {
+        $pdo = new PDO("mysql:host=$host", $user, $pass, $options);
+        $connected = true;
+        break;
+    } catch (PDOException $e){
+        continue;
+    }
+}
+
+if ($connected){
+    die("Erreur de connexion à MySQL avec tous les mots de passe testés.");
+}
+
 
 // Connexion à MySQL (sans sélectionner de base au départ)
 try {
@@ -25,8 +46,6 @@ try {
 catch (PDOException $e) {
     die("Erreur de connexion : " . $e->getMessage());
 }
-
-
 
 
 // Supprime les tables sauf "utilisateurs"
