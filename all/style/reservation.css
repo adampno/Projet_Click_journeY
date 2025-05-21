@@ -279,3 +279,45 @@ body {
   .child-info:hover {
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
   }
+
+ 
+
+
+  .reservation-button-container{
+    display: none;
+    z-index: 1000;
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(30px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4 ease, transform 0.4s ease;
+    
+  }
+  
+  .reservation-button{
+    display: inline-block;
+    background-color: #046ce4;
+    font-size: 18px;
+    color: white;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    padding: 15px 35px;
+  }
+
+
+  .reservation-button-container.visible{
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
+
+
+
+  .reservation-button:hover {
+    background-color: #148aea;
+    transform: scale(1.05);
+  }

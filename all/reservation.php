@@ -112,14 +112,6 @@ $activites = $stmt_activites->fetchAll();
 
 
 
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -166,8 +158,8 @@ $activites = $stmt_activites->fetchAll();
 
 <div class="reservation-container">
   <h1>Nombre de passagers</h1>
-  <form method="POST" action="traitement_reservation.php">
-    <input type="hidden" name="voyage_id" value="<?= htmlspecialchars($voyage_id) ?>">
+  <form method="POST" action="traitement_reservation.php" id="form-reservation">
+    <input type="hidden" name="voyage_id" value="<?= htmlspecialchars($id) ?>">
 
     <div class="form-group">
       <label for="passengers">Nombre d'adultes :</label>
@@ -189,6 +181,17 @@ $activites = $stmt_activites->fetchAll();
 
   </form>
 </div>
+
+
+
+<div class="reservation-button-container" id="reservationButton">
+  <a href="recap.php?voyage=<?= $id ?>" class="reservation-button">
+    Confirmer la réservation
+          </a>
+    </div>
+
+</main>
+
 
 <script>
   const childrenInput = document.getElementById('children');
@@ -252,7 +255,6 @@ $activites = $stmt_activites->fetchAll();
             <input type="text" name="passeports_passagers[]" id="passeport_passager_${i}" pattern="[A-Z]{2}[0-9]{6}" placeholder="Ex : AB123456"required>
             </div>
         </div>
-        <p class="age-info">Âge au moment du voyage</p>
       `;
       passengerContainer.prepend(div);
     }
@@ -340,7 +342,27 @@ $activites = $stmt_activites->fetchAll();
     const count = parseInt(adultsInput.value) || 1;
     generatePassengerForms(count);
   });
+
+
+
+  // === Affichage du bouton lorsqu'on atteint le bas de la page ===
+  const reservationBtn = document.getElementById('reservationButton');
+
+  window.addEventListener('scroll', function () {
+    const scrollTop = window.scrollY || window.pageYOffset;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+
+    if (scrollTop + windowHeight >= documentHeight - 100) {
+      reservationBtn.classList.add('visible');
+    } else {
+      reservationBtn.classList.remove('visible');
+    }
+  });
+
+
 </script>
+
 
 
 </body>
