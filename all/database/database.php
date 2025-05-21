@@ -48,34 +48,25 @@ catch (PDOException $e) {
 }
 
 
-// Supprime les tables sauf "utilisateurs"
-$tables = $pdo->query("SHOW TABLES")->fetchAll(PDO::FETCH_COLUMN);
-foreach ($tables as $table) {
-    if ($table !== 'utilisateurs') {
-        $pdo->exec("DROP TABLE IF EXISTS $table");
-    }
-}
+$tablesToKeep = ['utilisateurs', 'reservations', 'reservation_activites'];
 
-// On récupère toutes les tables sauf `utilisateurs`
-$tables = $pdo->query("
-    SELECT table_name 
-    FROM information_schema.tables 
-    WHERE table_schema = '$db' 
-    AND table_name != 'utilisateurs'
-")->fetchAll(PDO::FETCH_COLUMN);
+$placeholders = implode(',', array_fill(0, count($tablesToKeep), '?'));
+$query = "SELECT table_name FROM information_schema.tables WHERE table_schema = ? AND table_name NOT IN ($placeholders)";
 
-if (!empty($tables)) {
-    // On désactive les contraintes de clés étrangères
+$stmt = $pdo->prepare($query);
+$stmt->execute(array_merge([$db], $tablesToKeep));
+$tablesToDelete = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+
+
+if(!empty($tablesToDelete)){
     $pdo->exec("SET FOREIGN_KEY_CHECKS = 0");
-
-    // On supprime toutes les tables sauf `utilisateurs`
-    foreach ($tables as $table) {
-        $pdo->exec("DROP TABLE IF EXISTS $table");
+    foreach ($tablesToDelete as $table){
+        $pdo->exec("DROP TABLE IF EXISTS `$table`");
     }
-
-    // On réactive les contraintes
-    $pdo->exec("SET FOREIGN_KEY_CHECKS = 1");
+    $pdo->exec("SET FOREIGN_KEY_CHECKS  = 1");
 }
+
 
 // Nom du fichier SQL
 $sqlFile = __DIR__ . '/../database/clickjourney.sql'; 

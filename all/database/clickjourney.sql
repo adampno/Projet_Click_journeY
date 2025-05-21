@@ -95,7 +95,7 @@ CREATE TABLE hebergements (
 -- --------------------------------------------------------
 -- Table reservations
 -- --------------------------------------------------------
-CREATE TABLE reservations (
+CREATE TABLE IF NOT EXISTS reservations (
   id_reservation INT AUTO_INCREMENT PRIMARY KEY,
   utilisateur_id INT NOT NULL,
   voyage_id INT NOT NULL,
@@ -181,7 +181,7 @@ CREATE TABLE activites (
 -- --------------------------------------------------------
 -- Table reservation des activites
 -- --------------------------------------------------------
-CREATE TABLE reservation_activites (
+CREATE TABLE IF NOT EXISTS reservation_activites (
   id_reservation INT NOT NULL,
   id_activite INT NOT NULL,
   PRIMARY KEY (id_reservation, id_activite),
