@@ -2,7 +2,7 @@
 require_once "database/database.php";
 require "getapikey.php";
 
-// Exemple : variables fixes pour test, à remplacer par tes vraies données (il faut faire le JS)
+// Exemple : variables fixes pour test, à remplacer par vraies données (ALICIA faut faire le JS)
 $id_user = 1;
 $id_voyage = 1;
 $montant = 30.00;
@@ -16,7 +16,9 @@ $api_key = getAPIKey($vendeur);
 
 $montant_formate = number_format($montant, 2, '.', '');
 
-$retour = "http://localhost:8888/all/retour_paiement.php";
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https" : "http";
+$base_url = $protocol . "://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']);
+$retour = rtrim($base_url, '/') . '/retour_paiement.php';
 
 $control_hash = md5($api_key . "#" . $transaction_id . "#" . $montant_formate . "#" . $vendeur . "#" . $retour . "#");
 
