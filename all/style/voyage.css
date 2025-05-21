@@ -543,3 +543,28 @@ footer {
     z-index: 1;
     padding-top: 100vh; /* pousse le contenu sous l’image */
   }
+
+
+
+  .reservation-button-container {
+    text-align: center;
+    margin: 50px 0 80px;
+  }
+  
+  .reservation-button {
+    background: linear-gradient(to right, #00b09b, #96c93d);
+    color: white;
+    padding: 15px 40px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 40px;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .reservation-button:hover {
+    background: linear-gradient(to right, #96c93d, #00b09b);
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  }

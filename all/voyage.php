@@ -198,14 +198,11 @@ $activites = $stmt_activites->fetchAll();
 
 
 <section class="hotel-selection">
-<h2>Sélectionnez votre hôtel </h2>
+<h2>Hôtels proposés</h2>
 
 <?php foreach ($hebergements as $hebergement): ?>
 <div class="hotel-option horizontal">
-    <input type="radio" id="hotel-<?= strtolower($hebergement['h_nom']) ?>" name="hotel" value="<?= strtolower($hebergement['h_nom']) ?>">
-    <label for="hotel-<?= strtolower($hebergement['h_nom']) ?>">
-      <div class="hotel-content">
-
+  <div class="hotel-content">
       <div class="hotel-image-container">
         <div class="hotel-heading">
           <h3><?= ucwords(htmlspecialchars($hebergement['h_nom'])) ?></h3>
@@ -245,8 +242,6 @@ $activites = $stmt_activites->fetchAll();
 
     <?php foreach ($activites as $index => $activite): ?>
     <div class="activity-option horizontal">
-        <input type="checkbox" id="activity<?= $index?>" name="activity<?= $index?>" class="activity-checkbox" onchange="toggleDateInput(this, 'activity<?= $index?>-day')">
-        
             <div class="activity-content">
 
                 <div class="activity-image-container">
@@ -268,16 +263,18 @@ $activites = $stmt_activites->fetchAll();
                         <li>Départ : Réception de l'hôtel à <?= htmlspecialchars($activite['a_heure_depart'])?></li>
                         <li>Prix : <?= htmlspecialchars($activite['a_prix'])?>€ par personne </li>
                     </ul>
-
-                    <div class="activity-date">
-                        <label for="activity1-day">Sélectionnez un jour :</label>
-                        <input type="date" id="activity1-day" name="activity1-day" disabled>
-                    </div>
                 </div>
             </div>
 </div>
 <?php endforeach; ?>
 </section>
+
+
+<div class="reservation-button-container">
+  <a href="reservation.php?voyage=<?= $voyage['id_voyage'] ?>" class="reservation-button">Réserver le voyage</a>
+    </div>
+
+
 
 
     </main>
