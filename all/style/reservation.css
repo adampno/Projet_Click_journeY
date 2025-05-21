@@ -184,7 +184,7 @@ body {
   .submit-btn {
     display: block;
     margin: 30px auto 0;
-    background: linear-gradient(to right, #00b09b, #96c93d);
+    background: linear-gradient(to right, #0b7a93, #64bfdb);
     color: white;
     padding: 12px 30px;
     font-size: 1.1em;
@@ -196,7 +196,7 @@ body {
 
   .submit-btn:hover {
     transform: scale(1.05);
-    background: linear-gradient(to right, #96c93d, #00b09b);
+    background: linear-gradient(to right, #2e7aaa, #23abd4);
   }
 
   .passengers-info {
@@ -212,22 +212,70 @@ body {
   }
   
   .form-group {
-    flex: 1;
-    min-width: 200px;
+    flex: 1 1 250px;
+    display: flex;
+    flex-direction: column;
   }
+
+
+.form-group label{
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: #444;
+}
+
+
+.form-group input, 
+.form-group select{
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    background-color: #fafafa;
+    transition: border-color 0.2s;
+}
+
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #046ce4;
+    outline: none;
+    box-shadow: 0 0 4px rgba(4, 108, 228, 0.3);
+}
+
+
   
   .passenger-info,
   .child-info {
-    border: 1px solid #ddd;
-    padding: 20px;
+    border: 1px solid #dcdcdc;
+    padding: 25px;
     border-radius: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    transition: box-shadow 0.3s ease;
   }
   
   .passenger-info h4,
   .child-info h4 {
-    margin-bottom: 15px;
-    font-size: 18px;
-    color: #333;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #2c3e50;
+    border-left: 4px solid #4cabea;
+    padding-left: 12px;
+  }
+
+  .age-info {
+    font-style: italic;
+    font-size: 0.95em;
+    color: #777;
+    margin-top: 15px;
+  }
+
+
+
+  .passenger-info:hover,
+  .child-info:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
   }

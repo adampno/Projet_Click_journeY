@@ -214,9 +214,47 @@ $activites = $stmt_activites->fetchAll();
             <label for="prenom_passager_${i}">Prénom :</label>
             <input type="text" name="prenoms_passagers[]" id="prenom_passager_${i}" required>
           </div>
+            <div class="form-group">
+            <label for="dob_passager_${i}">Date de naissance :</label>
+            <input type="date" name="naissances_passagers[]" id="dob_passager_${i}" required>
+            </div>
+            <div class="form-group">
+            <label for="nationalite_passager_${i}">Nationalité :</label>
+
+         <select name="nationalites_passagers[]" required>
+  <option value="">-- Sélectionner la nationalité --</option>
+  <option value="Algérienne">Algérienne</option>
+  <option value="Allemande">Allemande</option>
+  <option value="Américaine">Américaine</option>
+  <option value="Australienne">Australienne</option>
+  <option value="Belge">Belge</option>
+  <option value="Brésilienne">Brésilienne</option>
+  <option value="Britannique">Britannique</option>
+  <option value="Canadienne">Canadienne</option>
+  <option value="Chinoise">Chinoise</option>
+  <option value="Espagnole">Espagnole</option>
+  <option value="Française">Française</option>
+  <option value="Indienne">Indienne</option>
+  <option value="Italienne">Italienne</option>
+  <option value="Japonaise">Japonaise</option>
+  <option value="Marocaine">Marocaine</option>
+  <option value="Mexicaine">Mexicaine</option>
+  <option value="Néerlandaise">Néerlandaise</option>
+  <option value="Portugaise">Portugaise</option>
+  <option value="Suisse">Suisse</option>
+  <option value="Tunisienne">Tunisienne</option>
+  <option value="Autre">Autre</option>
+</select>
+
+            </div>
+            <div class="form-group">
+            <label for="passeport_passager_${i}">Numéro de passeport :</label>
+            <input type="text" name="passeports_passagers[]" id="passeport_passager_${i}" pattern="[A-Z]{2}[0-9]{6}" placeholder="Ex : AB123456"required>
+            </div>
         </div>
+        <p class="age-info">Âge au moment du voyage</p>
       `;
-      passengerContainer.appendChild(div);
+      passengerContainer.prepend(div);
     }
   }
 
@@ -242,9 +280,46 @@ $activites = $stmt_activites->fetchAll();
             <label for="age_enfant_${i}">Âge :</label>
             <input type="number" name="ages_enfants[]" id="age_enfant_${i}" min="0" max="17" required>
           </div>
+          <div class="form-group">
+            <label for="dob_enfants_${i}">Date de naissance :</label>
+            <input type="date" name="naissances_enfants[]" id="dob_enfants_${i}" required>
+            </div>
+            <div class="form-group">
+            <label for="nationalite_enfant_${i}">Nationalité :</label>
+<select name="nationalites_enfants[]" required>
+  <option value="">-- Sélectionner la nationalité --</option>
+  <option value="Algérienne">Algérienne</option>
+  <option value="Allemande">Allemande</option>
+  <option value="Américaine">Américaine</option>
+  <option value="Australienne">Australienne</option>
+  <option value="Belge">Belge</option>
+  <option value="Brésilienne">Brésilienne</option>
+  <option value="Britannique">Britannique</option>
+  <option value="Canadienne">Canadienne</option>
+  <option value="Chinoise">Chinoise</option>
+  <option value="Espagnole">Espagnole</option>
+  <option value="Française">Française</option>
+  <option value="Indienne">Indienne</option>
+  <option value="Italienne">Italienne</option>
+  <option value="Japonaise">Japonaise</option>
+  <option value="Marocaine">Marocaine</option>
+  <option value="Mexicaine">Mexicaine</option>
+  <option value="Néerlandaise">Néerlandaise</option>
+  <option value="Portugaise">Portugaise</option>
+  <option value="Suisse">Suisse</option>
+  <option value="Tunisienne">Tunisienne</option>
+  <option value="Autre">Autre</option>
+</select>
+            </div>
+            <div class="form-group">
+            <label for="passeport_enfant_${i}">Numéro de passeport :</label>
+            <input type="text" name="passeports_enfants[]" id="passeport_enfant_${i}" pattern="[A-Z]{2}[0-9]{6}" placeholder="Ex : AB123456" required>
+            </div>
+        </div>
+        <p class="age-info">Âge au moment du voyage</p>
         </div>
       `;
-      childContainer.appendChild(div);
+      childContainer.prepend(div);
     }
   }
 

@@ -23,14 +23,8 @@ CREATE TABLE IF NOT EXISTS utilisateurs(
   derniere_connexion TIMESTAMP NULL
 );
 
--- --------------------------------------------------------
--- Table aeroports
--- --------------------------------------------------------
-CREATE TABLE aeroports (
-  id_aeroport INT AUTO_INCREMENT PRIMARY KEY,
-  nom VARCHAR(100) NOT NULL,
-  region VARCHAR(100) NOT NULL
-);
+
+
 
 -- --------------------------------------------------------
 -- Table voyages
@@ -47,6 +41,20 @@ CREATE TABLE voyages (
   id_utilisateur INT DEFAULT NULL,
   FOREIGN KEY (id_utilisateur) REFERENCES utilisateurs(id) ON DELETE CASCADE
 );
+
+
+
+
+
+-- --------------------------------------------------------
+-- Table aeroports
+-- --------------------------------------------------------
+CREATE TABLE aeroports (
+  id_aeroport INT AUTO_INCREMENT PRIMARY KEY,
+  nom VARCHAR(100) NOT NULL,
+  region VARCHAR(100) NOT NULL
+);
+
 
 
 -- --------------------------------------------------------
@@ -66,6 +74,8 @@ CREATE TABLE vols (
 );
 
 
+
+
 -- --------------------------------------------------------
 -- Table hebergements
 -- --------------------------------------------------------
@@ -79,6 +89,47 @@ CREATE TABLE hebergements (
   PRIMARY KEY (id_hebergement, id_voyage),
   FOREIGN KEY (id_voyage) REFERENCES voyages(id_voyage) ON DELETE CASCADE
 );
+
+
+
+-- --------------------------------------------------------
+-- Table reservations
+-- --------------------------------------------------------
+CREATE TABLE reservations (
+  id_reservation INT AUTO_INCREMENT PRIMARY KEY,
+  utilisateur_id INT NOT NULL,
+  voyage_id INT NOT NULL,
+  date_reservation DATETIME DEFAULT CURRENT_TIMESTAMP,
+  nb_adultes INT NOT NULL,
+  nb_enfants INT NOT NULL,
+  hebergement_id INT NOT NULL,
+  FOREIGN KEY (utilisateur_id) REFERENCES utilisateurs(id) ON DELETE CASCADE,
+  FOREIGN KEY (voyage_id) REFERENCES voyages(id_voyage) ON DELETE CASCADE,
+  FOREIGN KEY (hebergement_id) REFERENCES hebergements(id_hebergement)
+  );
+
+
+
+
+
+-- --------------------------------------------------------
+-- Table passagers (adultes + enfants)
+-- --------------------------------------------------------
+CREATE TABLE passagers (
+  id_passager INT AUTO_INCREMENT PRIMARY KEY,
+  reservation_id INT NOT NULL,
+  type_passager ENUM('adulte', 'enfant') NOT NULL,
+  nom VARCHAR(100) NOT NULL,
+  prenom VARCHAR(100) NOT NULL,
+  date_naissance DATE NOT NULL,
+  nationalite ENUM('Algérienne', 'Allemande', 'Américaine', 'Australienne', 'Belge', 'Brésilienne','Britannique',
+  'Canadienne', 'Chinoise', 'Espagnole', 'Française', 'Indienne', 'Italienne', 'Japonaise', 'Marocaine', 'Mexicaine',
+  'Néerlandaise', 'Portuguaise', 'Suisse', 'Tunisienne', 'Autre'),
+  passeport VARCHAR(20) NOT NULL,
+  age INT NOT NULL,
+  FOREIGN KEY (reservation_id) REFERENCES reservations(id_reservation) ON DELETE CASCADE
+);
+
 
 
 
@@ -126,6 +177,22 @@ CREATE TABLE activites (
 
 
 
+
+-- --------------------------------------------------------
+-- Table reservation des activites
+-- --------------------------------------------------------
+CREATE TABLE reservation_activites (
+  id_reservation INT NOT NULL,
+  id_activite INT NOT NULL,
+  PRIMARY KEY (id_reservation, id_activite),
+  FOREIGN KEY (id_reservation) REFERENCES reservations(id_reservation) ON DELETE CASCADE,
+  FOREIGN KEY (id_activite) REFERENCES activites(id_activite)ON DELETE CASCADE
+);
+
+
+
+
+
 -- --------------------------------------------------------
 -- Table paiements
 -- --------------------------------------------------------
@@ -153,6 +220,10 @@ CREATE TABLE paiements (
   FOREIGN KEY (id_user) REFERENCES utilisateurs(id) ON DELETE CASCADE,
   FOREIGN KEY (id_voyage) REFERENCES voyages(id_voyage) ON DELETE CASCADE
 );
+
+
+
+
 
 
 -- --------------------------------------------------------
