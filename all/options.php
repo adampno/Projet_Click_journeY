@@ -9,7 +9,7 @@ ini_set('display_errors', 1);
 require_once "database/database.php";
 
 // Récupération de l'ID du voyage depuis l'URL
-$id = $_GET['id'] ?? null;
+$id = $_GET['voyage'] ?? null;
 if ($id === null) {
     echo "❌ ID de voyage non fourni.";
     exit;
@@ -112,7 +112,7 @@ $activites = $stmt_activites->fetchAll();
 <html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="style/voyage.css">
+        <link rel="stylesheet" href="style/options.css">
         <title><?php echo htmlspecialchars($voyage['titre']); ?> | Wander7</title>
     </head>
     <body>
@@ -149,12 +149,76 @@ $activites = $stmt_activites->fetchAll();
 </div>
 
 <main class="page-content">
+<form action="traitement_reservation.php" method="POST">
+    <input type="hidden" name="voyage_id" value="<?= $voyage['id_voyage']?>">
 
 
-<div class="voyage-description-box">
-  <p><?= htmlspecialchars($voyage['v_description'])?></p>
+
+    <section class="passenger-selection">
+  <h2>Informations voyage</h2>
+  <div class="passenger-fields">
+    <div class="passenger-field">
+      <label for="adults">Nombre d'adultes :</label>
+      <input type="number" id="adults" name="nb_adultes" min="1" value="1" required>
+    </div>
+    <div class="passenger-field">
+      <label for="children">Nombre d'enfants :</label>
+      <input type="number" id="children" name="nb_enfants" min="0" value="0">
+    </div>
+    <div class="passenger-field">
+        <label for="date_depart">Date de départ :</label>
+        <input type="date" id="date_depart" name="date_depart" required>
           </div>
+  </div>
+</section>
 
+
+<script>
+    const dureeVoyage = <?= (int)$voyage['duree']?>;
+    </script>
+
+
+<section class="flight-info">
+  <div class="flight-wrapper">
+    <h2>Vol aller</h2>
+    <div class="flight-box">
+      <div class="flight-row">
+        <span class="airport">🛫 Aéroport de <?= htmlspecialchars($vol_aller['aeroport_depart'])?></span>
+        <div class="flight-line">
+          <hr><span class="plane">✈️</span><hr>
+</div>
+<span class="airport">Aéroport de <?= htmlspecialchars($vol_aller['aeroport_arrivee'])?>🛬</span>
+</div>
+<div class="flight-details">
+  <span>Départ : <?= htmlspecialchars($vol_aller['heure_depart'])?></span>
+  <span>Durée : <?= htmlspecialchars($vol_aller['duree'])?></span>
+  <span>Arrivée : <?= htmlspecialchars($vol_aller['heure_arrivee'])?></span>
+</div>
+</div>
+
+<hr class="inner-separator">
+
+<h2>Vol retour</h2>
+<div class="flight-box">
+  <div class="flight-row">
+    <span class="airport">🛫 Aéroport de <?= htmlspecialchars($vol_retour['aeroport_depart'])?></span>
+    <div class="flight-line">
+      <hr><span class="plane">✈️</span><hr>
+</div>
+<span class="airport">Aéroport de <?= htmlspecialchars($vol_retour['aeroport_arrivee'])?> 🛬</span>
+</div>
+<div class="flight-details">
+  <span>Départ : <?=htmlspecialchars($vol_retour['heure_depart'])?></span>
+  <span>Durée : <?=htmlspecialchars($vol_retour['duree'])?></span>
+  <span>Arrivée : <?=htmlspecialchars($vol_retour['heure_arrivee'])?></span>
+</div>
+</div>
+<div class="flight-price">
+  <span>Prix Total :</span> <span class="price-amount"><?= htmlspecialchars($vol_aller['prix'] + $vol_retour['prix'])?>€/pers.</span>
+</div>
+</div>
+</section>
+    
 
 
 
@@ -164,21 +228,42 @@ $activites = $stmt_activites->fetchAll();
 
 <?php foreach ($hebergements as $hebergement): ?>
 <div class="hotel-option horizontal">
+    <label class="hotel-radio-label">
+        <input type="radio" name="hotel_id" value="<?= $hebergement['id_hebergement'] ?>" class="hotel-radio">
   <div class="hotel-content">
-    <div class="hotel-text">
-    <div class="hotel-heading">
+      <div class="hotel-image-container">
+        <div class="hotel-heading">
           <h3><?= ucwords(htmlspecialchars($hebergement['h_nom'])) ?></h3>
           <div class="hotel-stars"> <?= str_repeat('★', $hebergement['etoiles'])?>  </div>
           <div class="hotel-location"> <?= htmlspecialchars($hebergement['h_localisation'])?> </div>
 </div>
-</div>
-      <div class="hotel-image-container">
         <img src="assets/<?= str_replace(' ', '_', $hebergement['h_nom']) ?>.png" alt="<?= htmlspecialchars($hebergement['h_nom']) ?>" class="hotel-image-side">
 </div>
+<div class="hotel-details">
+        <ul>
+            <li>Transfert aéroport : <?= $hebergement['transfert']?></li>
+            <li>Piscines : <?= $hebergement['nb_piscines']?> </li>
+            <li>Jacuzzi : <?= $hebergement['jacuzzi']?></li>
+            <li>Spa : <?= $hebergement['spa']?></li>
+            <li>Services disponibles : chaises longues et parasols de plage</li>
+            <li>Pension : <?= $hebergement['pension']?></li>
+            <li>Wifi gratuit : <?= $hebergement['wifi_gratuit']?></li>
+            <li>TV chambres : <?= $hebergement['tv_chambres']?></li>
+            <li>Climatisation : <?= $hebergement['climatisation']?></li>
+            <li>Sèche-cheveux : <?= $hebergement['seche_cheveux']?></li>
+            <li>Balcon privé : <?= $hebergement['balcon_pv']?></li>
+            <li>Laverie : <?= $hebergement['laverie']?></li>
+            <li>Accessibilité PMR : <?= $hebergement['pmr']?></li>
+            <li>Prix par chambre double (1 ou 2 pers.) : <?= $hebergement['h_prix']?> €</li>
+</ul>
 </div>
+</div>
+</label>
 </div>
 <?php endforeach; ?>
 </section>
+
+
 
 
 
@@ -195,39 +280,44 @@ $activites = $stmt_activites->fetchAll();
                 </div>
                 <div class="activity-details">
                   <div class="activity-title">
-                    <label for="activity<?= $index?>">
-                      <h3><?= htmlspecialchars($activite['a_nom'])?></h3>
+                    <label class="activity-checkbox-label">
+                        <input type="checkbox" name="activities[]" value="<?= $activite['id_activite'] ?>" class="activity-checkbox" data-activity-id="$activite['id_activite']?>">
+                        <h3><?= htmlspecialchars($activite['a_nom'])?></h3>
 </label>
+
+<div class="activity-date">
+    <label for="activity-date-<?= $activite['id_activite'] ?>">Sélectionnez un jour :</label>
+    <input type="date" name="activities_date[<?= $activite['id_activite'] ?>]" id="activity-date-<?= $activite['id_activite']?>" disabled>
+    </div>
+
 </div>
 <p class="activity-description">
   <?=htmlspecialchars($activite['a_description'])?>
     </p>
-                    
+                    <ul>
+                        <li>Durée : <?= htmlspecialchars($activite['a_duree'])?></li>
+                        <li>Mode de transport : <?= htmlspecialchars($activite['mode_transport'])?></li>
+                        <li>Départ : Réception de l'hôtel à <?= htmlspecialchars($activite['a_heure_depart'])?></li>
+                        <li>Prix : <?= htmlspecialchars($activite['a_prix'])?>€ par personne </li>
+                    </ul>
                 </div>
             </div>
 </div>
 <?php endforeach; ?>
 </section>
 
-
-<div class="option-button-container">
-  <a href="options.php?voyage=<?= $voyage['id_voyage'] ?>" class="option-button">Choisir les options</a>
-    </div>
-
-
-
-
+<button type="submit" class="reservation-button">
     </main>
 
-        <footer>
+<footer>
         <p>&copy; 2025 Wander7. Tous droits réservés.</p>
     </footer>
-   
+
 
     <script>
 document.addEventListener("DOMContentLoaded", function () {
   const heroText = document.querySelector(".hero-text");
-  const descriptionBox = document.querySelector(".voyage-description-box");
+  const flightInfo = document.querySelector(".passenger-selection"); 
 
   const observer = new IntersectionObserver(
     ([entry]) => {
@@ -243,13 +333,57 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   );
 
-  if (descriptionBox) {
-    observer.observe(descriptionBox);
+  if (flightInfo) {
+    observer.observe(flightInfo);
   }
 });
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const dateDepartInput = document.getElementById('date_depart');
+  const activityCheckboxes = document.querySelectorAll('.activity-checkbox');
+
+  function updateDateLimits() {
+    const depart = new Date(dateDepartInput.value);
+    if (isNaN(depart.getTime())) return;
+
+    const retour = new Date(depart);
+    retour.setDate(retour.getDate() + dureeVoyage - 1);
+
+    activityCheckboxes.forEach(checkbox => {
+      const id = checkbox.dataset.activityId;
+      const dateInput = document.getElementById(`activity-date-${id}`);
+      if (dateInput) {
+        dateInput.setAttribute('min', depart.toISOString().split('T')[0]);
+        dateInput.setAttribute('max', retour.toISOString().split('T')[0]);
+      }
+    });
+  }
+
+  dateDepartInput.addEventListener('change', updateDateLimits);
+
+  activityCheckboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', function () {
+      const id = this.dataset.activityId;
+      const dateInput = document.getElementById(`activity-date-${id}`);
+      if (!dateInput) return;
+
+      if (this.checked) {
+        dateInput.disabled = false;
+        updateDateLimits();
+      } else {
+        dateInput.disabled = true;
+        dateInput.value = '';
+      }
+    });
+  });
+});
+
+
 </script>
- 
+
+
 
 
     </body>
-</html>
+    </html>
