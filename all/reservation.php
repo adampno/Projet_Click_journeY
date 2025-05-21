@@ -165,13 +165,13 @@ $activites = $stmt_activites->fetchAll();
 
 
 <div class="reservation-container">
-  <h1>Réserver votre voyage</h1>
+  <h1>Nombre de passagers</h1>
   <form method="POST" action="traitement_reservation.php">
     <input type="hidden" name="voyage_id" value="<?= htmlspecialchars($voyage_id) ?>">
 
     <div class="form-group">
-      <label for="adults">Nombre d'adultes :</label>
-      <input type="number" id="adults" name="adults" min="1" max="10" value="1" required>
+      <label for="passengers">Nombre d'adultes :</label>
+      <input type="number" id="passenger" name="passengers" min="1" max="10" value="1" required>
     </div>
 
     <div class="form-group">
@@ -183,28 +183,90 @@ $activites = $stmt_activites->fetchAll();
       <!-- Champs d'âge ajoutés dynamiquement ici -->
     </div>
 
+<div class="passengers-info" id="passengerInfoContainer">
+    <!-- Formulaires ajoutés dynamiquement ici -->
+          </div>
+
   </form>
 </div>
 
 <script>
   const childrenInput = document.getElementById('children');
-  const container = document.getElementById('childrenAgesContainer');
+  const adultsInput = document.getElementById('passenger');
+  const childContainer = document.getElementById('childrenAgesContainer');
+  const passengerContainer = document.getElementById('passengerInfoContainer');
 
-  childrenInput.addEventListener('input', function () {
-    const count = parseInt(this.value) || 0;
-    container.innerHTML = ''; // reset
+  // === Fonction pour générer les adultes ===
+  function generatePassengerForms(count) {
+    passengerContainer.innerHTML = ''; // reset
 
     for (let i = 1; i <= count; i++) {
       const div = document.createElement('div');
-      div.classList.add('form-group', 'child-age');
+      div.classList.add('passenger-info');
       div.innerHTML = `
-        <label for="child_age_${i}">Âge de l'enfant ${i} :</label>
-        <input type="number" name="child_ages[]" id="child_age_${i}" min="0" max="17" required>
+        <h4>Passager ${i}</h4>
+        <div class="row">
+          <div class="form-group">
+            <label for="nom_passager_${i}">Nom :</label>
+            <input type="text" name="noms_passagers[]" id="nom_passager_${i}" required>
+          </div>
+          <div class="form-group">
+            <label for="prenom_passager_${i}">Prénom :</label>
+            <input type="text" name="prenoms_passagers[]" id="prenom_passager_${i}" required>
+          </div>
+        </div>
       `;
-      container.appendChild(div);
+      passengerContainer.appendChild(div);
     }
+  }
+
+  // === Fonction pour générer les enfants ===
+  function generateChildForms(count) {
+    childContainer.innerHTML = ''; // reset
+
+    for (let i = 1; i <= count; i++) {
+      const div = document.createElement('div');
+      div.classList.add('child-info');
+      div.innerHTML = `
+        <h4>Enfant ${i}</h4>
+        <div class="row">
+          <div class="form-group">
+            <label for="nom_enfant_${i}">Nom :</label>
+            <input type="text" name="noms_enfants[]" id="nom_enfant_${i}" required>
+          </div>
+          <div class="form-group">
+            <label for="prenom_enfant_${i}">Prénom :</label>
+            <input type="text" name="prenoms_enfants[]" id="prenom_enfant_${i}" required>
+          </div>
+          <div class="form-group">
+            <label for="age_enfant_${i}">Âge :</label>
+            <input type="number" name="ages_enfants[]" id="age_enfant_${i}" min="0" max="17" required>
+          </div>
+        </div>
+      `;
+      childContainer.appendChild(div);
+    }
+  }
+
+  // === Listener enfants ===
+  childrenInput.addEventListener('input', function () {
+    const count = parseInt(this.value) || 0;
+    generateChildForms(count); // Appelle la fonction enfants
+  });
+
+  // === Listener adultes ===
+  adultsInput.addEventListener('input', function () {
+    const count = parseInt(this.value) || 0;
+    generatePassengerForms(count); // Appelle la fonction adultes
+  });
+
+  // === Générer automatiquement passager 1 au chargement ===
+  document.addEventListener('DOMContentLoaded', function(){
+    const count = parseInt(adultsInput.value) || 1;
+    generatePassengerForms(count);
   });
 </script>
+
 
 </body>
 </html>

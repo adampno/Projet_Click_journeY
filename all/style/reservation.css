@@ -136,13 +136,14 @@ body {
     .page-content {        
     position: relative;
     z-index: 1;
-    padding-top: 100vh; /* pousse le contenu sous l’image */
+    background-color: transparent;
+    padding-top: 20vh; /* pousse le contenu sous l’image */
   }
 
 
 
   .reservation-container {
-    max-width: 700px;
+    width: 70%;
     margin: 60px auto;
     padding: 40px;
     background-color: #f9f9f9;
@@ -196,4 +197,37 @@ body {
   .submit-btn:hover {
     transform: scale(1.05);
     background: linear-gradient(to right, #96c93d, #00b09b);
+  }
+
+  .passengers-info {
+    margin-top: 30px;
+  }
+  
+ 
+
+  .row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .form-group {
+    flex: 1;
+    min-width: 200px;
+  }
+  
+  .passenger-info,
+  .child-info {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+  }
+  
+  .passenger-info h4,
+  .child-info h4 {
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #333;
   }
