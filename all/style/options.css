@@ -112,22 +112,165 @@ h3 {
 }
 
 
-  .voyage-description-box {
-    max-width: 800px;
-    margin: 3rem auto;
-    margin-bottom: 200px;
-    padding: 2rem;
-    background-color: rgba(255, 255, 255, 0.75); /* transparent blanc */
+
+.passenger-selection {
+    max-width: 900px;
+    margin: 40px auto;
+    background-color: white;
+    padding: 25px 30px;
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    text-align: center;
-    font-size: 1.2rem;
-    line-height: 1.6;
-    color: #333;
-    display: block;
+    box-shadow: 0 0 10px rgba(0,0,0,0.08);
 }
 
+.passenger-selection h2 {
+    font-size: 1.4rem;
+    color: #046ce4;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.passenger-fields {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.passenger-field {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.passenger-field label {
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+}
+
+.passenger-field input[type="number"] {
+    padding: 8px 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 100%;
+}
+
+
+
+.flight-box {
+    background-color: #ffffff;
+    border: 1px solid #cfdcec;
+    border-radius: 12px;
+    padding: 20px 25px;
+    margin: 20px auto;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    max-width: 825px;
+    width: 100%;
+}
+
+.flight-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.flight-line {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.flight-line hr {
+    flex: 1;
+    border: none;
+    border-top: 1.5px dashed #999;
+    margin: 0 5px;
+}
+
+.flight-info {
+    display: flex;
+    justify-content: center;
+    padding: 30px 20px;
+}
+
+.flight-wrapper {
+    background-color: #ffffff;
+    border: 1px solid #cfdcec;
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 900px;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.flight-info h2 {
+    font-size: 1.3rem;
+    color: #046ce4;
+    margin-bottom: 15px;
+    text-align: center;
+    
+}
+
+.inner-separator {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 30px 0;
+    width: 100%;
+}
+
+
+
+.plane {
+    font-size: 1.2rem;
+}
+
+.airport {
+    font-weight: 600;
+    color: #333;
+    white-space: nowrap;
+}
+
+.flight-details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-size: 0.95rem;
+    color: #555;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.flight-separator {
+    margin: 40px 0 20px;
+    border: none;
+    border-top: 1px solid #ccc;
+}
+
+
+.flight-wrapper .flight-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding: 15px 25px;
+    background-color: #f5faff;
+    border-radius: 12px;
+    border: 1px solid #cfdcec;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    font-size: 1.2rem !important;
+    font-weight: 600;
+    color: #046ce4 !important;
+    }
+    
+    
+    .flight-wrapper .price-amount {
+        font-size: 1.4rem !important;
+        font-weight: 700;
+        color: #ff4c4c !important;
+    }
 
 
 .hotel-selection {
@@ -148,30 +291,21 @@ h3 {
 
 .hotel-content {
     display: flex;
-    gap: 30px;
+    gap: 20px;
+    align-items: flex-start;
     width: 100%;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.hotel-text {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 
 .hotel-image-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    flex: 0 0 320px;
+    gap: 10px;
 }
 
 .hotel-image-side {
-    width: 300px;
+    width: 220px;
     height: auto;
     border-radius: 10px;
     object-fit: cover;
@@ -181,9 +315,6 @@ h3 {
 
 .hotel-heading {
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
 }
 
 .hotel-heading h3 {
@@ -211,15 +342,55 @@ h3 {
     padding: 20px;
     margin-bottom: 20px;
     transition: border 0.3s;
-    min-height: 250px;
-    display: flex;
-    align-items: center;
 }
 
 .hotel-option:hover {
     border-color: #046ce4;
     background-color: #f9fcff;
 }
+
+.hotel-option input[type="radio"] {
+    margin-right: 10px;
+    transform: scale(1.2);
+}
+
+.hotel-option ul {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.hotel-option ul li {
+    margin-bottom: 5px;
+}
+
+
+/* Bouton radio hôtel */
+.hotel-radio-label {
+    display: flex;
+    width: 100%;
+    cursor: pointer;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.hotel-radio {
+    margin-top: 10px;
+    margin-right: 15px;
+    transform: scale(1.2);
+}
+
+/* Case à cocher activité */
+.activity-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.activity-checkbox {
+    transform: scale(1.2);
+}
+
 
 
 .activity-selection {
@@ -340,37 +511,20 @@ h3 {
 }
 
 
-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #1e99ef;
-    color: white;
-}
-
-
-
-@media (max-width: 768px) {
-
-
-    .hotel-selection {
-        margin: 30px 15px;
-        padding: 20px;
-    }
-
-}
-
-.rating {
-    color: #ffb400;
-    font-size: 1.1rem;
+.activity-date {
+    margin-top: 10px;
+  }
+  
+  .activity-date input[disabled] {
+    background-color: #eee;
+    color: #888;
+    cursor: not-allowed;
   }
 
-.hotel-image-side {
-    align-self: center; 
-}
-  
 
 
-    .hero-wrapper {
+
+.hero-wrapper {
     position: fixed;
     height: 100vh;
     width: 100%;
@@ -438,26 +592,10 @@ footer {
   }
 
 
-
-  .option-button-container {
+footer {
     text-align: center;
-    margin: 50px 0 80px;
-  }
-  
-  .option-button {
-    background: linear-gradient(to right, #00b09b, #96c93d);
+    padding: 20px;
+    background-color: #1e99ef;
     color: white;
-    padding: 15px 40px;
-    font-size: 1.2em;
-    border: none;
-    border-radius: 40px;
-    text-decoration: none;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .option-button:hover {
-    background: linear-gradient(to right, #96c93d, #00b09b);
-    transform: scale(1.05);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-  }
+}
+

@@ -281,43 +281,40 @@ body {
   }
 
  
-
-
-  .reservation-button-container{
-    display: none;
-    z-index: 1000;
-    position: fixed;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%) translateY(30px);
+  .reservation-button-container {
+    text-align: center;
+    margin-top: 40px;
     opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.4 ease, transform 0.4s ease;
-    
+    transition: opacity 0.5s ease;
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    z-index: 1000;
   }
   
-  .reservation-button{
-    display: inline-block;
-    background-color: #046ce4;
-    font-size: 18px;
-    color: white;
-    border-radius: 40px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    padding: 15px 35px;
-  }
-
-
-  .reservation-button-container.visible{
+  .reservation-button-container.visible {
     opacity: 1;
-    pointer-events: auto;
-    transform: translateX(-50%) translateY(0);
   }
-
-
-
+  
+  .reservation-button {
+    background-color: #3290d3;
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
   .reservation-button:hover {
-    background-color: #148aea;
-    transform: scale(1.05);
+    background-color: #3d7699;
+    transform: translateY(-2px);
+  }
+  
+  .reservation-button:active {
+    transform: scale(0.98);
+    background-color: #2a7896;
   }

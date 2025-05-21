@@ -182,13 +182,11 @@ $activites = $stmt_activites->fetchAll();
   </form>
 </div>
 
-
-
 <div class="reservation-button-container" id="reservationButton">
-  <a href="recap.php?voyage=<?= $id ?>" class="reservation-button">
-    Confirmer la réservation
-          </a>
-    </div>
+    <button type="submit" class="reservation-button" form="form-reservation">
+        Confirmer la réservation
+          </button>
+          </div>
 
 </main>
 

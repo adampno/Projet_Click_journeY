@@ -38,6 +38,7 @@ CREATE TABLE voyages (
   prix DECIMAL(10,2) DEFAULT NULL,
   statut ENUM('payé', 'en cours de modification', 'en attente') DEFAULT 'en attente',
   pays VARCHAR(100) NOT NULL,
+  v_description TEXT NOT NULL,
   id_utilisateur INT DEFAULT NULL,
   FOREIGN KEY (id_utilisateur) REFERENCES utilisateurs(id) ON DELETE CASCADE
 );
@@ -250,26 +251,26 @@ INSERT INTO aeroports (nom, region) VALUES
 -- --------------------------------------------------------
 -- Insertion des 7 voyages 
 -- --------------------------------------------------------
-INSERT INTO voyages(titre, duree, prix, pays) VALUES
-('Chichén Itza', 6, 767.00, 'Mexique');
+INSERT INTO voyages(titre, duree, prix, pays, v_description) VALUES
+('Chichén Itza', 6, 767.00, 'Mexique', "Partez sur les traces de la civilisation maya avec nos circuits exclusifs à Chichén Itza. Cette cité sacrée, mystérieuse et fascinante vous dévoile ses pyramides et son génie astronomique. Une aventure entre légendes, science et spiritualité.");
 
-INSERT INTO voyages(titre, duree, prix, pays) VALUES
-('Christ Rédempteur', 7, 863.00, 'Brésil');
+INSERT INTO voyages(titre, duree, prix, pays, v_description) VALUES
+('Christ Rédempteur', 7, 863.00, 'Brésil', "Élevez votre voyage au sommet de Rio avce nos circuits exclusifs autour du Christ Rédempteur. Admirez la ville et ses décors à couper le souffle depuis l'une des sept merveilles du monde. Une expérience spirituelle et panoramique inoubliable.");
 
-INSERT INTO voyages(titre, duree, prix, pays) VALUES
-('Pétra', 5, 874.00, 'Jordanie');
+INSERT INTO voyages(titre, duree, prix, pays, v_description) VALUES
+('Pétra', 5, 874.00, 'Jordanie', "Explorez les mystères de la cité rose avec nos circuits exclusifs à Pétra. Sculptée dans la roche au cœur du désert jordanien, cette merveille vous transporte dans un voyage hors du temps. Laissez-vous envoûter par l'histoire et la magie de ce joyau nabatéen.");
 
-INSERT INTO voyages(titre, duree, prix, pays) VALUES
-('Colisée', 5, 655.00, 'Italie');
+INSERT INTO voyages(titre, duree, prix, pays, v_description) VALUES
+('Colisée', 5, 655.00, 'Italie', "Plongez au cœur de la Rome antique en découvrant le mythique Colisée à travers nos circuits exclusifs. Marchez sur les traces des gladiateurs et laissez-vous emporter par la grandeur de l'Empire romain. Une immersion inoubliable entre histoire, culture et émotions.");
 
-INSERT INTO voyages(titre, duree, prix, pays) VALUES
-('Machu Picchu', 7, 1073.00, 'Pérou');
+INSERT INTO voyages(titre, duree, prix, pays, v_description) VALUES
+('Machu Picchu', 7, 1073.00, 'Pérou', "Partez à la conquête des sommets andins avec nos circuits exclusifs vers le Machu Picchu. Nichée dans les nuages, cette cité inca vous dévoile ses secrets entre nature sauvage et patrimoine sacré. Une expérience majestueuse au bout du monde.");
 
-INSERT INTO voyages(titre, duree, prix, pays) VALUES
-('Taj Mahal', 8, 1011.00, 'Inde');
+INSERT INTO voyages(titre, duree, prix, pays, v_description) VALUES
+('Taj Mahal', 8, 1011.00, 'Inde', "Laissez-vous envoûter par la beauté éternelle du Taj Mahal grâce à nos circuits exclusifs en Inde. Ce joyau d'amour et d'architecture vous transporte dans un monde de raffinement, d'émotion et de légende. Une escale poétique au coeur de l'Orient.");
 
-INSERT INTO voyages(titre, duree, prix, pays) VALUES
-('Grande Muraille de Chine', 9, 905.00, 'Chine');
+INSERT INTO voyages(titre, duree, prix, pays, v_description) VALUES
+('Grande Muraille de Chine', 9, 905.00, 'Chine', "Marchez sur l'une des merveilles les plus emblématiques du monde avec nos circuits exclusifs le long de la Grande Muraille de Chine. Entre montagnes majestueuses et panoramas infinis, vivez une aventure grandiose à travers des siècles d'histoire impériale.");
 
 
 
