@@ -1,5 +1,6 @@
 <?php
 session_start(); // Active la gestion des sessions
+unset($_SESSION['reservation_temp']);
 
 
 // Vérificationsi l'utilisateur est connecté

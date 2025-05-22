@@ -1,6 +1,17 @@
 <?php
 session_start();
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['enregistrer_infos'])) {
+  $_SESSION['reservation_temp'] = [
+      'nb_adultes' => (int)$_POST['nb_adultes'],
+      'nb_enfants' => (int)$_POST['nb_enfants'],
+      'date_depart' => $_POST['date_depart']
+  ];
+  header("Location: options.php?voyage=" . $_GET['voyage']); 
+  exit;
+}
+
+
 // Activation des erreurs PHP pour debug
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -112,10 +123,13 @@ $activites = $stmt_activites->fetchAll();
 <html lang="fr">
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
         <link rel="stylesheet" href="style/options.css">
         <title><?php echo htmlspecialchars($voyage['titre']); ?> | Wander7</title>
     </head>
     <body>
+
+
 
 <header>
       <img class="logo" src="assets/LogoWander7.png" alt="logo">
@@ -149,33 +163,27 @@ $activites = $stmt_activites->fetchAll();
 </div>
 
 <main class="page-content">
-<form action="traitement_reservation.php" method="POST">
-    <input type="hidden" name="voyage_id" value="<?= $voyage['id_voyage']?>">
 
-
-
+<form action="options.php?voyage=<?= $voyage['id_voyage']?>" method="POST">
     <section class="passenger-selection">
   <h2>Informations voyage</h2>
   <div class="passenger-fields">
     <div class="passenger-field">
       <label for="adults">Nombre d'adultes :</label>
-      <input type="number" id="adults" name="nb_adultes" min="1" value="1" required>
+      <input type="number" id="adults" name="nb_adultes" min="1" value="<?= $_SESSION['reservation_temp']['nb_adultes'] ?? 1?>" required>
     </div>
     <div class="passenger-field">
       <label for="children">Nombre d'enfants :</label>
-      <input type="number" id="children" name="nb_enfants" min="0" value="0">
+      <input type="number" id="children" name="nb_enfants" min="0" value="<?= $_SESSION['reservation_temp']['nb_enfants'] ?? 0 ?>">
     </div>
     <div class="passenger-field">
         <label for="date_depart">Date de départ :</label>
-        <input type="date" id="date_depart" name="date_depart" required>
+        <input type="date" id="date_depart" name="date_depart" required value="<?= $_SESSION['reservation_temp']['date_depart'] ?? ''?>">
           </div>
   </div>
+<button type="submit" name="enregistrer_infos" class="btn-tempo">Enregistrer les informations</button>
 </section>
-
-
-<script>
-    const dureeVoyage = <?= (int)$voyage['duree']?>;
-    </script>
+          </form>
 
 
 <section class="flight-info">
@@ -281,14 +289,10 @@ $activites = $stmt_activites->fetchAll();
                 <div class="activity-details">
                   <div class="activity-title">
                     <label class="activity-checkbox-label">
-                        <input type="checkbox" name="activities[]" value="<?= $activite['id_activite'] ?>" class="activity-checkbox" data-activity-id="$activite['id_activite']?>">
+                        <input type="checkbox" name="activities[]" value="<?= $activite['id_activite'] ?>" class="activity-checkbox" data-activity-id="<?=$activite['id_activite']?>">
                         <h3><?= htmlspecialchars($activite['a_nom'])?></h3>
 </label>
 
-<div class="activity-date">
-    <label for="activity-date-<?= $activite['id_activite'] ?>">Sélectionnez un jour :</label>
-    <input type="date" name="activities_date[<?= $activite['id_activite'] ?>]" id="activity-date-<?= $activite['id_activite']?>" disabled>
-    </div>
 
 </div>
 <p class="activity-description">
@@ -300,6 +304,13 @@ $activites = $stmt_activites->fetchAll();
                         <li>Départ : Réception de l'hôtel à <?= htmlspecialchars($activite['a_heure_depart'])?></li>
                         <li>Prix : <?= htmlspecialchars($activite['a_prix'])?>€ par personne </li>
                     </ul>
+
+
+                    <div class="activity-date">
+    <label for="activity-date-<?= $activite['id_activite'] ?>">Sélectionnez un jour :</label>
+    <input type="date" name="activities_date[<?= $activite['id_activite'] ?>]" id="activity-date-<?= $activite['id_activite']?>" disabled class="activity-date-input">
+    </div>
+
                 </div>
             </div>
 </div>
@@ -313,9 +324,8 @@ $activites = $stmt_activites->fetchAll();
         <p>&copy; 2025 Wander7. Tous droits réservés.</p>
     </footer>
 
-
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
-document.addEventListener("DOMContentLoaded", function () {
   const heroText = document.querySelector(".hero-text");
   const flightInfo = document.querySelector(".passenger-selection"); 
 
@@ -336,50 +346,55 @@ document.addEventListener("DOMContentLoaded", function () {
   if (flightInfo) {
     observer.observe(flightInfo);
   }
-});
+
 
 
 document.addEventListener("DOMContentLoaded", function () {
+  const dureeVoyage = <?= (int)$voyage['duree'] ?>;
   const dateDepartInput = document.getElementById('date_depart');
   const activityCheckboxes = document.querySelectorAll('.activity-checkbox');
 
-  function updateDateLimits() {
-    const depart = new Date(dateDepartInput.value);
-    if (isNaN(depart.getTime())) return;
+  function updateActivityPickers() {
+    const departStr = dateDepartInput.value;
+    if (!departStr) return;
 
-    const retour = new Date(depart);
-    retour.setDate(retour.getDate() + dureeVoyage - 1);
+    const departDate = new Date(departStr);
+    if(isNaN(departDate.getTime())) return;
+
+    const retourDate = new Date(departDate);
+    retourDate.setDate(retourDate.getDate() + dureeVoyage - 1);
+
 
     activityCheckboxes.forEach(checkbox => {
       const id = checkbox.dataset.activityId;
       const dateInput = document.getElementById(`activity-date-${id}`);
-      if (dateInput) {
-        dateInput.setAttribute('min', depart.toISOString().split('T')[0]);
-        dateInput.setAttribute('max', retour.toISOString().split('T')[0]);
+
+      if (dateInput._flatpickr) {
+        dateInput._flatpickr.destroy();
       }
+
+flatpickr(dateInput, {
+  minDate: departDate,
+  maxDate: retourDate,
+  dateFormat: "Y-m-d", 
+  disableMobile: true,
+  locale: "fr", 
+  allowInput: false,
+});
+dateInput.disabled = !checkbox.checked;
+
     });
   }
 
-  dateDepartInput.addEventListener('change', updateDateLimits);
+    dateDepartInput.addEventListener('change', updateActivityPickers);
 
-  activityCheckboxes.forEach(checkbox => {
-    checkbox.addEventListener('change', function () {
-      const id = this.dataset.activityId;
-      const dateInput = document.getElementById(`activity-date-${id}`);
-      if (!dateInput) return;
-
-      if (this.checked) {
-        dateInput.disabled = false;
-        updateDateLimits();
-      } else {
-        dateInput.disabled = true;
-        dateInput.value = '';
-      }
-    });
+    activityCheckboxes.forEach((checkbox) => {
+      checkbox.addEventListener('change', function() {
+      updateActivityPickers();
   });
 });
-
-
+  updateActivityPickers();
+});
 </script>
 
 

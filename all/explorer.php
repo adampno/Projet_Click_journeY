@@ -4,6 +4,7 @@ require_once "database/database.php";
 
 $estConnecte = isset($_SESSION['user']);
 $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
+unset($_SESSION['reservation_temp']);
 
 $titre = $_GET['titre'] ?? null;
 

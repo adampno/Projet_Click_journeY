@@ -1,5 +1,6 @@
 <?php
 session_start();
+unset($_SESSION['reservation_temp']);
 
 // Activation des erreurs PHP pour debug
 error_reporting(E_ALL);

@@ -1,6 +1,7 @@
 <?php 
 
 session_start();
+unset($_SESSION['reservation_temp']);
 
 if (!isset($_SESSION['user'])){
     header("Location: index.php");

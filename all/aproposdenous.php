@@ -2,6 +2,8 @@
 session_start(); // Active la gestion des sessions
 $estConnecte = isset($_SESSION['user']);
 $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
+unset($_SESSION['reservation_temp']);
+
 ?>
 <!DOCTYPE html>
   <head>
