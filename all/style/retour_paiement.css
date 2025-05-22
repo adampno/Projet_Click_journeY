@@ -1,0 +1,68 @@
+
+body {
+    background-color: pink !important;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500');
+
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+    background: linear-gradient(to right, #f5f7fa, #c3cfe2);
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Conteneur principal du contenu */
+.container {
+    background: white;
+    max-width: 600px;
+    margin: 80px auto;
+    padding: 40px 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.container h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #1e99ef;
+}
+
+.container p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.container strong {
+    color: #2c3e50;
+}
+
+/* Message de succès ou d'erreur */
+h1:contains("validé") {
+    color: #2ecc71;
+}
+
+h1:contains("Échec") {
+    color: #e74c3c;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #1e99ef;
+    color: white;
+}
+
