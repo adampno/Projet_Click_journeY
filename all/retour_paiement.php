@@ -28,8 +28,8 @@ $verification = ($control_recu === $control_calcule);
     <head>
         <meta charset="UTF-8">
         <title>Paiement</title>
-        <link rel="stylesheet" href="style/retour_paiement.css">
-
+       <link rel="stylesheet" href="style/retour_paiement.css">
+   
     </head>
 
     <body>
@@ -45,7 +45,6 @@ $verification = ($control_recu === $control_calcule);
         <?php endif; ?>
     </div>
 
-</body>
 
 
 
@@ -53,5 +52,5 @@ $verification = ($control_recu === $control_calcule);
         <p>&copy; 2025 Wander7. Tous droits réservés.</p>
       </footer>
       
-      </body>
+     </body>
       </html>
