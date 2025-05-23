@@ -23,7 +23,7 @@ $topDestinations = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">  <!-- Adapte le site aux écrans -->
     <link rel="icon" href="assets/Logo_Wander7_Favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="style/index.css" id="theme-style" >
+    <link rel="stylesheet" id="theme-style" >
 
     <script src="scripts/darkmode.js" defer></script>
 
