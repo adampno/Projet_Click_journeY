@@ -9,7 +9,9 @@ unset($_SESSION['reservation_temp']);
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style/aproposdenous.css" />
+    <link id="theme-style" rel="stylesheet">
+
+    <script src="scripts/darkmode.js" defer></script>
   </head>
 
   <body>
@@ -17,6 +19,7 @@ unset($_SESSION['reservation_temp']);
       <img class="logo" src="assets/LogoWander7.png" alt="logo">
       <nav>
         <ul class="nav_links">
+        <button id="theme-selector" style="position: fixed; top: 20px; right: 20px; z-index: 1000; font-size: 20px; background: none; border: none; cursor: pointer;">🌙</button>
           <li><a href="index.php">Accueil</a></li>
           <li><a href="aproposdenous.php">À propos de nous</a></li>
           <li><a href="explorer.php">Explorer</a></li>
