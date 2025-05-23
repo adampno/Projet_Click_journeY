@@ -13,6 +13,7 @@ $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
     <title>Wander7-Formulaire d'Inscription</title>
     <link rel="icon" href="assets/Logo_Wander7_Favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="style/sinscrire.css"/>
+    <script src="scripts/afficher_mdp.js" defer></script>
 </head>
 <body>
 
@@ -139,24 +140,6 @@ $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
     <footer>
         <p>&copy; 2025 Wander7. Tous droits réservés.</p>
     </footer>
-
-    <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const passwordField = document.getElementById("password");
-    const toggleButton = document.getElementById("toggle-password");
-
-    toggleButton.addEventListener("click", function () {
-      if (passwordField.type === "password") {
-        passwordField.type = "text";
-        toggleButton.textContent = "🙈 Masquer le mot de passe";
-      } else {
-        passwordField.type = "password";
-        toggleButton.textContent = "👁️ Afficher le mot de passe";
-      }
-    });
-  });
-</script>
-
 
 </body>
 </html>
