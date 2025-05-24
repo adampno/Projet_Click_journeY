@@ -117,6 +117,15 @@ if (!$stmt_activites->execute()){
 }
 $activites = $stmt_activites->fetchAll();
 
+// Récupération temporaire du nombre de passagers
+$total_passagers = ($_SESSION['reservation_temp']['nb_adultes'] ?? 1) + ($_SESSION['reservation_temp']['nb_enfants'] ?? 0);
+
+$nb_passagers = ($_SESSION['reservation_temp']['nb_adultes'] ?? 0 ) + ($_SESSION['reservation_temp']['nb_enfants'] ?? 0);
+$nb_chambres = ceil($nb_passagers / 2);
+
+$prix_vols = (float)($vol_aller['prix'] + $vol_retour['prix']);
+$prix_total_vols = $prix_vols * $total_passagers;
+
 
 ?>
 <!DOCTYPE html>
@@ -221,9 +230,15 @@ $activites = $stmt_activites->fetchAll();
   <span>Arrivée : <?=htmlspecialchars($vol_retour['heure_arrivee'])?></span>
 </div>
 </div>
-<div class="flight-price">
-  <span>Prix Total :</span> <span class="price-amount"><?= htmlspecialchars($vol_aller['prix'] + $vol_retour['prix'])?>€/pers.</span>
+<div class="flight-price-box">
+  <span>Prix par personne :</span>
+  <span><?= htmlspecialchars($vol_aller['prix'] + $vol_retour['prix'])?> €</span>
 </div>
+<div class="flight-price-emphasized">
+<span>Prix total <span class="passenger-info">(pour <?= $total_passagers ?> passager<?= $total_passagers > 1 ? 's' : '' ?>)</span> :
+          </span>
+  <strong><?= number_format($prix_total_vols, 2, ',', ' ') ?> €</strong>
+          </div>
 </div>
 </section>
     
@@ -265,6 +280,18 @@ $activites = $stmt_activites->fetchAll();
             <li>Prix par chambre double (1 ou 2 pers.) : <?= $hebergement['h_prix']?> €</li>
 </ul>
 </div>
+
+<?php 
+$prix_chambre = (float) $hebergement['h_prix'];
+$prix_total_chambres = $prix_chambre * $nb_chambres;
+?>
+
+<div class="hotel-price-summary">
+  Prix total <span>(pour <?= $nb_chambres ?> chambre<?= $nb_chambres > 1 ? 's' : '' ?> double<?= $nb_chambres > 1 ? 's' : '' ?>)</span> : 
+  <strong><?= number_format($prix_total_chambres, 2, ',', ' ') ?> €</strong>
+</div>
+
+
 </div>
 </label>
 </div>
@@ -305,10 +332,19 @@ $activites = $stmt_activites->fetchAll();
                         <li>Prix : <?= htmlspecialchars($activite['a_prix'])?>€ par personne </li>
                     </ul>
 
+<div class="activity-participants">
+  <label for="activity-participants-<?= $activite['id_activite'] ?>">Nombre de participants :</label>
+  <input type="number" id="activity-participants-<?= $activite['id_activite']?>" name="activities_participants[<?= $activite['id_activite'] ?>]" min="1" max="<?= $total_passagers ?>" value="1" disabled class="activity-participants-input" data-prix="<?= $activite['a_prix']?>"></div>
+
+
 
                     <div class="activity-date">
     <label for="activity-date-<?= $activite['id_activite'] ?>">Sélectionnez un jour :</label>
     <input type="date" name="activities_date[<?= $activite['id_activite'] ?>]" id="activity-date-<?= $activite['id_activite']?>" disabled class="activity-date-input">
+    </div>
+
+<div class="activity-total-price" id="activity-total-price-<?= $activite['id_activite']?>">
+  Prix total : 0€
     </div>
 
                 </div>
@@ -317,7 +353,21 @@ $activites = $stmt_activites->fetchAll();
 <?php endforeach; ?>
 </section>
 
-<button type="submit" class="reservation-button">
+
+
+<section class="final-buttons">
+  <form action="reservation.php?voyage=<?= $voyage['id_voyage'] ?>" method="POST" class="confirmation-form">
+    <input type="hidden" name="action" value="payer">
+    <button type="submit" class="btn-confirmer-reserver">Confirmer et réserver</button>
+  </form>
+
+  <form action="traitement_reservation.php" method="POST" class="confirmation-form">
+    <input type="hidden" name="action" value="retour_accueil">
+    <button type="submit" class="btn-retour">Confirmer et revenir à l’accueil</button>
+  </form>
+</section>
+
+
     </main>
 
 <footer>
@@ -326,6 +376,78 @@ $activites = $stmt_activites->fetchAll();
 
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
+
+document.addEventListener("DOMContentLoaded", function () {
+  const activityCheckboxes = document.querySelectorAll('.activity-checkbox');
+
+  activityCheckboxes.forEach(checkbox => {
+    const id = checkbox.dataset.activityId;
+    const participantsInput = document.getElementById(`activity-participants-${id}`);
+    const totalPriceDisplay = document.getElementById(`activity-total-price-${id}`);
+    const dateInput = document.getElementById(`activity-date-${id}`);
+
+    function updateTotalPrice() {
+      const unitPrice = parseFloat(participantsInput.dataset.prix || 0);
+      const nbParticipants = parseInt(participantsInput.value || 0);
+      const total = unitPrice * nbParticipants;
+
+      totalPriceDisplay.textContent = `Prix total : ${total.toFixed(2)} €`;
+    }
+
+    checkbox.addEventListener('change', function () {
+      const isChecked = this.checked;
+
+      if (participantsInput) {
+        participantsInput.disabled = !isChecked;
+        participantsInput.value = isChecked ? 1 : '';
+        participantsInput.max = totalPassagers;
+        updateTotalPrice();
+      }
+
+      if (dateInput) {
+        dateInput.disabled = !isChecked;
+        dateInput.value = isChecked ? dateInput.value : '';
+      }
+
+      if (!isChecked) {
+        totalPriceDisplay.textContent = "Prix total : 0 €";
+      }
+    });
+
+    if (participantsInput) {
+      participantsInput.addEventListener('input', updateTotalPrice);
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const activityCheckboxes = document.querySelectorAll('.activity-checkbox');
+
+  activityCheckboxes.forEach(checkbox => {
+    const id = checkbox.dataset.activityId;
+    const participantsInput = document.getElementById(`activity-participants-${id}`);
+    const dateInput = document.getElementById(`activity-date-${id}`);
+
+    checkbox.addEventListener('change', function () {
+      const isChecked = this.checked;
+
+      if (participantsInput) {
+        participantsInput.disabled = !isChecked;
+        participantsInput.value = isChecked ? 1 : '';
+        participantsInput.max = totalPassagers;
+      }
+
+      if (dateInput) {
+        dateInput.disabled = !isChecked;
+        dateInput.value = isChecked ? dateInput.value : '';
+      }
+    });
+  });
+});
+
+
+  const totalPassagers =<?= $total_passagers ?>;
   const heroText = document.querySelector(".hero-text");
   const flightInfo = document.querySelector(".passenger-selection"); 
 

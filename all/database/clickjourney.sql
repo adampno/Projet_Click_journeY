@@ -32,8 +32,6 @@ CREATE TABLE IF NOT EXISTS utilisateurs(
 CREATE TABLE voyages (
   id_voyage INT AUTO_INCREMENT PRIMARY KEY,
   titre VARCHAR(100) NOT NULL,
-  date_debut DATE DEFAULT NULL,
-  date_fin DATE DEFAULT NULL,
   duree INT NOT NULL,
   prix DECIMAL(10,2) DEFAULT NULL,
   statut ENUM('payé', 'en cours de modification', 'en attente') DEFAULT 'en attente',
@@ -100,10 +98,14 @@ CREATE TABLE IF NOT EXISTS reservations (
   id_reservation INT AUTO_INCREMENT PRIMARY KEY,
   utilisateur_id INT NOT NULL,
   voyage_id INT NOT NULL,
+  date_debut DATE NOT NULL,
+  date_fin DATE NOT NULL,
   date_reservation DATETIME DEFAULT CURRENT_TIMESTAMP,
   nb_adultes INT NOT NULL,
   nb_enfants INT NOT NULL,
   hebergement_id INT NOT NULL,
+  montant_total DECIMAL(10,2) NOT NULL,
+  statut_reservation ENUM('en attente', 'payé'),
   FOREIGN KEY (utilisateur_id) REFERENCES utilisateurs(id) ON DELETE CASCADE,
   FOREIGN KEY (voyage_id) REFERENCES voyages(id_voyage) ON DELETE CASCADE,
   FOREIGN KEY (hebergement_id) REFERENCES hebergements(id_hebergement)
@@ -185,6 +187,9 @@ CREATE TABLE activites (
 CREATE TABLE IF NOT EXISTS reservation_activites (
   id_reservation INT NOT NULL,
   id_activite INT NOT NULL,
+  nb_participants INT NOT NULL DEFAULT 1,
+  date_activite DATE NOT NULL,
+  prix_total_activite DECIMAL(10,2) NOT NULL,
   PRIMARY KEY (id_reservation, id_activite),
   FOREIGN KEY (id_reservation) REFERENCES reservations(id_reservation) ON DELETE CASCADE,
   FOREIGN KEY (id_activite) REFERENCES activites(id_activite)ON DELETE CASCADE

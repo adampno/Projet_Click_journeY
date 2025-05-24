@@ -2,14 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Waterfall&display=swap');
 
 
-
-
-body {
-    position: relative;
-    z-index: 0;
-}
-
-
 header {
     position: relative;
     display: flex;
@@ -29,7 +21,6 @@ header {
 }
 
 
-
 .logo {
     cursor: pointer;
     width: 120px;
@@ -37,11 +28,13 @@ header {
     border-radius: 10% 30% 50% 70%;
 }
 
+
 .nav_links {
     list-style: none;
     display: flex;
     gap: 20px;
 }
+
 
 .nav_links a {
     font-weight: 500;
@@ -51,6 +44,7 @@ header {
     padding: 10px 15px;
     transition: 0.3s;
 }
+
 
 .nav_links a:hover {
     background-color: rgba(255, 255, 255, 0.2);
@@ -64,12 +58,13 @@ header {
     padding: 0;
 }
 
+
 body {
     font-family: "Montserrat", sans-serif;
     color: #2c3e50;
     background-color: #f5f7fa;
+    position: relative;
 }
-
 
 
 .hero-wrapper {
@@ -82,6 +77,7 @@ body {
     z-index: -1; /* met le fond derrière */
     }
 
+
 .hero-image {
     width: 100%;
     height: 100%;
@@ -89,7 +85,7 @@ body {
     display: block;
 }
 
-      
+   
     .hero-overlay {
     position: absolute;
     top: 0;
@@ -99,8 +95,6 @@ body {
     background: rgba(0, 0, 0, 0.5);
   }
       
-  
-
 
  .hero-text {
     position: absolute;
@@ -114,7 +108,6 @@ body {
   }
   
  
-  
   .hero-text h1 {
     font-family: 'Waterfall', cursive;
     font-size: 12vw;
@@ -126,20 +119,12 @@ body {
 
 
 .hero-text p {
-    font-family: "Cormorant Garamound", serif;
+    font-family: "Cormorant Garamond", serif;
     font-size: 2vw;
     font-weight: 400;
     margin-top: 10px;
     text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.4);
 }
-
-    .page-content {        
-    position: relative;
-    z-index: 1;
-    background-color: transparent;
-    padding-top: 20vh; /* pousse le contenu sous l’image */
-  }
-
 
 
   .reservation-container {
@@ -151,20 +136,24 @@ body {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   }
 
+
   .reservation-container h1 {
     text-align: center;
     margin-bottom: 30px;
   }
 
+
   .form-group {
     margin-bottom: 20px;
   }
+
 
   label {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
   }
+
 
   input[type="number"] {
     width: 100%;
@@ -173,13 +162,16 @@ body {
     border: 1px solid #ccc;
   }
 
+
   .children-ages {
     margin-top: 20px;
   }
 
+
   .child-age {
     margin-bottom: 15px;
   }
+
 
   .submit-btn {
     display: block;
@@ -194,35 +186,11 @@ body {
     transition: 0.3s ease;
   }
 
+
   .submit-btn:hover {
     transform: scale(1.05);
     background: linear-gradient(to right, #2e7aaa, #23abd4);
   }
-
-  .passengers-info {
-    margin-top: 30px;
-  }
-  
- 
-
-  .row {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-  
-  .form-group {
-    flex: 1 1 250px;
-    display: flex;
-    flex-direction: column;
-  }
-
-
-.form-group label{
-    font-weight: 500;
-    margin-bottom: 6px;
-    color: #444;
-}
 
 
 .form-group input, 
@@ -244,7 +212,6 @@ body {
 }
 
 
-  
   .passenger-info,
   .child-info {
     border: 1px solid #dcdcdc;
@@ -256,6 +223,7 @@ body {
     transition: box-shadow 0.3s ease;
   }
   
+
   .passenger-info h4,
   .child-info h4 {
     margin-bottom: 20px;
@@ -266,13 +234,13 @@ body {
     padding-left: 12px;
   }
 
+
   .age-info {
     font-style: italic;
     font-size: 0.95em;
     color: #777;
     margin-top: 15px;
   }
-
 
 
   .passenger-info:hover,
@@ -292,10 +260,12 @@ body {
     z-index: 1000;
   }
   
+
   .reservation-button-container.visible {
     opacity: 1;
   }
   
+
   .reservation-button {
     background-color: #3290d3;
     color: white;
@@ -309,12 +279,22 @@ body {
     transition: background-color 0.3s ease, transform 0.2s ease;
   }
   
+
   .reservation-button:hover {
     background-color: #3d7699;
     transform: translateY(-2px);
   }
+ 
   
   .reservation-button:active {
     transform: scale(0.98);
     background-color: #2a7896;
   }
+
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #1e99ef;
+  color: white;
+}

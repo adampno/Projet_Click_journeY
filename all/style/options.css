@@ -271,27 +271,61 @@ h3 {
 }
 
 
-.flight-wrapper .flight-price {
+
+
+.flight-price-box {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 20px;
     padding: 15px 25px;
     background-color: #f5faff;
     border-radius: 12px;
     border: 1px solid #cfdcec;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    font-size: 1.2rem !important;
+    text-align: left;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    margin-top: 20px;
+    font-size: 1.2rem;
     font-weight: 600;
-    color: #046ce4 !important;
-    }
-    
-    
-    .flight-wrapper .price-amount {
-        font-size: 1.4rem !important;
-        font-weight: 700;
-        color: #ff4c4c !important;
-    }
+    color: #046ce4;
+}
+
+
+.flight-price-box .price-amount {
+    font-weight: 700;
+    font-size: 1.4rem;
+    margin-left: 5px;
+    color: #ff4c4c;
+}
+
+
+    .flight-price-emphasized {
+        display: flex;
+        width: 100%;
+        background-color: #f0f6ff;
+        padding: 20px 25px;
+        margin-top: 20px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        border: 2px solid #046ce4;
+        text-align: right;
+        clear: both;
+        justify-content: space-between;
+        align-items: center;
+        box-sizing: border-box;
+      }
+      
+      .flight-price-emphasized .passenger-info {
+        font-weight: normal;
+        font-size: 0.9em;
+        color: #555;
+      }
+      
+      .flight-price-emphasized strong {
+        font-size: 1.5em;
+        color: #d62828;
+      }
 
 
 .hotel-selection {
@@ -399,6 +433,39 @@ h3 {
     margin-right: 15px;
     transform: scale(1.2);
 }
+
+
+
+.hotel-price-summary {
+    text-align: center;
+    float: right;
+    max-width: 220px;
+    background-color: #f5f5f5;
+    margin-top: 15px;
+    padding: 10px 15px;
+    background: #f2f6ff;
+    border-left: 4px solid #3366ff;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #223366;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+
+  .hotel-price-summary span {
+    font-weight: normal;
+    font-size: 0.9em;
+    color: #555;
+  }
+
+
+  .hotel-price-summary strong {
+    display: block;
+    margin-top: 5px;
+    font-size: 1.3em;
+    color: #333;
+  }
 
 /* Case à cocher activité */
 .activity-checkbox-label {
@@ -555,6 +622,22 @@ h3 {
   }
 
 
+  .activity-participants {
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+  }
+  
+  .activity-participants input {
+    width: 60px;
+    padding: 4px;
+    font-size: 1em;
+  }
+
+.activity-total-price {
+    margin-top: 0.5em;
+    font-weight: bold;
+    color: #333;
+}
 
 
 .hero-wrapper {
@@ -617,6 +700,49 @@ h3 {
     margin-top: 10px;
     text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.4);
 }
+
+
+
+.final-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 50px auto;
+    flex-wrap: wrap;
+  }
+  
+  .confirmation-form {
+    display: inline-block;
+  }
+  
+  .btn-reserver,
+  .btn-retour {
+    padding: 14px 30px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+    font-weight: bold;
+  }
+  
+  .btn-reserver {
+    background-color: #046ce4;
+    color: white;
+  }
+  
+  .btn-reserver:hover {
+    background-color: #0354ba;
+  }
+  
+  .btn-retour {
+    background-color: #cccccc;
+    color: #333;
+  }
+  
+  .btn-retour:hover {
+    background-color: #bbbbbb;
+  }
 
     .page-content {        
     position: relative;
