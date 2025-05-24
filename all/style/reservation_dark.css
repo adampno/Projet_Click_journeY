@@ -8,7 +8,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 20px 10%;
-  background: linear-gradient(#1a1a1a, #222, #2c2c2c);
+  background: linear-gradient(#046ce4, #148aea, #1e99ef);
   z-index: 10;
 }
 
@@ -24,7 +24,7 @@ header {
 .logo {
   cursor: pointer;
   width: 120px;
-  background-color: #ffffff;
+  background-color: white;
   border-radius: 10% 30% 50% 70%;
 }
 
@@ -61,8 +61,8 @@ header {
 
 body {
   font-family: "Montserrat", sans-serif;
-  color: #e0e0e0;
-  background-color: #121212;
+  color: #2c3e50;
+  background-color: #f5f7fa;
   position: relative;
 }
 
@@ -132,9 +132,9 @@ body {
   width: 70%;
   margin: 60px auto;
   padding: 40px;
-  background-color: #1e1e1e;
+  background-color: #f9f9f9;
   border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -153,7 +153,6 @@ label {
   display: block;
   margin-bottom: 8px;
   font-weight: bold;
-  color: #ccc;
 }
 
 
@@ -161,9 +160,7 @@ input[type="number"] {
   width: 100%;
   padding: 10px;
   border-radius: 8px;
-  border: 1px solid #444;
-  background-color: #2a2a2a;
-  color: #f5f5f5;
+  border: 1px solid #ccc;
 }
 
 
@@ -201,30 +198,29 @@ input[type="number"] {
 .form-group select {
   padding: 10px;
   border-radius: 8px;
-  border: 1px solid #444;
+  border: 1px solid #ccc;
   font-size: 15px;
-  background-color: #2a2a2a;
-  color: #f5f5f5;
+  background-color: #fafafa;
   transition: border-color 0.2s;
 }
 
 
 .form-group input:focus,
 .form-group select:focus {
-  border-color: #00bcd4;
+  border-color: #046ce4;
   outline: none;
-  box-shadow: 0 0 4px rgba(0, 188, 212, 0.5);
+  box-shadow: 0 0 4px rgba(4, 108, 228, 0.3);
 }
 
 
 .passenger-info,
 .child-info {
-  border: 1px solid #333;
+  border: 1px solid #dcdcdc;
   padding: 25px;
   border-radius: 12px;
   margin-bottom: 30px;
-  background-color: #1a1a1a;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
   transition: box-shadow 0.3s ease;
 }
 
@@ -234,8 +230,8 @@ input[type="number"] {
   margin-bottom: 20px;
   font-size: 20px;
   font-weight: 600;
-  color: #00bcd4;
-  border-left: 4px solid #00acc1;
+  color: #2c3e50;
+  border-left: 4px solid #4cabea;
   padding-left: 12px;
 }
 
@@ -243,14 +239,14 @@ input[type="number"] {
 .age-info {
   font-style: italic;
   font-size: 0.95em;
-  color: #999;
+  color: #777;
   margin-top: 15px;
 }
 
 
 .passenger-info:hover,
 .child-info:hover {
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -300,6 +296,6 @@ input[type="number"] {
 footer {
   text-align: center;
   padding: 20px;
-  background-color: #1a1a1a;
-  color: #ccc;
+  background-color: #1e99ef;
+  color: white;
 }

@@ -7,6 +7,9 @@
 body {
     position: relative;
     z-index: 0;
+    font-family: "Montserrat", sans-serif;
+    color: #e0e0e0;
+    background-color: #121212;
 }
 
 
@@ -16,7 +19,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 20px 10%;
-    background: linear-gradient(#046ce4, #148aea, #1e99ef);
+    background: linear-gradient(#1a1a1a, #222, #2c2c2c);
     z-index: 10;
 }
 
@@ -33,7 +36,7 @@ header {
 .logo {
     cursor: pointer;
     width: 120px;
-    background-color: white;
+    background-color: #ffffff;
     border-radius: 10% 30% 50% 70%;
 }
 
@@ -64,21 +67,16 @@ header {
     padding: 0;
 }
 
-body {
-    font-family: "Montserrat", sans-serif;
-    color: #2c3e50;
-    background-color: #f5f7fa;
-}
-
 h2 {
     font-size: 1.8rem;
     margin-bottom: 20px;
-    color: #046ce4;
+    color: #00ffff;
 }
 
 h3 {
     font-size: 1.4rem;
     margin: 10px 0;
+    color: #cccccc;
 }
 
 .hero-image {
@@ -96,7 +94,7 @@ h3 {
     left: 0;
     height: 100%;
     width: 100%;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.5);
     /* Optionnel : pour foncer un peu l’image */
 }
 

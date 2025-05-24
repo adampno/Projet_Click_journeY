@@ -28,11 +28,13 @@ $verification = ($control_recu === $control_calcule);
     <head>
         <meta charset="UTF-8">
         <title>Paiement</title>
-       <link rel="stylesheet" href="style/retour_paiement.css">
+        <link id="theme-style" rel="stylesheet">
+        <script src="scripts/darkmode.js" defer></script>
    
     </head>
 
     <body>
+        <button id="theme-selector" style="position: fixed; top: 20px; right: 20px; z-index: 1000; font-size: 20px; background: none; border: none; cursor: pointer;">🌙</button>
         <div class="container">
         <?php if ($verification): ?>
             <h1>Paiement validé ✅</h1>
