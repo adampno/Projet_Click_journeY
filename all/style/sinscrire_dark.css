@@ -10,21 +10,9 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: white;
+    background-color: #121212;
     font-family: "Montserrat", sans-serif;
-    color: black;
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: "Montserrat", sans-serif;
-    color: black;
-    /* Assurer que le texte est bien noir */
+    color: #ffffff;
 }
 
 header {
@@ -32,7 +20,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 20px 10%;
-    background: linear-gradient(#046ce4, #148aea, #1e99ef);
+    background: linear-gradient(#1a1a1a, #222, #2c2c2c);
 }
 
 .logo {
@@ -42,12 +30,10 @@ header {
     border-radius: 10% 30% 50% 70%;
 }
 
-
 .nav_links {
     list-style: none;
     display: flex;
     gap: 20px;
-    /* Espacement entre les éléments */
 }
 
 .nav_links li {
@@ -68,7 +54,6 @@ header {
     border-radius: 5px;
 }
 
-/* Styles du formulaire d'inscription */
 .signup-main-container {
     flex: 1;
     display: flex;
@@ -82,10 +67,10 @@ header {
 
 .signup-inner-container {
     width: 50%;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(30, 30, 30, 0.9);
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -95,14 +80,14 @@ header {
 .signup-inner-container h2 {
     font-size: 2.5rem;
     font-weight: 800;
-    color: #333;
+    color: #f1f1f1;
     margin-bottom: 1rem;
     text-align: center;
 }
 
 .signup-inner-container label {
     font-size: 1rem;
-    color: #333;
+    color: #e0e0e0;
     margin-bottom: 0.5rem;
     display: block;
 }
@@ -112,19 +97,19 @@ header {
     width: 100%;
     padding: 0.75rem;
     margin-bottom: 1rem;
-    border: 1px solid #ccc;
+    border: 1px solid #555;
     border-radius: 4px;
+    background-color: #1c1c1c;
+    color: white;
 }
 
 p.info-text {
     font-size: 12px;
-    color: #555;
+    color: #bbbbbb;
     margin-bottom: 15px;
     text-align: center;
 }
 
-
-/* Conteneur principal des checkboxes */
 .checkbox-wrapper {
     display: flex;
     align-items: center;
@@ -134,20 +119,17 @@ p.info-text {
     margin-bottom: 15px;
 }
 
-/* Style des checkboxes */
 .checkbox-container {
     display: flex;
     align-items: center;
     font-size: 1rem;
-    /* Adapte la taille au reste de la page */
     font-weight: 500;
-    color: #333;
+    color: #dddddd;
     cursor: pointer;
     line-height: 1.5;
     width: 100%;
 }
 
-/* Case à cocher (invisible par défaut) */
 .checkbox-container input {
     position: absolute;
     opacity: 0;
@@ -155,24 +137,21 @@ p.info-text {
     height: 0;
 }
 
-/* Style personnalisé pour la case */
 .checkmark {
     width: 18px;
     height: 18px;
-    border: 2px solid #046ce4;
+    border: 2px solid #1e99ef;
     border-radius: 4px;
     display: inline-block;
     position: relative;
     margin-right: 10px;
 }
 
-/* Effet lorsque la case est cochée */
 .checkbox-container input:checked+.checkmark {
-    background-color: #046ce4;
+    background-color: #1e99ef;
     border: none;
 }
 
-/* Ajout du symbole "✓" lorsqu'elle est cochée */
 .checkbox-container input:checked+.checkmark::after {
     content: "✓";
     position: absolute;
@@ -183,24 +162,20 @@ p.info-text {
     font-weight: bold;
 }
 
-/* Adapter le texte à côté */
 .checkbox-container span {
     flex: 1;
 }
 
-
-
 .error-message {
-    color: red;
-    background-color: #ffe6e6;
-    border: 1px solid red;
+    color: #f44336;
+    background-color: #3a1f1f;
+    border: 1px solid #5a2a2a;
     padding: 10px;
     margin-bottom: 15px;
     border-radius: 5px;
     text-align: center;
     animation: fadeIn 0.5s ease-in-out;
 }
-
 
 @keyframes fadeIn {
     from {
@@ -212,9 +187,6 @@ p.info-text {
     }
 }
 
-
-
-/* Bouton d'inscription */
 .signup-button {
     background-color: #1e99ef;
     color: white;
@@ -230,14 +202,13 @@ p.info-text {
 }
 
 .signup-button:hover {
-    background-color: #1e99ef;
+    background-color: #148aea;
 }
 
-/* Pied de page */
 footer {
     text-align: center;
     padding: 20px;
-    background-color: #1e99ef;
+    background-color: #2c2c2c;
     color: white;
     margin-top: auto;
     width: 100%;

@@ -1,0 +1,411 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Raleway:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Waterfall&display=swap');
+
+body {
+    position: relative;
+    z-index: 0;
+    font-family: "Montserrat", sans-serif;
+    color: #e0e0e0;
+    background-color: #121212;
+}
+
+header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10%;
+    background: linear-gradient(#1a1a1a, #222222, #2c2c2c);
+    z-index: 10;
+}
+
+.page-content {
+    position: relative;
+    z-index: 1;
+    padding-top: 100vh;
+    background-color: transparent;
+}
+
+.logo {
+    cursor: pointer;
+    width: 120px;
+    background-color: #f5f5f5;
+    border-radius: 10% 30% 50% 70%;
+}
+
+.nav_links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav_links a {
+    font-weight: 500;
+    font-size: 16px;
+    color: #f5f5f5;
+    text-decoration: none;
+    padding: 10px 15px;
+    transition: 0.3s;
+}
+
+.nav_links a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #4da6ff;
+}
+
+h3 {
+    font-size: 1.4rem;
+    margin: 10px 0;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.hero-text {
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.hero-text.fade-out {
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none;
+}
+
+.voyage-description-box {
+    max-width: 800px;
+    margin: 3rem auto;
+    margin-bottom: 200px;
+    padding: 2rem;
+    background-color: rgba(30, 30, 30, 0.75);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    text-align: center;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #e0e0e0;
+    display: block;
+}
+
+.hotel-selection {
+    max-width: 900px;
+    margin: 60px auto;
+    text-align: left;
+    background-color: #1e1e1e;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+.hotel-selection h2 {
+    text-align: center;
+}
+
+.hotel-content {
+    display: flex;
+    gap: 30px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hotel-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hotel-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 320px;
+}
+
+.hotel-image-side {
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.08);
+}
+
+.hotel-heading {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.hotel-heading h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #4da6ff;
+}
+
+.hotel-stars {
+    font-size: 1rem;
+    margin-top: 3px;
+    color: #bbbbbb;
+}
+
+.hotel-location {
+    font-size: 0.9rem;
+    margin-top: 2px;
+    color: #999999;
+}
+
+.hotel-option {
+    border: 1px solid #555;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: border 0.3s;
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    background-color: #1c1c1c;
+}
+
+.hotel-option:hover {
+    border-color: #4da6ff;
+    background-color: #2a2a2a;
+}
+
+.activity-selection {
+    max-width: 900px;
+    margin: 60px auto;
+    text-align: left;
+    background-color: #1e1e1e;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+.activity-selection h2 {
+    text-align: center;
+}
+
+.activity-content {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    width: 100%;
+}
+
+.activity-image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.activity-image-side {
+    width: 220px;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.08);
+}
+
+.activity-description {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #bbbbbb;
+}
+
+.activity-heading {
+    text-align: center;
+}
+
+.activity-heading h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #4da6ff;
+}
+
+.activity-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.activity-title h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #4da6ff;
+}
+
+.activity-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.activity-details ul {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.activity-details ul li {
+    margin-bottom: 5px;
+}
+
+.activity-date {
+    margin-top: 15px;
+}
+
+.activity-date label {
+    font-weight: bold;
+}
+
+.activity-option {
+    border: 1px solid #555;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: border 0.3s;
+    background-color: #1c1c1c;
+}
+
+.activity-option:hover {
+    border-color: #4da6ff;
+    background-color: #2a2a2a;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #2c2c2c;
+    color: #f5f5f5;
+}
+
+@media (max-width: 768px) {
+    .hotel-selection {
+        margin: 30px 15px;
+        padding: 20px;
+    }
+}
+
+.rating {
+    color: #ffb400;
+    font-size: 1.1rem;
+}
+
+.hotel-image-side {
+    align-self: center;
+}
+
+.hero-wrapper {
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    z-index: 2;
+    padding: 0 20px;
+}
+
+.hero-text h1 {
+    font-family: 'Waterfall', cursive;
+    font-size: 12vw;
+    font-weight: 700;
+    line-height: 1.1;
+    text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.6);
+    margin: 0;
+}
+
+.hero-text p {
+    font-family: "Cormorant Garamound", serif;
+    font-size: 2vw;
+    font-weight: 400;
+    margin-top: 10px;
+    text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.4);
+}
+
+.page-content {
+    position: relative;
+    z-index: 1;
+    padding-top: 100vh;
+}
+
+.option-button-container {
+    text-align: center;
+    margin: 50px 0 80px;
+}
+
+.option-button {
+    background: linear-gradient(to right, #00b09b, #96c93d);
+    color: white;
+    padding: 15px 40px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 40px;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+}
+
+.option-button:hover {
+    background: linear-gradient(to right, #96c93d, #00b09b);
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
