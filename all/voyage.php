@@ -113,7 +113,8 @@ $activites = $stmt_activites->fetchAll();
 <html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="style/voyage.css">
+        <link id="theme-style" rel="stylesheet">
+        <script src="scripts/darkmode.js" defer></script>
         <title><?php echo htmlspecialchars($voyage['titre']); ?> | Wander7</title>
     </head>
     <body>
@@ -122,6 +123,7 @@ $activites = $stmt_activites->fetchAll();
       <img class="logo" src="assets/LogoWander7.png" alt="logo">
       <nav>
         <ul class="nav_links">
+          <button id="theme-selector" style="position: fixed; top: 20px; right: 20px; z-index: 1000; font-size: 20px; background: none; border: none; cursor: pointer;">🌙</button>
           <li><a href="index.php">Accueil</a></li>
           <li><a href="aproposdenous.php">À propos de nous</a></li>
           <li><a href="explorer.php">Explorer</a></li>

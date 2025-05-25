@@ -124,21 +124,21 @@ header {
   flex-direction: column;
   justify-content: center;
   padding: 4rem;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(30, 30, 30, 0.9);
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
 }
 
 .login-col2 h2 {
   font-size: 2.5rem;
   font-weight: 800;
-  color: #333;
+  color: white;
   margin-bottom: 2rem;
 }
 
 .login-col2 label {
   font-size: 1rem;
-  color: #333;
+  color: white;
   margin-bottom: 0.5rem;
 }
 
@@ -152,7 +152,7 @@ header {
 
 .login-a {
   font-size: 1rem;
-  color: #333;
+  color: white;
   text-align: center;
   margin-top: 15px;
 

@@ -12,8 +12,10 @@ $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wander7-Formulaire d'Inscription</title>
     <link rel="icon" href="assets/Logo_Wander7_Favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="style/sinscrire.css"/>
+    <link id="theme-style" rel="stylesheet">
+
     <script src="scripts/afficher_mdp.js" defer></script>
+    <script src="scripts/darkmode.js" defer></script>
 </head>
 <body>
 
@@ -21,6 +23,7 @@ $estAdmin = $estConnecte && ($_SESSION['user']['role'] === 'admin');
       <img class="logo" src="assets/LogoWander7.png" alt="logo">
       <nav>
         <ul class="nav_links">
+          <button id="theme-selector" style="position: fixed; top: 20px; right: 20px; z-index: 1000; font-size: 20px; background: none; border: none; cursor: pointer;">🌙</button>
           <li><a href="index.php">Accueil</a></li>
           <li><a href="aproposdenous.php">À propos de nous</a></li>
           <li><a href="explorer.php">Explorer</a></li>
