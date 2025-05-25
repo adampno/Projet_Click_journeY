@@ -13,8 +13,6 @@ try{
   $query = "SELECT
   v.id_voyage,
   v.titre,
-  v.date_debut,
-  v.date_fin,
   v.prix,
   v.duree
   FROM voyages v";
@@ -34,8 +32,6 @@ try {
     $query = "SELECT 
                 v.id_voyage,
                 v.titre,
-                v.date_debut,
-                v.date_fin,
                 v.prix AS prix_total,
                 v.duree,
                 v.statut,

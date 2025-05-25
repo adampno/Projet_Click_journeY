@@ -1,296 +1,217 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Raleway:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Waterfall&display=swap');
 
-
-header {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 10%;
-    background: linear-gradient(#046ce4, #148aea, #1e99ef);
-    z-index: 10;
-}
-
-
-.page-content {
-    position: relative;
-    z-index: 1;
-    padding-top: 100vh;
-    background-color: transparent;
-}
-
-
-.logo {
-    cursor: pointer;
-    width: 120px;
-    background-color: white;
-    border-radius: 10% 30% 50% 70%;
-}
-
-
-.nav_links {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-}
-
-
-.nav_links a {
-    font-weight: 500;
-    font-size: 16px;
-    color: white;
-    text-decoration: none;
-    padding: 10px 15px;
-    transition: 0.3s;
-}
-
-
-.nav_links a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 5px;
-}
-
-
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-
 
 body {
-    font-family: "Montserrat", sans-serif;
-    color: #2c3e50;
-    background-color: #f5f7fa;
-    position: relative;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #f5f7fa;
+  color: #2c3e50;
 }
 
+header {
+  background: linear-gradient(#046ce4, #148aea, #1e99ef);
+  padding: 20px 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+}
+
+.logo {
+  width: 120px;
+  background-color: white;
+  border-radius: 10% 30% 50% 70%;
+}
+
+.nav_links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav_links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 10px 15px;
+  transition: background-color 0.3s;
+}
+
+.nav_links a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+}
 
 .hero-wrapper {
-    position: fixed;
-    height: 100vh;
-    width: 100%;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    z-index: -1; /* met le fond derrière */
-    }
-
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
 
 .hero-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
-   
-    .hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.5);
-  }
-      
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
 
- .hero-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    text-align: center;
-    z-index: 2;
-    padding: 0 20px;
-  }
-  
- 
-  .hero-text h1 {
-    font-family: 'Waterfall', cursive;
-    font-size: 12vw;
-    font-weight: 700;
-    line-height: 1.1;
-    text-shadow: 2px 2px 12px rgba(0,0,0,0.6);
-    margin: 0;
-  }
+.hero-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  z-index: 2;
+  padding: 0 20px;
+}
 
+.hero-text h1 {
+  font-family: 'Waterfall', cursive;
+  font-size: 12vw;
+  font-weight: 700;
+  line-height: 1.1;
+  text-shadow: 2px 2px 12px rgba(0,0,0,0.6);
+}
 
 .hero-text p {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 2vw;
-    font-weight: 400;
-    margin-top: 10px;
-    text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.4);
+  font-size: 2vw;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  margin-top: 10px;
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.4);
+}
+
+.page-content {
+  padding: 80px 10% 40px;
+  background-color: #f5f7fa;
+  position: relative;
+  z-index: 1;
+}
+
+.reservation-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.reservation-container h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2em;
+}
+
+.passenger-info {
+  margin-bottom: 30px;
+  border: 1px solid #ddd;
+  padding: 25px;
+  border-radius: 10px;
+  background-color: #fafafa;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.passenger-info h4 {
+  margin-bottom: 20px;
+  font-size: 18px;
+  color: #1e99ef;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="date"],
+select {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fefefe;
+  transition: border-color 0.2s;
+}
+
+input:focus,
+select:focus {
+  border-color: #046ce4;
+  outline: none;
+  box-shadow: 0 0 4px rgba(4, 108, 228, 0.3);
+}
+
+.reservation-button-container {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.reservation-button {
+  background-color: #3290d3;
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  font-size: 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.reservation-button:hover {
+  background-color: #3d7699;
+  transform: translateY(-2px);
+}
+
+.reservation-button:active {
+  transform: scale(0.98);
+  background-color: #2a7896;
+
 }
 
 
-  .reservation-container {
-    width: 70%;
-    margin: 60px auto;
-    padding: 40px;
-    background-color: #f9f9f9;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  }
 
-
-  .reservation-container h1 {
-    text-align: center;
-    margin-bottom: 30px;
-  }
-
-
-  .form-group {
-    margin-bottom: 20px;
-  }
-
-
-  label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-  }
-
-
-  input[type="number"] {
-    width: 100%;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-  }
-
-
-  .children-ages {
-    margin-top: 20px;
-  }
-
-
-  .child-age {
-    margin-bottom: 15px;
-  }
-
-
-  .submit-btn {
-    display: block;
-    margin: 30px auto 0;
-    background: linear-gradient(to right, #0b7a93, #64bfdb);
-    color: white;
-    padding: 12px 30px;
-    font-size: 1.1em;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: 0.3s ease;
-  }
-
-
-  .submit-btn:hover {
-    transform: scale(1.05);
-    background: linear-gradient(to right, #2e7aaa, #23abd4);
-  }
-
-
-.form-group input, 
-.form-group select{
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    font-size: 15px;
-    background-color: #fafafa;
-    transition: border-color 0.2s;
+.confirm-btn {
+  background-color: #3290d3;
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  font-size: 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-
-.form-group input:focus,
-.form-group select:focus {
-    border-color: #046ce4;
-    outline: none;
-    box-shadow: 0 0 4px rgba(4, 108, 228, 0.3);
+.confirm-btn:hover {
+  background-color: #3d7699;
+  transform: translateY(-2px);
 }
-
-
-  .passenger-info,
-  .child-info {
-    border: 1px solid #dcdcdc;
-    padding: 25px;
-    border-radius: 12px;
-    margin-bottom: 30px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-    transition: box-shadow 0.3s ease;
-  }
-  
-
-  .passenger-info h4,
-  .child-info h4 {
-    margin-bottom: 20px;
-    font-size: 20px;
-    font-weight: 600;
-    color: #2c3e50;
-    border-left: 4px solid #4cabea;
-    padding-left: 12px;
-  }
-
-
-  .age-info {
-    font-style: italic;
-    font-size: 0.95em;
-    color: #777;
-    margin-top: 15px;
-  }
-
-
-  .passenger-info:hover,
-  .child-info:hover {
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-  }
-
- 
-  .reservation-button-container {
-    text-align: center;
-    margin-top: 40px;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    position: fixed;
-    bottom: 20px;
-    width: 100%;
-    z-index: 1000;
-  }
-  
-
-  .reservation-button-container.visible {
-    opacity: 1;
-  }
-  
-
-  .reservation-button {
-    background-color: #3290d3;
-    color: white;
-    border: none;
-    padding: 14px 28px;
-    font-size: 18px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-  
-
-  .reservation-button:hover {
-    background-color: #3d7699;
-    transform: translateY(-2px);
-  }
- 
-  
-  .reservation-button:active {
-    transform: scale(0.98);
-    background-color: #2a7896;
-  }
-
 
 footer {
   text-align: center;

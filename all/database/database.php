@@ -41,7 +41,27 @@ try {
     $pdo->exec("CREATE DATABASE IF NOT EXISTS $db");
 
     $pdo->exec("USE $db");
+
+    try {
+        $pdo->exec("ALTER TABLE reservations DROP FOREIGN KEY reservations_ibfk_3");
+    } catch (PDOException $e) {
+        // La contrainte n'existe peut-être pas encore — on ignore l’erreur
+    }
+    
+    try {
+        $pdo->exec("ALTER TABLE reservations
+            ADD CONSTRAINT fk_resa_hebergement
+            FOREIGN KEY (hebergement_id, voyage_id)
+            REFERENCES hebergements(id_hebergement, id_voyage)
+            ON DELETE CASCADE
+        ");
+    } catch (PDOException $e) {
+        // Peut déjà exister — on ignore
+    }
+
 } 
+
+
 
 catch (PDOException $e) {
     die("Erreur de connexion : " . $e->getMessage());

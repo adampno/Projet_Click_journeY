@@ -108,7 +108,7 @@ CREATE TABLE IF NOT EXISTS reservations (
   statut_reservation ENUM('en attente', 'payé'),
   FOREIGN KEY (utilisateur_id) REFERENCES utilisateurs(id) ON DELETE CASCADE,
   FOREIGN KEY (voyage_id) REFERENCES voyages(id_voyage) ON DELETE CASCADE,
-  FOREIGN KEY (hebergement_id) REFERENCES hebergements(id_hebergement)
+  FOREIGN KEY (hebergement_id, voyage_id) REFERENCES hebergements(id_hebergement, id_voyage) ON DELETE CASCADE
   );
 
 

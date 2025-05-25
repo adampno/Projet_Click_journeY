@@ -5,7 +5,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['enregistrer_infos']))
   $_SESSION['reservation_temp'] = [
       'nb_adultes' => (int)$_POST['nb_adultes'],
       'nb_enfants' => (int)$_POST['nb_enfants'],
-      'date_depart' => $_POST['date_depart']
+      'date_depart' => $_POST['date_depart'],
+      'voyage_id' => (int)$_GET['voyage']
   ];
   header("Location: options.php?voyage=" . $_GET['voyage']); 
   exit;
@@ -252,7 +253,7 @@ $prix_total_vols = $prix_vols * $total_passagers;
 <?php foreach ($hebergements as $hebergement): ?>
 <div class="hotel-option horizontal">
     <label class="hotel-radio-label">
-        <input type="radio" name="hotel_id" value="<?= $hebergement['id_hebergement'] ?>" class="hotel-radio">
+        <input type="radio" name="hotel_id" value="<?= $hebergement['id_hebergement'] ?>" class="hotel-radio" required>
   <div class="hotel-content">
       <div class="hotel-image-container">
         <div class="hotel-heading">
@@ -355,18 +356,16 @@ $prix_total_chambres = $prix_chambre * $nb_chambres;
 
 
 
+  <form action="traitement_reservation.php" method="POST" id="formReservation">
+    <input type="hidden" name="action" id="actionInput" value="">
+
 <section class="final-buttons">
-  <form action="reservation.php?voyage=<?= $voyage['id_voyage'] ?>" method="POST" class="confirmation-form">
-    <input type="hidden" name="action" value="payer">
-    <button type="submit" class="btn-confirmer-reserver">Confirmer et réserver</button>
-  </form>
-
-  <form action="traitement_reservation.php" method="POST" class="confirmation-form">
-    <input type="hidden" name="action" value="retour_accueil">
-    <button type="submit" class="btn-retour">Confirmer et revenir à l’accueil</button>
-  </form>
+    <button type="submit" class="btn-confirmer-reserver" onclick="setActionAndSubmit('payer', event)">
+      Confirmer et réserver</button>
+<button type="submit" class="btn-retour" onclick="setActionAndSubmit('retour_accueil', event)">
+  Confirmer et revenir à l’accueil</button>
 </section>
-
+</form>
 
     </main>
 
@@ -517,6 +516,70 @@ dateInput.disabled = !checkbox.checked;
 });
   updateActivityPickers();
 });
+
+function setActionAndSubmit(actionValue, event) {
+    event.preventDefault();
+    const form = document.getElementById("formReservation");
+    document.getElementById("actionInput").value = actionValue;
+
+    // Nettoyage des anciens inputs dynamiques
+    form.querySelectorAll(".dynamic-hidden").forEach(e => e.remove());
+
+    // Vérifie que l'hôtel est sélectionné
+    const selectedHotel = document.querySelector("input.hotel-radio:checked");
+    if (!selectedHotel) {
+        alert("Veuillez sélectionner un hôtel.");
+        return;
+    }
+
+    // Ajoute l'hôtel sélectionné
+    const hiddenHotel = document.createElement("input");
+    hiddenHotel.type = "hidden";
+    hiddenHotel.name = "hotel_id";
+    hiddenHotel.value = selectedHotel.value;
+    hiddenHotel.classList.add("dynamic-hidden");
+    form.appendChild(hiddenHotel);
+
+    // Activités cochées
+    document.querySelectorAll(".activity-checkbox:checked").forEach(cb => {
+        const id = cb.value;
+
+        // ID activité
+        const actInput = document.createElement("input");
+        actInput.type = "hidden";
+        actInput.name = "activities[]";
+        actInput.value = id;
+        actInput.classList.add("dynamic-hidden");
+        form.appendChild(actInput);
+
+        // Date activité
+        const dateInput = document.getElementById(`activity-date-${id}`);
+        if (dateInput && dateInput.value) {
+            const dateField = document.createElement("input");
+            dateField.type = "hidden";
+            dateField.name = `activities_date[${id}]`;
+            dateField.value = dateInput.value;
+            dateField.classList.add("dynamic-hidden");
+            form.appendChild(dateField);
+        }
+
+        // Participants
+        const partInput = document.getElementById(`activity-participants-${id}`);
+        if (partInput && partInput.value) {
+            const partField = document.createElement("input");
+            partField.type = "hidden";
+            partField.name = `activities_participants[${id}]`;
+            partField.value = partInput.value;
+            partField.classList.add("dynamic-hidden");
+            form.appendChild(partField);
+        }
+    });
+
+    form.submit();
+}
+
+
+
 </script>
 
 
