@@ -1,6 +1,44 @@
 <?php
 session_start();
 
+
+
+$id_voyage = $_GET['voyage'] ?? null;
+$id_user = $_SESSION['user']['id'] ?? null;
+
+if ($id_voyage && $id_user) {
+    // Vérifie s'il existe déjà une réservation "en attente" pour ce voyage et cet utilisateur
+    $stmt_check = $pdo->prepare("SELECT id_reservation FROM reservations WHERE utilisateur_id = ? AND voyage_id = ? AND statut_reservation = 'en attente'");
+    $stmt_check->execute([$id_user, $id_voyage]);
+    $reservation = $stmt_check->fetch();
+
+    if ($reservation) {
+        // Déjà existante → on stocke l’ID dans la session
+        $_SESSION['reservation_temp'] = $reservation['id_reservation'];
+    } else {
+        // Sinon on en crée une
+        $date_debut = date('Y-m-d');
+        $date_fin = date('Y-m-d', strtotime('+7 days'));
+
+        $stmt_insert = $pdo->prepare("INSERT INTO reservations (utilisateur_id, voyage_id, date_debut, date_fin, nb_adultes, nb_enfants, hebergement_id, montant_total, statut_reservation)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'en attente')");
+        $stmt_insert->execute([
+            $id_user,
+            $id_voyage,
+            $date_debut,
+            $date_fin,
+            2, // nb_adultes
+            0, // nb_enfants
+            1, // hebergement_id fictif par défaut, à changer plus tard
+            0  // montant_total initial
+        ]);
+
+        $_SESSION['reservation_temp'] = $pdo->lastInsertId();
+    }
+}
+?>
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['enregistrer_infos'])) {
   $_SESSION['reservation_temp'] = [
       'nb_adultes' => (int)$_POST['nb_adultes'],
