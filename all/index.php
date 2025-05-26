@@ -26,7 +26,7 @@ $topDestinations = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" id="theme-style" >
 
     <script src="scripts/darkmode.js" defer></script>
-    <script src="scripts/cart.js" defer></script>
+  
 
 
   </head>
@@ -49,58 +49,6 @@ $topDestinations = $stmt->fetchAll(PDO::FETCH_ASSOC);
           <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin'): ?>
           <li><a href="admin.php">Admin</a></li>
           <?php endif; ?>
-
-
-
-
-
-          <?php
-$panierItems = $_SESSION['panier'] ?? [];
-?>
-<!-- Icône Panier -->
-<li class="cart-icon">
-  <a href="#" id="open-cart">
-    <img src="assets/panier.png" alt="Panier" style="height: 24px;">
-    <?php if (count($panierItems) > 0): ?>
-      <span class="cart-count"><?php echo count($panierItems); ?></span>
-    <?php endif; ?>
-  </a>
-</li>
-
-<?php
-if (isset($_SESSION['user'])):
-    $panierItems = $_SESSION['panier'] ?? [];
-?>
-<div class="mini-panier">
-  <h3>
-    <img src="assets/cart.png" alt="Panier" class="cart-icon-img">
-    Mon panier
-  </h3>
-
-  <?php if (empty($panierItems)): ?>
-    <p>Votre panier est vide.</p>
-  <?php else: ?>
-    <ul>
-      <?php foreach ($panierItems as $id_voyage => $infos): 
-        $stmt = $pdo->prepare("SELECT pays FROM voyages WHERE id_voyage = ?");
-        $stmt->execute([$id_voyage]);
-        $voyage = $stmt->fetch();
-        if ($voyage):
-          $nb_passagers = $infos['passagers'] ?? 1;
-          $date_depart = $infos['date'] ?? 'Date inconnue';
-      ?>
-        <li>
-          <strong><?php echo htmlspecialchars($voyage['pays']); ?></strong><br>
-          👤 <?php echo $nb_passagers; ?> passager(s)<br>
-          📅 Départ : <?php echo htmlspecialchars($date_depart); ?><br>
-          <a href="recap.php?trip=<?php echo $id_voyage; ?>" class="mini-button">Voir détail</a>
-        </li>
-      <?php endif; endforeach; ?>
-    </ul>
-  <?php endif; ?>
-</div>
-<?php endif; ?>
-
 
   
         </ul>
