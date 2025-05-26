@@ -27,7 +27,6 @@ $topDestinations = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <script src="scripts/darkmode.js" defer></script>
     <script src="scripts/cart.js" defer></script>
-
     <script src="scripts/carousel.js" defer></script>
 
 
