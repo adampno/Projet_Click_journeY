@@ -147,9 +147,10 @@ header {
 
 /* Filtres avancés */
 #filtresAvances {
-  margin-top: 20px;
+  margin-top: 20px auto;
   padding-top: 20px;
   border-top: 1px solid #e2e8f0;
+  max-width: 1000px;
 }
 
 .filtreGroupe {
@@ -182,7 +183,7 @@ header {
 #resultatsRecherche {
   width: 90%;
   max-width: 1200px;
-  margin: 0 auto 40px;
+  margin: 10px auto 40px;
 }
 
 .voyageCard {
@@ -240,11 +241,13 @@ header {
 
 .aucunResultat {
   text-align: center;
-  padding: 40px;
+  padding: 10px 0 20px 0;
   color: #718096;
   font-size: 1.1rem;
+  margin-top: 10px;
 }
   
+
 .merveilles-container {
   padding: 40px 0;
   text-align: center;
@@ -353,6 +356,7 @@ footer {
     font-size: 0.9rem;
     margin-top: auto;  
 }
+
 
 
 

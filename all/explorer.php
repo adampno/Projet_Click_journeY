@@ -107,14 +107,19 @@ try {
       <div id="conteneurRecherche">
         <section id="zoneRecherche">
           
+        <div id="resultatsRecherche">
+    <div class="aucunResultat">
+        <p>Effectuez une recherche pour afficher les voyages disponibles</p>
+    </div>
+</div>
+
+
           <!-- Barre de recherche par mots-clés -->
           <form method="GET" action="">
             <input type="text" name="titre" placeholder="Rechercher par mots-clés (ex: Cheval, Maya, Aventure)">
             <button type="submit">Rechercher</button>
           </form>
-
-          <!-- Résultats de recherche -->
-          <h2>Résultats :</h2>
+          
           <ul>
           <?php if (empty($voyages)): ?>
               <li>Aucun résultat trouvé pour cette recherche.</li>
@@ -140,24 +145,6 @@ try {
                 </div>
 
                 <div class="champFiltre">
-                    <label for="nombreEtapes">Nombre d'étapes</label>
-                    <select id="nombreEtapes">
-                        <option value="">Peu importe</option>
-                        <option value="1">1 étape</option>
-                        <option value="2">2 étapes</option>
-                        <option value="3">3 étapes</option>
-                        <option value="4">4 étapes</option>
-                        <option value="5">5 étapes</option>
-                      
-                    </select>
-                </div>
-
-                <div class="champFiltre">
-                    <label for="dateDepart">Date de départ</label>
-                    <input type="date" id="dateDepart">
-                </div>
-
-                <div class="champFiltre">
                     <label for="budgetMax">Budget max (€)</label>
                     <input type="number" id="budgetMax" min="0" placeholder="Illimité">
                 </div>
@@ -166,13 +153,7 @@ try {
     </section>
 </div>
 
-<!-- Zone des résultats -->
-<div id="resultatsRecherche">
-    <!-- Les résultats seront injectés ici via JavaScript/PHP -->
-    <div class="aucunResultat">
-        <p>Effectuez une recherche pour afficher les voyages disponibles</p>
-    </div>
-</div>
+<h2>Résultats :</h2>
 
 
             <section class="merveilles-container">
