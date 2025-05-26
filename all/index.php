@@ -26,7 +26,12 @@ $topDestinations = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" id="theme-style" >
 
     <script src="scripts/darkmode.js" defer></script>
+<<<<<<< HEAD
   
+=======
+    <script src="scripts/cart.js" defer></script>
+    <script src="scripts/carousel.js" defer></script>
+>>>>>>> 8f6ccabeebd2a0d04d9cf952caabd74c967c5a39
 
 
   </head>
@@ -62,7 +67,16 @@ $topDestinations = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
       <h1>Bienvenue sur Wander7</h1>
-      <p>Découvrez les 7 merveilles du monde à travers nos circuits exclusifs.</p>
+      <p>Découvrez les 7 merveilles du monde à travers nos circuits exclusifs.</p><br>
+
+      <div class="carousel-wrapper">
+      <span class="arrow left-arrow" onclick="prevSlide()">❮</span>
+      <div class="carousel">
+      <img id="carousel-image" src="assets/greatWall_index.jpg" alt="Image">
+      <div class="carousel-text" id="carousel-text">Une gigantesque fortification longue de plus de 20 000 km, construite pour protéger la Chine des invasions. C’est l’un des symboles les plus emblématiques du pays.</div>
+      </div>
+    <span class="arrow right-arrow" onclick="nextSlide()">❯</span>
+      </div>
 
       <div class="top-destinations">
   <h2 class="section-title">Top 3 des destinations Wander7</h2>
