@@ -706,43 +706,54 @@ h3 {
 .final-buttons {
     display: flex;
     justify-content: center;
-    gap: 20px;
-    margin: 50px auto;
+    gap: 30px;
+    margin: 60px 0 100px;
     flex-wrap: wrap;
   }
-  
-  .confirmation-form {
-    display: inline-block;
-  }
-  
-  .btn-reserver,
-  .btn-retour {
-    padding: 14px 30px;
-    font-size: 1.1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    border: none;
-    transition: all 0.3s ease;
-    font-weight: bold;
-  }
-  
-  .btn-reserver {
-    background-color: #046ce4;
+
+  .final-buttons button{
+    background: linear-gradient(to right, #00b09b, #96c93d);
     color: white;
+    padding: 15px 40px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 40px;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
   }
+
   
-  .btn-reserver:hover {
-    background-color: #0354ba;
+  .final-buttons button:hover{
+    background: linear-gradient(to right, #96c93d, #00b09b);
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   }
-  
-  .btn-retour {
-    background-color: #cccccc;
-    color: #333;
-  }
-  
-  .btn-retour:hover {
-    background-color: #bbbbbb;
-  }
+
+
+.btn-confirmer-reserver {
+    background: linear-gradient(135deg, #046ce4, #148aea);
+    color: white;
+}
+
+.btn-confirmer-reserver:hover {
+    background: linear-gradient(135deg, #0356be, #0d7bd4);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(4, 108, 228, 0.3);
+}
+
+.btn-retour {
+    background: white;
+    color: #046ce4;
+    border: 2px solid #046ce4;
+}
+
+.btn-retour:hover {
+    background: #f0f6ff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(4, 108, 228, 0.15);
+}
 
     .page-content {        
     position: relative;

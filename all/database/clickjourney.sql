@@ -175,6 +175,11 @@ CREATE TABLE activites (
   mode_transport ENUM('À pied', 'Car', 'Vélo') NOT NULL,
   a_heure_depart TIME NOT NULL,
   a_prix DECIMAL(10, 2) NOT NULL,
+
+  inclus ENUM("trajet, billet d'entrée et visite guidée", "trajet et billet d'entrée", "trajet et visite guidée", "trajet et pension", 
+  "billet d'entrée", "trajet et activité", "billet d'entrée et visite guidée", "visite guidée", "trajet, activité et repas", "trajet", 
+  "visite guidée et location de matériel", "trajet et repas"),
+
   FOREIGN KEY (id_voyage) REFERENCES voyages(id_voyage) ON DELETE CASCADE
 );
 
@@ -447,82 +452,82 @@ INSERT INTO hebergement_caracteristiques(id_voyage, id_hebergement, transfert, n
 -- Insertion des activités associées aux voyages 
 -- --------------------------------------------------------
 -- Chichén Itza
-INSERT INTO activites(id_voyage, a_nom, a_description, a_duree, mode_transport, a_heure_depart, a_prix) VALUES
-(@id_chichen_itza, "Chichén Itza", "Explorez Chichén Itza, l'une des sept merveilles du monde, et plongez dans les mystères de la civilisation maya lors d'une visite guidée inoubliable. Découvrez la majestueuse pyramide de Kukulcàn, le temple des Guerriers et bien plus encore !", '3h', 'À pied', '08:30:00', 45.00),
-(@id_chichen_itza, "Église de Pisté", "Découvrez l'Église de Pisté, un joyau colonial au coeur du village, témoin de l'histoire de Yucatàn. Plongez dans son atmosphère paisible et ses récits anciens lors d'une visite guidée captivante.", '1h30', 'À pied', '09:30:00', 10.00),
-(@id_chichen_itza, "Cenote Ik Kil", "Plongez dans les eaux cristallines du Cenote Ik Kil, un joyau naturel au coeur de la jungle maya. Découvrez son histoire sacrée lors d'une visite guidée et vivez une expérience unique entre nature et légende.", '2h', 'Car', '09:30:00', 15.00),
-(@id_chichen_itza, "Site Archéologique d'Ek Balam", "Découvrez le site archéologique d'Ek Balam, un trésor maya méconnu entouré de jungle luxuriante. Grimpez au sommet de l'Acropole pour une vue imprenable et explorez ses mystères lors d'une visite guidée captivante.", '3h', 'Car', '08:30:00', 45.00),
-(@id_chichen_itza, "Cenote X'Canché", "Évadez-vous au coeur de la jungle pour découvrir le Cenote X'Canché, un bassin naturel entouré de lianes et de végétation luxuriante. Profitez d'une visite guidée pour explorer ses eaux cristallines et en apprendre davantage sur les rituels sacrés des Mayas.",'2h30', 'Car', '09:00:00', 25.00),
-(@id_chichen_itza, "Cenotes Dzitnup", "Plongez dans l'univers mystique des Cénotes Dzitnup, Xkeken et Samula, célèbres pour leurs formations spectaculaires et leurs eaux cristallines. Lors de la visite guidée, découvrez les légendes mayas qui entourent ces cavernes enchantées", '3h', 'Car', '13:30:00', 25.00);
+INSERT INTO activites(id_voyage, a_nom, a_description, a_duree, mode_transport, a_heure_depart, a_prix, inclus) VALUES
+(@id_chichen_itza, "Chichén Itza", "Explorez Chichén Itza, l'une des sept merveilles du monde, et plongez dans les mystères de la civilisation maya lors d'une visite guidée inoubliable. Découvrez la majestueuse pyramide de Kukulcàn, le temple des Guerriers et bien plus encore !", '3h', 'À pied', '08:30:00', 28.00, "billet d'entrée et visite guidée"),
+(@id_chichen_itza, "Église de Pisté", "Découvrez l'Église de Pisté, un joyau colonial au coeur du village, témoin de l'histoire de Yucatàn. Plongez dans son atmosphère paisible et ses récits anciens lors d'une visite guidée captivante.", '1h30', 'À pied', '09:30:00', 5.50, "visite guidée"),
+(@id_chichen_itza, "Cenote Ik Kil", "Plongez dans les eaux cristallines du Cenote Ik Kil, un joyau naturel au coeur de la jungle maya. Découvrez son histoire sacrée lors d'une visite guidée et vivez une expérience unique entre nature et légende.", '2h', 'Car', '09:30:00', 15.00, "trajet et visite guidée"),
+(@id_chichen_itza, "Site Archéologique d'Ek Balam", "Découvrez le site archéologique d'Ek Balam, un trésor maya méconnu entouré de jungle luxuriante. Grimpez au sommet de l'Acropole pour une vue imprenable et explorez ses mystères lors d'une visite guidée captivante.", '3h', 'Car', '08:30:00', 24.00, "trajet, billet d'entrée et visite guidée"),
+(@id_chichen_itza, "Cenote X'Canché", "Évadez-vous au coeur de la jungle pour découvrir le Cenote X'Canché, un bassin naturel entouré de lianes et de végétation luxuriante. Profitez d'une visite guidée pour explorer ses eaux cristallines et en apprendre davantage sur les rituels sacrés des Mayas.",'2h30', 'Car', '09:00:00', 16.00, "trajet et visite guidée"),
+(@id_chichen_itza, "Cenotes Dzitnup", "Plongez dans l'univers mystique des Cénotes Dzitnup, Xkeken et Samula, célèbres pour leurs formations spectaculaires et leurs eaux cristallines. Lors de la visite guidée, découvrez les légendes mayas qui entourent ces cavernes enchantées", '3h', 'Car', '13:30:00', 17.00, "trajet et visite guidée");
 
 
 -- Christ Rédempteur
-INSERT INTO activites(id_voyage, a_nom, a_description, a_duree, mode_transport, a_heure_depart, a_prix) VALUES
-(@id_christ_redempteur, "Christ Rédempteur", "Admirez l'une des 7 merveilles du monde moderne, perchée au sommet du mont Corcovado, offrant une vue spectaculaire sur Rio.", '4h', 'À pied', '08:00:00', 17.00),
-(@id_christ_redempteur, "Pão de Açùcar", "Montez en téléphérique jusqu'au sommet pour une vue imprenable sur la baie de Guanabara et les plages emblématiques de Rio", '2h30', 'Car', '14:00:00', 30.00),
-(@id_christ_redempteur, "Jardin botanique de Rio", 'Explorez un havre de paix abritant une incroyable diversité de plantes tropicales et de palmiers majestueux.', '2h30', 'Car', '10:00:00', 12.00),
-(@id_christ_redempteur, "Musée do Amanhã", "Plongez dans un musée futuriste dédié aux sciences et à la durabilité, situé au bord de la baie de Guanabara.", '3h', 'Car', '14:00:00', 5.00),
-(@id_christ_redempteur, "Quartier de Santa Teresa", "Flânez dans ce quartier bohème aux ruelles pavées, rempli d'artistes, de galeries et de charmantes maisons coloniales.", '2h', 'Car', '16:00:00', 0.00),
-(@id_christ_redempteur, "Visite guidée d'une favela", "Découvrez la vie quotidienne et la culture vibrante des favelas de Rio lors d'une visite guidée respectueuse.", '3h30', 'Car', '09:30:00', 9.00),
-(@id_christ_redempteur, "Excursion à Ilha Grande", "Évadez-vous sur cette île paradisiaque aux plages immaculées et eaux cristallines, idéale pour la randonnée et la plongée.", '12h', 'Car', '07:30:00', 75.00),
-(@id_christ_redempteur, "Cours de cuisine brésilienne à Copacabana", "Plongez dans l'univers savoureux de la gastronomie brésilienne lors d'un atelier interactif.", '4h', 'Car', '13:00:00', 146.00);
+INSERT INTO activites(id_voyage, a_nom, a_description, a_duree, mode_transport, a_heure_depart, a_prix, inclus) VALUES
+(@id_christ_redempteur, "Christ Rédempteur", "Admirez l'une des 7 merveilles du monde moderne, perchée au sommet du mont Corcovado, offrant une vue spectaculaire sur Rio.", '4h', 'À pied', '08:00:00', 17.00, "billet d'entrée et visite guidée"),
+(@id_christ_redempteur, "Pão de Açùcar", "Montez en téléphérique jusqu'au sommet pour une vue imprenable sur la baie de Guanabara et les plages emblématiques de Rio", '2h30', 'Car', '14:00:00', 9.00, "trajet et billet d'entrée"),
+(@id_christ_redempteur, "Jardin botanique de Rio", 'Explorez un havre de paix abritant une incroyable diversité de plantes tropicales et de palmiers majestueux.', '2h30', 'Car', '10:00:00', 12.00, "trajet et billet d'entrée"),
+(@id_christ_redempteur, "Musée do Amanhã", "Plongez dans un musée futuriste dédié aux sciences et à la durabilité, situé au bord de la baie de Guanabara.", '3h', 'Car', '14:00:00', 11.50, "trajet et billet d'entrée"),
+(@id_christ_redempteur, "Quartier de Santa Teresa", "Flânez dans ce quartier bohème aux ruelles pavées, rempli d'artistes, de galeries et de charmantes maisons coloniales.", '2h', 'Car', '16:00:00', 5.00, "trajet"),
+(@id_christ_redempteur, "Visite guidée d'une favela", "Découvrez la vie quotidienne et la culture vibrante des favelas de Rio lors d'une visite guidée respectueuse.", '3h30', 'Car', '09:30:00', 9.00, "trajet et visite guidée"),
+(@id_christ_redempteur, "Excursion à Ilha Grande", "Évadez-vous sur cette île paradisiaque aux plages immaculées et eaux cristallines, idéale pour la randonnée et la plongée.", '12h', 'Car', '07:30:00', 75.00, "trajet et pension"),
+(@id_christ_redempteur, "Cours de cuisine brésilienne à Copacabana", "Plongez dans l'univers savoureux de la gastronomie brésilienne lors d'un atelier interactif.", '4h', 'Car', '13:00:00', 46.00, "trajet, activité et repas");
 
 
 -- Petra
-INSERT INTO activites(id_voyage, a_nom, a_description, a_duree, mode_transport, a_heure_depart, a_prix) VALUES
-(@id_petra, "Traversée du Siq", "Marchez à travers un canyon étroit aux parois de grès rose menant à l'emblématique Trésor, une façade monumentale taillée dans la roche.", '1h', 'À pied', '11:00:00', 44.00),
-(@id_petra, "Randonnée vers le Monastère", "Gravissez environ 800 marches pour atteindre le Monastère de Ad-Deir, un édifice majestueux offrant une vue panoramique sur les montagnes environnantes.", '2h30', 'À pied', '10:00:00', 33.00),
-(@id_petra, "Petra by night", "Expérience magique où le Siq et le Trésor sont illuminés par des centaines de bougies, accompagnée de musique traditionelle.", '2h', 'À pied', '11:00:00', 21.00),
-(@id_petra, "Cours de cuisine jordanienne au Petra Kitchen", "Apprenez à préparer des plats traditionnels comme le mansaf ou le maqluba, suivi d'un dîner convivial.", '3h', 'À pied', '17:00:00', 64.00),
-(@id_petra, "Randonnée au Haut Lieu du Sacrifice", "Ascension vers un ancien site cérémoniel offrant une vue imprenable sur Pétra et ses environs", '2h', 'À pied', '10:00:00', 25.00),
-(@id_petra, "Visite du château de Shobak", "Explorez une forteresse croisée du XIIe siècle perchée sur une colline, offrant un aperçu de l'histoire médiévale de la région.", '5h', 'Car', '08:00:00', 191.00),
-(@id_petra, "Excursion au Wadi Rum", "Découvrez le désert du Wadi Rum en 4x4, célèbre pour ses paysages lunaires et ses formations rocheuses spectaculaires.", '10h', 'Car', '09:00:00', 180.00);
+INSERT INTO activites(id_voyage, a_nom, a_description, a_duree, mode_transport, a_heure_depart, a_prix, inclus) VALUES
+(@id_petra, "Traversée du Siq", "Marchez à travers un canyon étroit aux parois de grès rose menant à l'emblématique Trésor, une façade monumentale taillée dans la roche.", '1h', 'À pied', '11:00:00', 24.00, "billet d'entrée et visite guidée"),
+(@id_petra, "Randonnée vers le Monastère", "Gravissez environ 800 marches pour atteindre le Monastère de Ad-Deir, un édifice majestueux offrant une vue panoramique sur les montagnes environnantes.", '2h30', 'À pied', '10:00:00', 14.00, "visite guidée"),
+(@id_petra, "Petra by night", "Expérience magique où le Siq et le Trésor sont illuminés par des centaines de bougies, accompagnée de musique traditionelle.", '2h', 'Car', '19:00:00', 27.00, "trajet, activité et repas"),
+(@id_petra, "Cours de cuisine jordanienne au Petra Kitchen", "Apprenez à préparer des plats traditionnels comme le mansaf ou le maqluba, suivi d'un dîner convivial.", '3h', 'Car', '17:00:00', 34.00, "trajet, activité et repas"),
+(@id_petra, "Randonnée au Haut Lieu du Sacrifice", "Ascension vers un ancien site cérémoniel offrant une vue imprenable sur Pétra et ses environs", '2h', 'À pied', '10:00:00', 15.00, "visite guidée"),
+(@id_petra, "Visite du château de Shobak", "Explorez une forteresse croisée du XIIe siècle perchée sur une colline, offrant un aperçu de l'histoire médiévale de la région.", '5h', 'Car', '08:00:00', 41.00, "trajet, billet d'entrée et visite guidée"),
+(@id_petra, "Excursion au Wadi Rum", "Découvrez le désert du Wadi Rum en 4x4, célèbre pour ses paysages lunaires et ses formations rocheuses spectaculaires.", '10h', 'Car', '09:00:00', 80.00, "trajet et pension");
 
 
 -- Colisée
-INSERT INTO activites(id_voyage, a_nom, a_description, a_duree, mode_transport, a_heure_depart, a_prix) VALUES
-(@id_colisee, "Visite du Colisée", "Plongez dans l'histoire en explorant l'amphithéâtre emblématique de Rome, autrefois le théâtre de combats de gladiateurs et de spectacles publics.", '2h', 'À pied', '08:00:00', 16.00),
-(@id_colisee, "Découverte du Vatican", "Explorez les trésors artistiques et spirituels du Vatican, y compris la Chapelle Sixtine et la majestueuse Basilique Saint-Pierre.", '3h30', 'Car', '13:30:00', 18.00),
-(@id_colisee, "Balade au Panthéon", "Admirez l'architecture impressionnante du Panthéon, un temple antique dédié à toutes les divinités, célèbre pour sa coupole et son oculus.", '1h', 'À pied', '10:00:00', 0.00),
-(@id_colisee, "Cours de cuisine italienne", "Plongez dans l'art culinaire italien en apprenant à préparer des pâtes fraiches et un tiramisu traditionnel aux côtés d'un chef local.", '3h', 'À pied', '14:00:00', 66.00),
-(@id_colisee, "Détente à la plage de Santa Severa", "Évadez-vous du tumulte urbain pour une journée de détente sur la plage de Santa Severa, réputée pour son sable fin, ses eaux claires et son château médiéval en toile de fond.", '11h', 'Car', '08:30:00', 10.00),
-(@id_colisee, "Promenade à la Villa Borghèse", "Profitez d'une promenade dans ce vaste parc paysager, abritant des musées, des jardins et des vues panoramiques sur Rome", '2h30', 'Car', '09:30:00', 15.00);
+INSERT INTO activites(id_voyage, a_nom, a_description, a_duree, mode_transport, a_heure_depart, a_prix, inclus) VALUES
+(@id_colisee, "Visite du Colisée", "Plongez dans l'histoire en explorant l'amphithéâtre emblématique de Rome, autrefois le théâtre de combats de gladiateurs et de spectacles publics.", '2h', 'À pied', '08:00:00', 16.00, "billet d'entrée et visite guidée"),
+(@id_colisee, "Découverte du Vatican", "Explorez les trésors artistiques et spirituels du Vatican, y compris la Chapelle Sixtine et la majestueuse Basilique Saint-Pierre.", '3h30', 'Car', '13:30:00', 18.00, "trajet et visite guidée"),
+(@id_colisee, "Balade au Panthéon", "Admirez l'architecture impressionnante du Panthéon, un temple antique dédié à toutes les divinités, célèbre pour sa coupole et son oculus.", '1h', 'À pied', '10:00:00', 6.00, "visite guidée"),
+(@id_colisee, "Cours de cuisine italienne", "Plongez dans l'art culinaire italien en apprenant à préparer des pâtes fraiches et un tiramisu traditionnel aux côtés d'un chef local.", '3h', 'Car', '14:00:00', 26.00, "trajet, activité et repas"),
+(@id_colisee, "Détente à la plage de Santa Severa", "Évadez-vous du tumulte urbain pour une journée de détente sur la plage de Santa Severa, réputée pour son sable fin, ses eaux claires et son château médiéval en toile de fond.", '11h', 'Car', '08:30:00', 45.00, "trajet et pension"),
+(@id_colisee, "Promenade à la Villa Borghèse", "Profitez d'une promenade dans ce vaste parc paysager, abritant des musées, des jardins et des vues panoramiques sur Rome", '2h30', 'Car', '09:30:00', 11.00, "trajet");
 
 
 -- Machu Picchu
-INSERT INTO activites(id_voyage, a_nom, a_description, a_duree, mode_transport, a_heure_depart, a_prix) VALUES
-(@id_machu_picchu, "Ascension du Huayna Picchu", "Grimpez au sommet emblématique qui surplombe la cité inca pour une vue panoramique spectaculaire.", '2h', 'À pied', '09:00:00', 49.00),
-(@id_machu_picchu, "Randonnée jusqu'à la porte du Soleil", "Suivez les traces des Incas jusqu'à cette anciene porte d'entrée offrant une vue imprenable sur le sanctuaire.", '2h30', 'À pied', '10:00:00',0.00),
-(@id_machu_picchu, "Détente aux bains d'Aguas Calientes", "Profitez d'une relaxation bien méritée dans ces sources chaudes naturelles après une journée d'exploration.", '1h30', 'À pied','18:00:00', 5.00),
-(@id_machu_picchu, "Visite du Temple du Soleil", "Admirez l'architecture impressionnante de ce temple dédié au dieu Soleil, témoin de l'ingéniosité inca.", '30min', 'À pied', '10:00:00', 7.00),
-(@id_machu_picchu, "Jardins de Mandor", "Explorez une végétation luxuriante et découvrez une cascade cachée dans ce jardin botanique paisible.", '3h', 'À pied', '14:00:00', 2.50),
-(@id_machu_picchu, "Jardin Wasi Pillpi", "Observez plus de 500 espèces de papillons dans ce centre de conservation dédié à ces insectes colorés.", '1h', 'À pied', '15:00:00', 2.50),
-(@id_machu_picchu, "Excursion en VTT dans la Vallée Sacrée", "Explorez les paysages spectaculaires de la Vallée Sacrée à vélo, en passant par des villages traditionnels et des sites archéologiques", '5h', 'Vélo', '13:30:00', 36.00),
-(@id_machu_picchu, "Ascension du Putucusi", "Pour les aventuriers, cette montée raide offre une vue alternative sur le Machu Picchu, loin des foules", '4h', 'À pied', '08:00:00', 0.00);
+INSERT INTO activites(id_voyage, a_nom, a_description, a_duree, mode_transport, a_heure_depart, a_prix, inclus) VALUES
+(@id_machu_picchu, "Ascension du Huayna Picchu", "Grimpez au sommet emblématique qui surplombe la cité inca pour une vue panoramique spectaculaire.", '2h', 'À pied', '09:00:00', 19.00, "billet d'entrée et visite guidée"),
+(@id_machu_picchu, "Randonnée jusqu'à la porte du Soleil", "Suivez les traces des Incas jusqu'à cette anciene porte d'entrée offrant une vue imprenable sur le sanctuaire.", '2h30', 'À pied', '10:00:00', 7.00, "visite guidée"),
+(@id_machu_picchu, "Détente aux bains d'Aguas Calientes", "Profitez d'une relaxation bien méritée dans ces sources chaudes naturelles après une journée d'exploration.", '1h30', 'Car','18:00:00', 5.00, "trajet"),
+(@id_machu_picchu, "Visite du Temple du Soleil", "Admirez l'architecture impressionnante de ce temple dédié au dieu Soleil, témoin de l'ingéniosité inca.", '30min', 'À pied', '10:00:00', 7.00, "visite guidée"),
+(@id_machu_picchu, "Jardins de Mandor", "Explorez une végétation luxuriante et découvrez une cascade cachée dans ce jardin botanique paisible.", '3h', 'Car', '14:00:00', 2.50, "trajet"),
+(@id_machu_picchu, "Jardin Wasi Pillpi", "Observez plus de 500 espèces de papillons dans ce centre de conservation dédié à ces insectes colorés.", '1h', 'Car', '15:00:00', 9.50, "trajet et billet d'entrée"),
+(@id_machu_picchu, "Excursion en VTT dans la Vallée Sacrée", "Explorez les paysages spectaculaires de la Vallée Sacrée à vélo, en passant par des villages traditionnels et des sites archéologiques", '5h', 'Vélo', '13:30:00', 36.00, "visite guidée et location de matériel"),
+(@id_machu_picchu, "Ascension du Putucusi", "Pour les aventuriers, cette montée raide offre une vue alternative sur le Machu Picchu, loin des foules", '4h', 'À pied', '08:00:00', 4.50, "visite guidée");
 
 
 
 -- Taj Mahal
-INSERT INTO activites(id_voyage, a_nom, a_description, a_duree, mode_transport, a_heure_depart, a_prix) VALUES
-(@id_taj_mahal, "Visite du Taj Mahal", "Admirez l'un des monuments les plus emblématiques du monde, symbole éternel de l'amour, construit par l'empereur moghol Shah Jahan en mémoire de son épouse Mumtaz Mahal.", '4h', 'Car', '14:30:00', 13.50),
-(@id_taj_mahal, "Visite du Fort d'Agra", "Explorez cette forteresse moghole du XVIe siècle, classée au patrimoine mondial de l'UNESCO, offrant une vue imprenable sur le Taj Mahal.", '2h', 'À pied', '11:00:00', 7.50),
-(@id_taj_mahal, "Balade en bateau sur la rivière Yamuna", "Profitez d'une promenade paisible en bateau offrant une perspective unique sur le Taj Mahal, particulièrement magique au lever ou au coucher du soleil.", '1h', 'À pied', '19:30:00', 12.00),
-(@id_taj_mahal, "Spectacle 'Mohabbat the Taj'", "Assistez à une représentation théâtrale racontant l'histoire d'amour derrière la construction du Taj Mahal, avec des costumes somptueux et des décors grandioses.", '1h30', 'À pied', '16:00:00', 14.00),
-(@id_taj_mahal, "Cours de cuisine indienne", "Apprenez à préparer des plats traditionnels indiens dans une ambiance conviviale, suivi d'un repas partagé avec vos hôtes.", '3h', 'Car', '18:30:00', 18.00),
-(@id_taj_mahal, "Visite des marchés locaux d'Agra", "Découvrez l'artisanat local, les épices et les textiles dans des marchés animés comme Sadar Bazaar.", '2h', 'À pied', '14:00:00', 0.00),
-(@id_taj_mahal, "Visite du Tombeau d'Itimad-ud-Daulah", "Explorez ce mausolée en marbre blanc, précurseur du Taj Mahal, célèbre pour ses incrustations de pierres précieuses et son architecture raffinée.", '1h30', 'Car', '10:00:00', 3.50),
-(@id_taj_mahal, "Jardins de Mehtab Bagh", "Profitez d'une vue panoramique sur le Taj Mahal depuis ces jardins paisibles situés de l'autre côté de la rivière Yamuna.", '1h30', 'Car', '17:30:00', 4.50);
+INSERT INTO activites(id_voyage, a_nom, a_description, a_duree, mode_transport, a_heure_depart, a_prix, inclus) VALUES
+(@id_taj_mahal, "Visite du Taj Mahal", "Admirez l'un des monuments les plus emblématiques du monde, symbole éternel de l'amour, construit par l'empereur moghol Shah Jahan en mémoire de son épouse Mumtaz Mahal.", '4h', 'Car', '14:30:00', 18.50, "trajet, billet d'entrée et visite guidée"),
+(@id_taj_mahal, "Visite du Fort d'Agra", "Explorez cette forteresse moghole du XVIe siècle, classée au patrimoine mondial de l'UNESCO, offrant une vue imprenable sur le Taj Mahal.", '2h', 'À pied', '11:00:00', 7.50, "visite guidée"),
+(@id_taj_mahal, "Balade en bateau sur la rivière Yamuna", "Profitez d'une promenade paisible en bateau offrant une perspective unique sur le Taj Mahal, particulièrement magique au lever ou au coucher du soleil.", '1h', 'À pied', '19:30:00', 12.00, "visite guidée et location de matériel"),
+(@id_taj_mahal, "Spectacle 'Mohabbat the Taj'", "Assistez à une représentation théâtrale racontant l'histoire d'amour derrière la construction du Taj Mahal, avec des costumes somptueux et des décors grandioses.", '1h30', 'Car', '16:00:00', 12.00, "trajet"),
+(@id_taj_mahal, "Cours de cuisine indienne", "Apprenez à préparer des plats traditionnels indiens dans une ambiance conviviale, suivi d'un repas partagé avec vos hôtes.", '3h', 'Car', '18:30:00', 18.00, "trajet, activité et repas"),
+(@id_taj_mahal, "Visite des marchés locaux d'Agra", "Découvrez l'artisanat local, les épices et les textiles dans des marchés animés comme Sadar Bazaar.", '2h', 'Car', '14:00:00', 11.50, "trajet"),
+(@id_taj_mahal, "Visite du Tombeau d'Itimad-ud-Daulah", "Explorez ce mausolée en marbre blanc, précurseur du Taj Mahal, célèbre pour ses incrustations de pierres précieuses et son architecture raffinée.", '1h30', 'Car', '10:00:00', 7.50, "trajet et visite guidée"),
+(@id_taj_mahal, "Jardins de Mehtab Bagh", "Profitez d'une vue panoramique sur le Taj Mahal depuis ces jardins paisibles situés de l'autre côté de la rivière Yamuna.", '1h30', 'Car', '17:30:00', 9.50, "trajet et billet d'entrée");
 
 
 
 -- Grande Muraille de Chine
-INSERT INTO activites(id_voyage, a_nom, a_description, a_duree, mode_transport, a_heure_depart, a_prix) VALUES
-(@id_chine, "Grande Muraille de Chine", "Découvrez l'un des monuments les plus emblématiques au monde, inscrit au patrimoine mondial de l'UNESCO.", '5h', 'Car', '13:30:00', 19.00),
-(@id_chine, "Descente en toboggan à Mutianyu", "Pour redescendre de la Muraille, optez pour une expérience unique en glissant le long d'un toboggan métallique serpentant à travers les arbres !", '10min', 'À pied', '18:30:00', 5.00),
-(@id_chine, "Téléphérique de Mutianyu", "Empruntez le téléphérique pour accéder directement à l'une des sections les plus impressionnantes de la Grande Muraille.", '15min', 'À pied', '11:00:00', 12.00),
-(@id_chine, "Visite des Tombeaux de Ming", "Découvrez la mécropole impériale où reposent 13 empereurs de la dynastie Ming, accessible par la majestueuse Voie des Esprits.", '2h30', 'Car', '10:00:00', 10.00),
-(@id_chine, "Dégustation de canard laqué à Pekin", "Savourez le célèbre canard laqué de Pékin, un plat emblématique de la cuisine chinoise, dans un restaurant traditionnel.", '3h30', 'Car', '10:45:00', 20.50),
-(@id_chine, "Exploration de la Plateforme Nuage", "Admirez cette structure ornée de sculptures bouddhistes et d'inscriptions multilingues, située dans une vallée pittoresque.", '2h30', 'Car', '14:00:00', 5.00),
-(@id_chine, "Visite de la Cité Interdite", "Explorez l'ancien palais impérial, un chef-d'œuvre d'architecture et d'histoire, classé au patrimoine mondialde l'UNESCO.", '4h', 'Car', '08:30:00', 6.00),
-(@id_chine, "Balade en pousse-pousse dans les hutongs de Pékin", "Découvrez les ruelles traditionnelles de Pékin en pousse-poussen une immersion dans la vie locale.", '1h', 'À pied', '15:00:00', 15.00),
-(@id_chine, "Excursion à Chengde", "Visitez les palais et les temples lamaïstes de Chengde, offrant un aperçu de la spiritualité et de l'architecture impériale.", '10h', 'Car', '08:00:00', 32.00);
+INSERT INTO activites(id_voyage, a_nom, a_description, a_duree, mode_transport, a_heure_depart, a_prix, inclus) VALUES
+(@id_chine, "Grande Muraille de Chine", "Découvrez l'un des monuments les plus emblématiques au monde, inscrit au patrimoine mondial de l'UNESCO.", '5h', 'Car', '13:30:00', 19.00, "trajet, billet d'entrée et visite guidée"),
+(@id_chine, "Descente en toboggan à Mutianyu", "Pour redescendre de la Muraille, optez pour une expérience unique en glissant le long d'un toboggan métallique serpentant à travers les arbres !", '10min', 'À pied', '18:30:00', 5.00, "billet d'entrée"),
+(@id_chine, "Téléphérique de Mutianyu", "Empruntez le téléphérique pour accéder directement à l'une des sections les plus impressionnantes de la Grande Muraille.", '15min', 'À pied', '11:00:00', 12.00, "billet d'entrée"),
+(@id_chine, "Visite des Tombeaux de Ming", "Découvrez la mécropole impériale où reposent 13 empereurs de la dynastie Ming, accessible par la majestueuse Voie des Esprits.", '2h30', 'Car', '10:00:00', 10.00, "trajet et visite guidée"),
+(@id_chine, "Dégustation de canard laqué à Pekin", "Savourez le célèbre canard laqué de Pékin, un plat emblématique de la cuisine chinoise, dans un restaurant traditionnel.", '3h30', 'Car', '10:45:00', 23.50, "trajet et repas"),
+(@id_chine, "Exploration de la Plateforme Nuage", "Admirez cette structure ornée de sculptures bouddhistes et d'inscriptions multilingues, située dans une vallée pittoresque.", '2h30', 'Car', '14:00:00', 5.00, "trajet"),
+(@id_chine, "Visite de la Cité Interdite", "Explorez l'ancien palais impérial, un chef-d'œuvre d'architecture et d'histoire, classé au patrimoine mondialde l'UNESCO.", '4h', 'Car', '08:30:00', 12.00, "trajet et visite guidée"),
+(@id_chine, "Balade en pousse-pousse dans les hutongs de Pékin", "Découvrez les ruelles traditionnelles de Pékin en pousse-pousse, une immersion dans la vie locale.", '1h', 'À pied', '15:00:00', 15.00, "visite guidée et location de matériel"),
+(@id_chine, "Excursion à Chengde", "Visitez les palais et les temples lamaïstes de Chengde, offrant un aperçu de la spiritualité et de l'architecture impériale.", '10h', 'Car', '08:00:00', 32.00, "trajet et pension");

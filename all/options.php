@@ -180,7 +180,7 @@ $prix_total_vols = $prix_vols * $total_passagers;
 <main class="page-content">
 
 <form action="options.php?voyage=<?= $voyage['id_voyage']?>" method="POST">
-    <section class="passenger-selection">
+    <section class="passenger-selection" id="formulaire-reservation">
   <h2>Informations voyage</h2>
   <div class="passenger-fields">
     <div class="passenger-field">
@@ -337,6 +337,7 @@ $prix_total_chambres = $prix_chambre * $nb_chambres;
                         <li>Départ : Réception de l'hôtel à <?= htmlspecialchars($activite['a_heure_depart'])?></li>
                         <li>Prix : <?= htmlspecialchars($activite['a_prix'])?>€ par personne </li>
                     </ul>
+                    <p><strong>Inclus :</strong> <?= htmlspecialchars($activite['inclus']) ?></p>
 
 <div class="activity-participants">
   <label for="activity-participants-<?= $activite['id_activite'] ?>">Nombre de participants :</label>
@@ -582,6 +583,42 @@ function setActionAndSubmit(actionValue, event) {
 
     form.submit();
 }
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const target = document.getElementById("formulaire-reservation");
+
+  if (target) {
+    setTimeout(() => {
+      smoothScrollTo(target, 1500); 
+    }, 400);
+  }
+
+  function smoothScrollTo(element, duration) {
+    const start = window.pageYOffset;
+    const end = element.getBoundingClientRect().top + window.pageYOffset;
+    const distance = end - start;
+    const startTime = performance.now();
+
+    function scrollStep(currentTime) {
+      const timeElapsed = currentTime - startTime;
+      const progress = Math.min(timeElapsed / duration, 1);
+
+      // EaseInOutQuad
+      const ease = progress < 0.5
+        ? 2 * progress * progress
+        : -1 + (4 - 2 * progress) * progress;
+
+      window.scrollTo(0, start + distance * ease);
+
+      if (timeElapsed < duration) {
+        requestAnimationFrame(scrollStep);
+      }
+    }
+
+    requestAnimationFrame(scrollStep);
+  }
+});
 
 
 

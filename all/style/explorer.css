@@ -147,13 +147,16 @@ header {
 
 /* Filtres avancés */
 #filtresAvances {
-  margin-top: 20px;
+  margin-top: 20px auto;
   padding-top: 20px;
   border-top: 1px solid #e2e8f0;
+  max-width: 800px;
 }
 
 .filtreGroupe {
-  display: grid;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
 }
@@ -161,6 +164,7 @@ header {
 .champFiltre {
   display: flex;
   flex-direction: column;
+  width: 200px;
 }
 
 .champFiltre label {
@@ -182,8 +186,33 @@ header {
 #resultatsRecherche {
   width: 90%;
   max-width: 1200px;
-  margin: 0 auto 40px;
+  margin: 10px auto 10px;
 }
+
+.titre-centre {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 1.8rem;
+  color: #2c3e50;
+}
+
+
+.separateur {
+  height: 2px;
+  width: 60%;
+  margin: 20px auto;
+  background-color: #ccc;
+}
+
+
+.message-vide {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #718096;
+  margin: 20px auto 40px;
+}
+
+
 
 .voyageCard {
   background: white;
@@ -240,11 +269,13 @@ header {
 
 .aucunResultat {
   text-align: center;
-  padding: 40px;
+  padding: 10px 0 20px 0;
   color: #718096;
   font-size: 1.1rem;
+  margin-top: 10px;
 }
   
+
 .merveilles-container {
   padding: 40px 0;
   text-align: center;
@@ -353,6 +384,7 @@ footer {
     font-size: 0.9rem;
     margin-top: auto;  
 }
+
 
 
 

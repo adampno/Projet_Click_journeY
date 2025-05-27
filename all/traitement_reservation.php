@@ -119,6 +119,7 @@ try {
     if ($action === 'retour_accueil') {
         header('Location: index.php');
     } else {
+        $_SESSION['reservation_prete'] = true;
         header('Location: reservation.php?voyage=' . $voyage_id);
     }
     exit;

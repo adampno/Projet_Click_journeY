@@ -107,73 +107,31 @@ try {
       <div id="conteneurRecherche">
         <section id="zoneRecherche">
           
-          <!-- Barre de recherche par mots-clés -->
-          <form method="GET" action="">
-            <input type="text" name="titre" placeholder="Rechercher par mots-clés (ex: Cheval, Maya, Aventure)">
-            <button type="submit">Rechercher</button>
-          </form>
-
-          <!-- Résultats de recherche -->
-          <h2>Résultats :</h2>
-          <ul>
-          <?php if (empty($voyages)): ?>
-              <li>Aucun résultat trouvé pour cette recherche.</li>
-          <?php endif; ?>
-          </ul>
-        </section>
-      </div>
-        <!-- Filtres avancés (peuvent être cachés/dépliables) -->
-        <div id="filtresAvances">
-            <div class="filtreGroupe">
-                <div class="champFiltre">
-                    <label for="destinationSelect">Destination</label>
-                    <select id="destinationSelect">
-                        <option value="">Toutes destinations</option>
-                        <option value="chichenItza">Chichen Itza (Mexique)</option>
-                        <option value="christRedeemer">Christ Rédempteur (Brésil)</option>
-                        <option value="greatWall">Grande Muraille (Chine)</option>
-                        <option value="machuPicchu">Machu Picchu (Pérou)</option>
-                        <option value="petra">Petra (Jordanie)</option>
-                        <option value="colosseum">Colisée (Italie)</option>
-                        <option value="tajMahal">Taj Mahal (Inde)</option>
-                    </select>
-                </div>
-
-                <div class="champFiltre">
-                    <label for="nombreEtapes">Nombre d'étapes</label>
-                    <select id="nombreEtapes">
-                        <option value="">Peu importe</option>
-                        <option value="1">1 étape</option>
-                        <option value="2">2 étapes</option>
-                        <option value="3">3 étapes</option>
-                        <option value="4">4 étapes</option>
-                        <option value="5">5 étapes</option>
-                      
-                    </select>
-                </div>
-
-                <div class="champFiltre">
-                    <label for="dateDepart">Date de départ</label>
-                    <input type="date" id="dateDepart">
-                </div>
-
-                <div class="champFiltre">
-                    <label for="budgetMax">Budget max (€)</label>
-                    <input type="number" id="budgetMax" min="0" placeholder="Illimité">
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
-
-<!-- Zone des résultats -->
-<div id="resultatsRecherche">
-    <!-- Les résultats seront injectés ici via JavaScript/PHP -->
+        <div id="resultatsRecherche">
     <div class="aucunResultat">
         <p>Effectuez une recherche pour afficher les voyages disponibles</p>
     </div>
 </div>
 
+
+          <!-- Barre de recherche par mots-clés -->
+          <form method="GET" action="">
+            <input type="text" name="titre" placeholder="Rechercher par mots-clés (ex: Cheval, Maya, Aventure)">
+            <button type="submit">Rechercher</button>
+          </form>
+          
+
+        </section>
+      </div>
+
+
+<h2 class="titre-centre">Résultats :</h2>
+
+          <?php if (empty($voyages)): ?>
+              <p class="message-vide">Aucun résultat trouvé pour cette recherche.</p>
+          <?php endif; ?>
+         
+<div class="separateur"></div>
 
             <section class="merveilles-container">
       <h2>Nos voyages</h2>
