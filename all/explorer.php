@@ -120,41 +120,18 @@ try {
             <button type="submit">Rechercher</button>
           </form>
           
-          <ul>
-          <?php if (empty($voyages)): ?>
-              <li>Aucun résultat trouvé pour cette recherche.</li>
-          <?php endif; ?>
-          </ul>
+
         </section>
       </div>
-        <!-- Filtres avancés (peuvent être cachés/dépliables) -->
-        <div id="filtresAvances">
-            <div class="filtreGroupe">
-                <div class="champFiltre">
-                    <label for="destinationSelect">Destination</label>
-                    <select id="destinationSelect">
-                        <option value="">Toutes destinations</option>
-                        <option value="chichenItza">Chichen Itza (Mexique)</option>
-                        <option value="christRedeemer">Christ Rédempteur (Brésil)</option>
-                        <option value="greatWall">Grande Muraille (Chine)</option>
-                        <option value="machuPicchu">Machu Picchu (Pérou)</option>
-                        <option value="petra">Petra (Jordanie)</option>
-                        <option value="colosseum">Colisée (Italie)</option>
-                        <option value="tajMahal">Taj Mahal (Inde)</option>
-                    </select>
-                </div>
 
-                <div class="champFiltre">
-                    <label for="budgetMax">Budget max (€)</label>
-                    <input type="number" id="budgetMax" min="0" placeholder="Illimité">
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
 
-<h2>Résultats :</h2>
+<h2 class="titre-centre">Résultats :</h2>
 
+          <?php if (empty($voyages)): ?>
+              <p class="message-vide">Aucun résultat trouvé pour cette recherche.</p>
+          <?php endif; ?>
+         
+<div class="separateur"></div>
 
             <section class="merveilles-container">
       <h2>Nos voyages</h2>
