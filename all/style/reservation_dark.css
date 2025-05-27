@@ -25,6 +25,7 @@ header {
 
 .logo {
   width: 120px;
+  background-color: #ffffff;
   border-radius: 10% 30% 50% 70%;
 }
 
@@ -35,6 +36,7 @@ header {
 }
 
 .nav_links a {
+  color: #1a1a1a;
   text-decoration: none;
   font-weight: 500;
   font-size: 16px;
@@ -43,6 +45,7 @@ header {
 }
 
 .nav_links a:hover {
+  background-color: rgba(0, 0, 0, 0.05);
   border-radius: 5px;
 }
 
@@ -54,9 +57,7 @@ header {
   left: 0;
   overflow: hidden;
   z-index: -1;
-  /* met le fond derrière */
 }
-
 
 .hero-image {
   width: 100%;
@@ -65,13 +66,13 @@ header {
   display: block;
 }
 
-
 .hero-overlay {
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
+  background: rgba(255, 255, 255, 0.6);
 }
 
 .hero-text {
@@ -79,26 +80,19 @@ header {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  color: #1a1a1a;
   text-align: center;
   z-index: 2;
   padding: 0 20px;
 }
 
-
 .hero-text h1 {
   font-family: 'Waterfall', cursive;
   font-size: 12vw;
   font-weight: 700;
   line-height: 1.1;
+  text-shadow: 1px 1px 6px rgba(255, 255, 255, 0.6);
   margin: 0;
-}
-
-.hero-text h1 {
-  font-family: 'Waterfall', cursive;
-  font-size: 12vw;
-  font-weight: 700;
-  line-height: 1.1;
-  text-shadow: 2px 2px 12px rgba(0,0,0,0.6);
 }
 
 .hero-text p {
@@ -106,105 +100,91 @@ header {
   font-size: 2vw;
   font-weight: 400;
   margin-top: 10px;
-  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.4);
+  text-shadow: 1px 1px 6px rgba(255, 255, 255, 0.4);
 }
-
 
 .reservation-container {
   width: 70%;
   margin: 60px auto;
   padding: 40px;
+  background-color: #ffffff;
   border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
-
 
 .reservation-container h1 {
   text-align: center;
   margin-bottom: 30px;
+  color: #1a1a1a;
 }
-
 
 .form-group {
   margin-bottom: 20px;
 }
 
-
 label {
   display: block;
   margin-bottom: 8px;
   font-weight: bold;
+  color: #333;
 }
-
 
 input[type="number"] {
   width: 100%;
   padding: 10px;
   border-radius: 8px;
-  border: 1px solid #444;
-  background-color: #2a2a2a;
-  color: #f5f5f5;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  color: #1a1a1a;
 }
-
-
 
 .form-group input,
 .form-group select {
   padding: 10px;
   border-radius: 8px;
-  border: 1px solid #444;
+  border: 1px solid #ccc;
   font-size: 15px;
-  background-color: #2a2a2a;
-  color: #f5f5f5;
+  background-color: #f9f9f9;
+  color: #1a1a1a;
   transition: border-color 0.2s;
 }
 
-
 .form-group input:focus,
 .form-group select:focus {
-  border-color: #00bcd4;
+  border-color: #007acc;
   outline: none;
-  box-shadow: 0 0 4px rgba(0, 188, 212, 0.5);
+  box-shadow: 0 0 4px rgba(0, 122, 204, 0.5);
 }
 
-
-.passenger-info{
-  border: 1px solid #333;
+.passenger-info {
+  border: 1px solid #ddd;
   padding: 25px;
   border-radius: 12px;
   margin-bottom: 30px;
-  background-color: #1a1a1a;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: #fefefe;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   transition: box-shadow 0.3s ease;
 }
 
-
-.passenger-info h4{
+.passenger-info h4 {
   margin-bottom: 20px;
   font-size: 20px;
   font-weight: 600;
-  color: #00bcd4;
-  border-left: 4px solid #00acc1;
+  color: #007acc;
+  border-left: 4px solid #007acc;
   padding-left: 12px;
 }
 
-
-
-
-.passenger-info:hover{
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+.passenger-info:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
 }
-
-
-
 
 footer {
   text-align: center;
   padding: 20px;
-  background-color: #1a1a1a;
-  color: #ccc;
+  background-color: #e0e0e0;
+  color: #333;
 }
-
-
 
 .reservation-button-container {
   display: flex;
@@ -215,8 +195,6 @@ footer {
   margin-bottom: 60px;
 }
 
-
-
 .confirmation-button {
   background: linear-gradient(to right, #00b09b, #96c93d);
   color: white;
@@ -225,14 +203,13 @@ footer {
   border: none;
   border-radius: 40px;
   text-decoration: none;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease-in-out;
   cursor: pointer;
 }
 
-
 .confirmation-button:hover {
   background: linear-gradient(to right, #96c93d, #00b09b);
   transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
 }
